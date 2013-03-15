@@ -268,12 +268,9 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         int ke=evt.getKeyCode();
         if(ke==10){
-            if(txtnm.getText().length()==0)
-            {
+            if(txtnm.getText().length()==0){
                 JOptionPane.showMessageDialog(null, "Username cannot be empty","WARNING !!!",JOptionPane.WARNING_MESSAGE);
-            }
-            else
-            {
+            }else{
                 txtpass.requestFocus();
             }
         }

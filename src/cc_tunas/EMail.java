@@ -344,7 +344,7 @@ public class EMail extends javax.swing.JFrame {
         opdt();
         optm();
         stt();
-        sql="insert into log_mail (mail_from,mail_to,mail_cc,mail_subject,mail_text,direction,username,ticket_id,direction_type,cust_name) values ('contact@mpm-rent.com','"+txtcto.getText()+"','"+txtccc.getText()+"','"+txtcsu.getText()+"','"+txtcmsg.getText()+"',1,'"+CCanj.lbluser.getText()+"','"+Tic.id+"','"+cbcaltype.getSelectedItem()+"','"+cbcust.getSelectedItem()+"')";
+        sql="insert into log_mail (mail_date,mail_time,mail_from,mail_to,mail_cc,mail_subject,mail_text,direction,username,ticket_id,direction_type,cust_name) values (current_date,current_time,'careline.tunas@jsm.co.id','"+txtcto.getText()+"','"+txtccc.getText()+"','"+txtcsu.getText()+"','"+txtcmsg.getText()+"',1,'"+CCanj.lbluser.getText()+"','"+Tic.id+"','"+cbcaltype.getSelectedItem()+"','"+cbcust.getSelectedItem()+"')";
 //        sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username) values ('contact@anjrent.com','"+txtcsomail.getText()+"','<Ticket>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+txtnotic.getText()+"','"+txtdetails.getText()+"\n\n"+txtsolution.getText()+" \n\n UPDATED','"+id+"',1,'"+CCanj.lbluser.getText()+"')";
         CCanj.jconn.SQLExecute(sql,CCanj.conn);
         sqlid="select distinct last_insert_id() from log_mail";

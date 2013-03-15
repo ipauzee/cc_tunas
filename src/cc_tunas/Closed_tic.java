@@ -66,32 +66,41 @@ public class Closed_tic extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel9.setFont(new java.awt.Font("Calibri", 0, 11));
+        jPanel9.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         jPanel9.setLayout(null);
 
         ckconf.setBackground(new java.awt.Color(255, 255, 255));
-        ckconf.setFont(new java.awt.Font("Calibri", 0, 12));
-        ckconf.setSelected(true);
-        ckconf.setText("Konfirmasi");
+        ckconf.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        ckconf.setText("First Call Resolution");
+        ckconf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckconfActionPerformed(evt);
+            }
+        });
         jPanel9.add(ckconf);
-        ckconf.setBounds(180, 20, 110, 24);
+        ckconf.setBounds(20, 20, 160, 24);
 
-        cbby.setFont(new java.awt.Font("Calibri", 0, 12));
+        cbby.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         cbby.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contact Center", "CSO" }));
         jPanel9.add(cbby);
-        cbby.setBounds(290, 20, 120, 24);
+        cbby.setBounds(290, 44, 120, 0);
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 12));
+        jButton1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jButton1.setText("Closed Ticket");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel9.add(jButton1);
         jButton1.setBounds(10, 220, 105, 24);
 
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 12));
+        jButton2.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jButton2.setText("Cancel");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,11 +111,11 @@ public class Closed_tic extends javax.swing.JFrame {
         jButton2.setBounds(300, 220, 100, 24);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setFont(new java.awt.Font("Calibri", 0, 11));
+        jPanel3.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         jPanel3.setLayout(null);
 
         txtsolution.setColumns(20);
-        txtsolution.setFont(new java.awt.Font("Calibri", 0, 12));
+        txtsolution.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         txtsolution.setLineWrap(true);
         txtsolution.setRows(5);
         jScrollPane4.setViewportView(txtsolution);
@@ -138,7 +147,7 @@ public class Closed_tic extends javax.swing.JFrame {
         }else{
             conf=0;
         }
-        sql="update tickets set _status=2, close_date='"+opdt+"', close_time='"+optm+"', close_username'"+CCanj.lbluser.getText()+"', confirm="+conf+", confirm_by='"+cbby.getSelectedIndex()+"', solution='"+txtsolution.getText()+"' where ticket_id='"+Tic.id+"'";
+        sql="update tickets set _status=4, close_date='"+opdt+"', close_time='"+optm+"', close_username'"+CCanj.lbluser.getText()+"', confirm="+conf+", confirm_by='"+cbby.getSelectedIndex()+"', solution='"+txtsolution.getText()+"' where ticket_id='"+Tic.id+"'";
         CCanj.jconn.SQLExecute(sql,CCanj.conn);
         sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username) values ('contact@anjrent.com','"+Tic.txtcsomail.getText()+"','<notify>#"+Tic.txtcusnam.getText()+"#"+Tic.cbnoplat.getSelectedItem()+"#"+Tic.txtusr.getText()+"#"+Tic.cbcategory.getSelectedItem()+"#"+Tic.txtnotic.getText()+"','CLOSED by : "+CCanj.lbluser.getText()+"\n"+opdt+"\n"+optm+"\n\nDetails :\n"+Tic.txtdetails.getText()+"\n\nSoluiton :\n"+Tic.txtlastnote.getText()+"','"+Tic.id+"',1,'"+CCanj.lbluser.getText()+")";
         CCanj.jconn.SQLExecute(sql1,CCanj.conn);
@@ -158,6 +167,14 @@ public class Closed_tic extends javax.swing.JFrame {
 //            System.err.println(ex.getMessage());
 //        }
     }//GEN-LAST:event_formWindowClosed
+
+    private void ckconfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckconfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckconfActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
     * @param args the command line arguments

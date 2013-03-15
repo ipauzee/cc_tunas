@@ -73,8 +73,8 @@ public class ticket extends javax.swing.JFrame {
     String s;
     String opdt;
     String optm;
-    public static String deptid;
-    String catid,catdetid;
+    public static String deptid,ReArea,TicType,AgreeId;
+    private static String catid,catdetid;
     String usrlvl;
 
     public static int sla;
@@ -96,8 +96,8 @@ public class ticket extends javax.swing.JFrame {
     public ticket() {
         initComponents();
         setSize(1022,655);
-        tabdet.setEnabledAt(5, false);
-        showDept();showArea();
+//        tabdet.setEnabledAt(5, false);
+        showDept();showReArea();
         showcategory();showCatDet();
         showType();
         optm();
@@ -201,7 +201,6 @@ public class ticket extends javax.swing.JFrame {
         tabdet = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        txtcontract = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         txtcuscod = new javax.swing.JTextField();
         txtcusnam = new javax.swing.JTextField();
@@ -222,6 +221,37 @@ public class ticket extends javax.swing.JFrame {
         btnsrchcus = new javax.swing.JButton();
         jLabel31 = new javax.swing.JLabel();
         txtcusconst1 = new javax.swing.JTextField();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        txtPicadd = new javax.swing.JTextArea();
+        txtpicPho = new javax.swing.JTextField();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        txtcustNote = new javax.swing.JTextArea();
+        jLabel75 = new javax.swing.JLabel();
+        txtcusemail = new javax.swing.JTextField();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        txtAgr4 = new javax.swing.JTextField();
+        txtAgr3 = new javax.swing.JTextField();
+        txtAgr2 = new javax.swing.JTextField();
+        jLabel67 = new javax.swing.JLabel();
+        txtAgr1 = new javax.swing.JTextField();
+        jLabel68 = new javax.swing.JLabel();
+        txtAgr5 = new javax.swing.JTextField();
+        jLabel69 = new javax.swing.JLabel();
+        txtAgr6 = new javax.swing.JTextField();
+        txtcontract = new javax.swing.JTextField();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        txtAgr9 = new javax.swing.JTextField();
+        txtAgr8 = new javax.swing.JTextField();
+        txtAgr7 = new javax.swing.JTextField();
+        jLabel73 = new javax.swing.JLabel();
+        txtAgr10 = new javax.swing.JTextField();
+        jLabel74 = new javax.swing.JLabel();
+        txtAgr11 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -230,26 +260,29 @@ public class ticket extends javax.swing.JFrame {
         txtcsopho = new javax.swing.JTextField();
         txtcso = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        txtcsocode = new javax.swing.JTextField();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        txtusr = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtusrpho = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        txtusraddr = new javax.swing.JTextArea();
+        txtCro1 = new javax.swing.JTextField();
+        jLabel59 = new javax.swing.JLabel();
+        txtcsopho1 = new javax.swing.JTextField();
+        jLabel60 = new javax.swing.JLabel();
+        txtcsobranch = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         cbnoplat = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
-        txtjenis = new javax.swing.JTextField();
+        txtUnit4 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        txtwarna = new javax.swing.JTextField();
+        txtUnit7 = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        txttype = new javax.swing.JTextField();
+        txtUnit3 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        txtthn = new javax.swing.JTextField();
+        txtUnit6 = new javax.swing.JTextField();
+        jLabel61 = new javax.swing.JLabel();
+        txtUnit1 = new javax.swing.JTextField();
+        jLabel62 = new javax.swing.JLabel();
+        txtUnit2 = new javax.swing.JTextField();
+        txtUnit5 = new javax.swing.JTextField();
+        jLabel63 = new javax.swing.JLabel();
+        txtUnit8 = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -257,8 +290,61 @@ public class ticket extends javax.swing.JFrame {
         cbdriver = new javax.swing.JComboBox();
         jLabel30 = new javax.swing.JLabel();
         txtdripho1 = new javax.swing.JTextField();
+        txtDriCode = new javax.swing.JTextField();
+        btncall = new javax.swing.JButton();
+        btnfax = new javax.swing.JButton();
+        btnmail = new javax.swing.JButton();
+        btnsms = new javax.swing.JButton();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        cbTicketType = new javax.swing.JComboBox();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        cbcatdetail = new javax.swing.JComboBox();
+        cbArea = new javax.swing.JComboBox();
+        jLabel58 = new javax.swing.JLabel();
+        txtCaseArea = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        btncreate = new javax.swing.JButton();
+        btnhist = new javax.swing.JButton();
+        cksubmit = new javax.swing.JCheckBox();
+        btnhist1 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        btncanc = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        btnclosed = new javax.swing.JButton();
+        btncanc1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        ckGT = new javax.swing.JCheckBox();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        ckGS = new javax.swing.JCheckBox();
+        ckSTORING = new javax.swing.JCheckBox();
+        ckOTHERS = new javax.swing.JCheckBox();
+        ckgtyes = new javax.swing.JCheckBox();
+        ckgsyes = new javax.swing.JCheckBox();
+        ckstoringyes = new javax.swing.JCheckBox();
+        ckothersyes = new javax.swing.JCheckBox();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtlastnote = new javax.swing.JTextArea();
+        jLabel51 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtdetails = new javax.swing.JTextArea();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        txtnote = new javax.swing.JTextArea();
+        hiddenTab = new javax.swing.JTabbedPane();
+        pnluser = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        txtusr = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtusrpho = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        txtusraddr = new javax.swing.JTextArea();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jPanel13 = new javax.swing.JPanel();
+        pnlRep = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -295,47 +381,6 @@ public class ticket extends javax.swing.JFrame {
         cbroristat = new javax.swing.JComboBox();
         cbrrepstat = new javax.swing.JComboBox();
         txtrdelivertime = new javax.swing.JFormattedTextField();
-        btncall = new javax.swing.JButton();
-        btnfax = new javax.swing.JButton();
-        btnmail = new javax.swing.JButton();
-        btnsms = new javax.swing.JButton();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        cbTicketType = new javax.swing.JComboBox();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        cbcatdetail = new javax.swing.JComboBox();
-        cbArea = new javax.swing.JComboBox();
-        jPanel6 = new javax.swing.JPanel();
-        btncreate = new javax.swing.JButton();
-        btnhist = new javax.swing.JButton();
-        cksubmit = new javax.swing.JCheckBox();
-        btnhist1 = new javax.swing.JButton();
-        jPanel8 = new javax.swing.JPanel();
-        btncanc = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        btnclosed = new javax.swing.JButton();
-        btncanc1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        ckGT = new javax.swing.JCheckBox();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        ckGS = new javax.swing.JCheckBox();
-        ckSTORING = new javax.swing.JCheckBox();
-        ckOTHERS = new javax.swing.JCheckBox();
-        ckgtyes = new javax.swing.JCheckBox();
-        ckgsyes = new javax.swing.JCheckBox();
-        ckstoringyes = new javax.swing.JCheckBox();
-        ckothersyes = new javax.swing.JCheckBox();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtlastnote = new javax.swing.JTextArea();
-        jLabel51 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtdetails = new javax.swing.JTextArea();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        txtnote = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Ticket");
@@ -358,7 +403,7 @@ public class ticket extends javax.swing.JFrame {
         txtCcDept.setFocusable(false);
         txtCcDept.setRequestFocusEnabled(false);
         jPanel7.add(txtCcDept);
-        txtCcDept.setBounds(130, 150, 330, 24);
+        txtCcDept.setBounds(130, 170, 330, 24);
 
         btnCcDept.setFont(btnCcDept.getFont().deriveFont(btnCcDept.getFont().getStyle() | java.awt.Font.BOLD, 10));
         btnCcDept.setText("...");
@@ -369,7 +414,7 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel7.add(btnCcDept);
-        btnCcDept.setBounds(460, 150, 30, 24);
+        btnCcDept.setBounds(460, 170, 30, 24);
 
         jList1.setFont(jList1.getFont().deriveFont((float)11));
         jList1.setModel(new javax.swing.AbstractListModel() {
@@ -385,7 +430,7 @@ public class ticket extends javax.swing.JFrame {
         scpCcList.setViewportView(jList1);
 
         jPanel7.add(scpCcList);
-        scpCcList.setBounds(130, 170, 360, 20);
+        scpCcList.setBounds(130, 190, 360, 20);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "<<OPEN NEW TICKET>>", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
@@ -407,17 +452,17 @@ public class ticket extends javax.swing.JFrame {
         jLabel2.setFont(jLabel2.getFont().deriveFont((float)11));
         jLabel2.setText("Category :"); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 100, 100, 20);
+        jLabel2.setBounds(20, 120, 100, 20);
 
         jLabel3.setFont(jLabel3.getFont().deriveFont((float)11));
-        jLabel3.setText("Area :"); // NOI18N
+        jLabel3.setText("Case Area :"); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(20, 40, 100, 20);
 
         jLabel6.setFont(jLabel6.getFont().deriveFont((float)11));
-        jLabel6.setText("Prority :"); // NOI18N
+        jLabel6.setText("Represent. Area:"); // NOI18N
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 20, 100, 20);
+        jLabel6.setBounds(20, 80, 100, 20);
 
         cbcategory.setFont(cbcategory.getFont().deriveFont((float)11));
         cbcategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -427,7 +472,7 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbcategory);
-        cbcategory.setBounds(120, 100, 360, 24);
+        cbcategory.setBounds(120, 120, 360, 24);
 
         cbprior.setFont(cbprior.getFont().deriveFont(cbprior.getFont().getStyle() | java.awt.Font.BOLD, 11));
         cbprior.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NORMAL", "URGENT" }));
@@ -444,8 +489,8 @@ public class ticket extends javax.swing.JFrame {
         jPanel1.add(cbdept);
         cbdept.setBounds(120, 60, 300, 24);
 
-        txtques.setColumns(20);
         txtques.setEditable(false);
+        txtques.setColumns(20);
         txtques.setFont(txtques.getFont().deriveFont((float)11));
         txtques.setLineWrap(true);
         txtques.setRows(5);
@@ -457,27 +502,27 @@ public class ticket extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtques);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(120, 465, 380, 65);
+        jScrollPane2.setBounds(120, 500, 380, 40);
 
         jLabel4.setFont(jLabel4.getFont().deriveFont((float)11));
         jLabel4.setText("Question :"); // NOI18N
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 465, 100, 20);
+        jLabel4.setBounds(20, 490, 100, 20);
 
         jLabel5.setFont(jLabel5.getFont().deriveFont((float)11));
         jLabel5.setText("Info :"); // NOI18N
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 530, 100, 20);
+        jLabel5.setBounds(20, 540, 100, 20);
 
-        txtinfo.setColumns(20);
         txtinfo.setEditable(false);
+        txtinfo.setColumns(20);
         txtinfo.setFont(txtinfo.getFont().deriveFont((float)11));
         txtinfo.setLineWrap(true);
         txtinfo.setRows(5);
         jScrollPane3.setViewportView(txtinfo);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(120, 530, 380, 65);
+        jScrollPane3.setBounds(120, 540, 380, 40);
 
         btnreset.setFont(btnreset.getFont().deriveFont(btnreset.getFont().getStyle() | java.awt.Font.BOLD, 10));
         btnreset.setText("Reset");
@@ -500,63 +545,59 @@ public class ticket extends javax.swing.JFrame {
         jLabel22.setFont(jLabel22.getFont().deriveFont((float)11));
         jLabel22.setText("Contract No."); // NOI18N
         jPanel4.add(jLabel22);
-        jLabel22.setBounds(10, 10, 100, 20);
-
-        txtcontract.setFont(txtcontract.getFont().deriveFont((float)11));
-        txtcontract.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcontractActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtcontract);
-        txtcontract.setBounds(110, 10, 360, 24);
+        jLabel22.setBounds(10, 10, 100, 0);
 
         jLabel23.setBackground(new java.awt.Color(102, 102, 255));
         jLabel23.setFont(jLabel23.getFont().deriveFont((float)11));
-        jLabel23.setText("Cust. Code"); // NOI18N
+        jLabel23.setText("Cust. Code :"); // NOI18N
         jPanel4.add(jLabel23);
-        jLabel23.setBounds(10, 30, 100, 20);
+        jLabel23.setBounds(10, 70, 100, 20);
 
         txtcuscod.setFont(txtcuscod.getFont().deriveFont((float)11));
         jPanel4.add(txtcuscod);
-        txtcuscod.setBounds(110, 30, 360, 24);
+        txtcuscod.setBounds(110, 70, 360, 24);
 
         txtcusnam.setFont(txtcusnam.getFont().deriveFont((float)11));
+        txtcusnam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcusnamActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtcusnam);
-        txtcusnam.setBounds(110, 50, 360, 24);
+        txtcusnam.setBounds(110, 10, 360, 24);
 
         jLabel7.setBackground(new java.awt.Color(102, 102, 255));
         jLabel7.setFont(jLabel7.getFont().deriveFont((float)11));
         jLabel7.setText("Cust. Name :"); // NOI18N
         jPanel4.add(jLabel7);
-        jLabel7.setBounds(10, 50, 100, 20);
+        jLabel7.setBounds(10, 10, 100, 20);
 
         jLabel8.setBackground(new java.awt.Color(102, 102, 255));
         jLabel8.setFont(jLabel8.getFont().deriveFont((float)11));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Cust.Fax :"); // NOI18N
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(240, 70, 100, 20);
+        jLabel8.setBounds(240, 110, 100, 0);
 
         txtcusfax.setFont(txtcusfax.getFont().deriveFont((float)11));
         jPanel4.add(txtcusfax);
-        txtcusfax.setBounds(340, 70, 130, 24);
+        txtcusfax.setBounds(340, 110, 130, 0);
 
         jLabel10.setBackground(new java.awt.Color(102, 102, 255));
         jLabel10.setFont(jLabel10.getFont().deriveFont((float)11));
         jLabel10.setText("Cust. Phone :"); // NOI18N
         jPanel4.add(jLabel10);
-        jLabel10.setBounds(10, 70, 100, 20);
+        jLabel10.setBounds(10, 90, 100, 20);
 
         txtcuspho.setFont(txtcuspho.getFont().deriveFont((float)11));
         jPanel4.add(txtcuspho);
-        txtcuspho.setBounds(110, 70, 130, 24);
+        txtcuspho.setBounds(110, 90, 360, 24);
 
         jLabel21.setBackground(new java.awt.Color(102, 102, 255));
         jLabel21.setFont(jLabel21.getFont().deriveFont((float)11));
-        jLabel21.setText("Cust address:"); // NOI18N
+        jLabel21.setText("Cust. address :"); // NOI18N
         jPanel4.add(jLabel21);
-        jLabel21.setBounds(10, 90, 100, 20);
+        jLabel21.setBounds(10, 30, 100, 20);
 
         txtcustadd.setColumns(20);
         txtcustadd.setFont(txtcustadd.getFont().deriveFont((float)11));
@@ -565,42 +606,41 @@ public class ticket extends javax.swing.JFrame {
         jScrollPane6.setViewportView(txtcustadd);
 
         jPanel4.add(jScrollPane6);
-        jScrollPane6.setBounds(110, 90, 360, 60);
+        jScrollPane6.setBounds(110, 30, 360, 40);
 
         jLabel9.setBackground(new java.awt.Color(102, 102, 255));
         jLabel9.setFont(jLabel9.getFont().deriveFont((float)11));
-        jLabel9.setText("Cust. PIC :"); // NOI18N
+        jLabel9.setText("User Name :"); // NOI18N
         jPanel4.add(jLabel9);
-        jLabel9.setBounds(10, 150, 100, 20);
+        jLabel9.setBounds(10, 130, 100, 20);
 
         txtcuspic.setFont(txtcuspic.getFont().deriveFont((float)11));
         txtcuspic.setAutoscrolls(false);
         jPanel4.add(txtcuspic);
-        txtcuspic.setBounds(110, 150, 360, 24);
+        txtcuspic.setBounds(110, 130, 360, 24);
 
         jLabel24.setBackground(new java.awt.Color(102, 102, 255));
         jLabel24.setFont(jLabel24.getFont().deriveFont((float)11));
-        jLabel24.setText("Contract Start"); // NOI18N
+        jLabel24.setText("User Address :"); // NOI18N
         jPanel4.add(jLabel24);
-        jLabel24.setBounds(10, 170, 100, 20);
+        jLabel24.setBounds(10, 150, 100, 20);
 
         txtcusconst.setFont(txtcusconst.getFont().deriveFont((float)11));
         jPanel4.add(txtcusconst);
-        txtcusconst.setBounds(110, 170, 130, 24);
+        txtcusconst.setBounds(110, 170, 130, 0);
 
         jLabel25.setBackground(new java.awt.Color(102, 102, 255));
         jLabel25.setFont(jLabel25.getFont().deriveFont((float)11));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Contact End :"); // NOI18N
+        jLabel25.setText("Note :"); // NOI18N
         jLabel25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel4.add(jLabel25);
-        jLabel25.setBounds(240, 170, 100, 20);
+        jLabel25.setBounds(10, 210, 100, 20);
 
         txtcusconend.setFont(txtcusconend.getFont().deriveFont((float)11));
         jPanel4.add(txtcusconend);
-        txtcusconend.setBounds(340, 170, 130, 24);
+        txtcusconend.setBounds(340, 170, 130, 0);
 
-        btnsrchcus.setFont(new java.awt.Font("Calibri", 0, 11));
+        btnsrchcus.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         btnsrchcus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
         btnsrchcus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -613,19 +653,210 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnsrchcus);
-        btnsrchcus.setBounds(450, 190, 20, 20);
+        btnsrchcus.setBounds(450, 210, 20, 20);
 
         jLabel31.setBackground(new java.awt.Color(102, 102, 255));
         jLabel31.setFont(jLabel31.getFont().deriveFont((float)11));
-        jLabel31.setText("Start Date"); // NOI18N
+        jLabel31.setText("User Phone :"); // NOI18N
         jPanel4.add(jLabel31);
         jLabel31.setBounds(10, 190, 100, 20);
 
         txtcusconst1.setFont(txtcusconst1.getFont().deriveFont((float)11));
         jPanel4.add(txtcusconst1);
-        txtcusconst1.setBounds(110, 190, 130, 24);
+        txtcusconst1.setBounds(110, 190, 130, 0);
+
+        txtPicadd.setColumns(20);
+        txtPicadd.setFont(txtPicadd.getFont().deriveFont((float)11));
+        txtPicadd.setLineWrap(true);
+        txtPicadd.setRows(5);
+        jScrollPane12.setViewportView(txtPicadd);
+
+        jPanel4.add(jScrollPane12);
+        jScrollPane12.setBounds(110, 150, 360, 40);
+
+        txtpicPho.setFont(txtpicPho.getFont().deriveFont((float)11));
+        jPanel4.add(txtpicPho);
+        txtpicPho.setBounds(110, 190, 360, 24);
+
+        txtcustNote.setColumns(20);
+        txtcustNote.setFont(txtcustNote.getFont().deriveFont((float)11));
+        txtcustNote.setLineWrap(true);
+        txtcustNote.setRows(5);
+        jScrollPane13.setViewportView(txtcustNote);
+
+        jPanel4.add(jScrollPane13);
+        jScrollPane13.setBounds(110, 210, 340, 40);
+
+        jLabel75.setBackground(new java.awt.Color(102, 102, 255));
+        jLabel75.setFont(jLabel75.getFont().deriveFont((float)11));
+        jLabel75.setText("Cust. Email :"); // NOI18N
+        jPanel4.add(jLabel75);
+        jLabel75.setBounds(10, 110, 100, 20);
+
+        txtcusemail.setFont(txtcusemail.getFont().deriveFont((float)11));
+        jPanel4.add(txtcusemail);
+        txtcusemail.setBounds(110, 110, 360, 24);
 
         tabdet.addTab("Customer", jPanel4);
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel10.setLayout(null);
+
+        jLabel64.setFont(jLabel64.getFont().deriveFont((float)11));
+        jLabel64.setText("Seq No :"); // NOI18N
+        jPanel10.add(jLabel64);
+        jLabel64.setBounds(10, 30, 100, 20);
+
+        jLabel65.setFont(jLabel65.getFont().deriveFont((float)11));
+        jLabel65.setText("Contract No :"); // NOI18N
+        jPanel10.add(jLabel65);
+        jLabel65.setBounds(10, 50, 100, 20);
+
+        jLabel66.setFont(jLabel66.getFont().deriveFont((float)11));
+        jLabel66.setText("Agreement Type :"); // NOI18N
+        jPanel10.add(jLabel66);
+        jLabel66.setBounds(10, 70, 100, 20);
+
+        txtAgr4.setFont(txtAgr4.getFont().deriveFont((float)11));
+        txtAgr4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgr4ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtAgr4);
+        txtAgr4.setBounds(110, 70, 360, 24);
+
+        txtAgr3.setFont(txtAgr3.getFont().deriveFont((float)11));
+        jPanel10.add(txtAgr3);
+        txtAgr3.setBounds(110, 50, 360, 24);
+
+        txtAgr2.setFont(txtAgr2.getFont().deriveFont((float)11));
+        txtAgr2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtAgr2CaretUpdate(evt);
+            }
+        });
+        txtAgr2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgr2ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtAgr2);
+        txtAgr2.setBounds(110, 30, 360, 24);
+
+        jLabel67.setFont(jLabel67.getFont().deriveFont((float)11));
+        jLabel67.setText("Agreement No"); // NOI18N
+        jPanel10.add(jLabel67);
+        jLabel67.setBounds(10, 10, 100, 20);
+
+        txtAgr1.setFont(txtAgr1.getFont().deriveFont((float)11));
+        txtAgr1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtAgr1CaretUpdate(evt);
+            }
+        });
+        txtAgr1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgr1ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtAgr1);
+        txtAgr1.setBounds(110, 10, 360, 24);
+
+        jLabel68.setFont(jLabel68.getFont().deriveFont((float)11));
+        jLabel68.setText("Unit Code:"); // NOI18N
+        jPanel10.add(jLabel68);
+        jLabel68.setBounds(10, 90, 100, 20);
+
+        txtAgr5.setFont(txtAgr5.getFont().deriveFont((float)11));
+        txtAgr5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgr5ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtAgr5);
+        txtAgr5.setBounds(110, 90, 360, 24);
+
+        jLabel69.setFont(jLabel69.getFont().deriveFont((float)11));
+        jLabel69.setText("Tenor :"); // NOI18N
+        jPanel10.add(jLabel69);
+        jLabel69.setBounds(10, 110, 100, 20);
+
+        txtAgr6.setFont(txtAgr6.getFont().deriveFont((float)11));
+        jPanel10.add(txtAgr6);
+        txtAgr6.setBounds(110, 110, 360, 24);
+
+        txtcontract.setFont(txtcontract.getFont().deriveFont((float)11));
+        txtcontract.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontractActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtcontract);
+        txtcontract.setBounds(110, 10, 360, 0);
+
+        jLabel70.setFont(jLabel70.getFont().deriveFont((float)11));
+        jLabel70.setText("Awal kontrak :"); // NOI18N
+        jPanel10.add(jLabel70);
+        jLabel70.setBounds(10, 130, 100, 20);
+
+        jLabel71.setFont(jLabel71.getFont().deriveFont((float)11));
+        jLabel71.setText("Akhir kontrak :"); // NOI18N
+        jPanel10.add(jLabel71);
+        jLabel71.setBounds(10, 150, 100, 20);
+
+        jLabel72.setFont(jLabel72.getFont().deriveFont((float)11));
+        jLabel72.setText("Unit status :"); // NOI18N
+        jPanel10.add(jLabel72);
+        jLabel72.setBounds(10, 170, 100, 20);
+
+        txtAgr9.setFont(txtAgr9.getFont().deriveFont((float)11));
+        txtAgr9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgr9ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtAgr9);
+        txtAgr9.setBounds(110, 170, 360, 24);
+
+        txtAgr8.setFont(txtAgr8.getFont().deriveFont((float)11));
+        jPanel10.add(txtAgr8);
+        txtAgr8.setBounds(110, 150, 360, 24);
+
+        txtAgr7.setFont(txtAgr7.getFont().deriveFont((float)11));
+        txtAgr7.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtAgr7CaretUpdate(evt);
+            }
+        });
+        txtAgr7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgr7ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(txtAgr7);
+        txtAgr7.setBounds(110, 130, 360, 24);
+
+        jLabel73.setFont(jLabel73.getFont().deriveFont((float)11));
+        jLabel73.setText("Customer Code :"); // NOI18N
+        jPanel10.add(jLabel73);
+        jLabel73.setBounds(10, 190, 100, 20);
+
+        txtAgr10.setFont(txtAgr10.getFont().deriveFont((float)11));
+        jPanel10.add(txtAgr10);
+        txtAgr10.setBounds(110, 190, 360, 24);
+
+        jLabel74.setFont(jLabel74.getFont().deriveFont((float)11));
+        jLabel74.setText("Driver Code :"); // NOI18N
+        jPanel10.add(jLabel74);
+        jLabel74.setBounds(10, 210, 100, 20);
+
+        txtAgr11.setFont(txtAgr11.getFont().deriveFont((float)11));
+        jPanel10.add(txtAgr11);
+        txtAgr11.setBounds(110, 210, 360, 24);
+
+        tabdet.addTab("Agreement", jPanel10);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -678,59 +909,39 @@ public class ticket extends javax.swing.JFrame {
         jPanel5.add(jLabel26);
         jLabel26.setBounds(10, 10, 100, 20);
 
-        txtcsocode.setFont(txtcsocode.getFont().deriveFont((float)11));
-        txtcsocode.addCaretListener(new javax.swing.event.CaretListener() {
+        txtCro1.setFont(txtCro1.getFont().deriveFont((float)11));
+        txtCro1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtcsocodeCaretUpdate(evt);
+                txtCro1CaretUpdate(evt);
             }
         });
-        txtcsocode.addActionListener(new java.awt.event.ActionListener() {
+        txtCro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcsocodeActionPerformed(evt);
+                txtCro1ActionPerformed(evt);
             }
         });
-        jPanel5.add(txtcsocode);
-        txtcsocode.setBounds(110, 10, 360, 24);
+        jPanel5.add(txtCro1);
+        txtCro1.setBounds(110, 10, 360, 24);
+
+        jLabel59.setFont(jLabel59.getFont().deriveFont((float)11));
+        jLabel59.setText("CRO Mobile Phone :"); // NOI18N
+        jPanel5.add(jLabel59);
+        jLabel59.setBounds(10, 90, 100, 20);
+
+        txtcsopho1.setFont(txtcsopho1.getFont().deriveFont((float)11));
+        jPanel5.add(txtcsopho1);
+        txtcsopho1.setBounds(110, 90, 360, 24);
+
+        jLabel60.setFont(jLabel60.getFont().deriveFont((float)11));
+        jLabel60.setText("CRO Branch:"); // NOI18N
+        jPanel5.add(jLabel60);
+        jLabel60.setBounds(10, 110, 100, 20);
+
+        txtcsobranch.setFont(txtcsobranch.getFont().deriveFont((float)11));
+        jPanel5.add(txtcsobranch);
+        txtcsobranch.setBounds(110, 110, 360, 24);
 
         tabdet.addTab("CRO", jPanel5);
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel10.setLayout(null);
-
-        jLabel11.setFont(jLabel11.getFont().deriveFont((float)11));
-        jLabel11.setText("User Name :"); // NOI18N
-        jPanel10.add(jLabel11);
-        jLabel11.setBounds(10, 10, 100, 20);
-
-        txtusr.setFont(txtusr.getFont().deriveFont((float)11));
-        jPanel10.add(txtusr);
-        txtusr.setBounds(110, 10, 360, 24);
-        txtusr.getText().toUpperCase();
-
-        jLabel12.setFont(jLabel12.getFont().deriveFont((float)11));
-        jLabel12.setText("User Address :"); // NOI18N
-        jPanel10.add(jLabel12);
-        jLabel12.setBounds(10, 50, 100, 20);
-
-        txtusrpho.setFont(txtusrpho.getFont().deriveFont((float)11));
-        jPanel10.add(txtusrpho);
-        txtusrpho.setBounds(110, 30, 360, 24);
-
-        jLabel27.setFont(jLabel27.getFont().deriveFont((float)11));
-        jLabel27.setText("User Phone :"); // NOI18N
-        jPanel10.add(jLabel27);
-        jLabel27.setBounds(10, 30, 100, 20);
-
-        txtusraddr.setColumns(20);
-        txtusraddr.setFont(new java.awt.Font("Tahoma", 0, 11));
-        txtusraddr.setRows(5);
-        jScrollPane7.setViewportView(txtusraddr);
-
-        jPanel10.add(jScrollPane7);
-        jScrollPane7.setBounds(110, 50, 360, 76);
-
-        tabdet.addTab("User", jPanel10);
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -739,7 +950,7 @@ public class ticket extends javax.swing.JFrame {
         jLabel15.setFont(jLabel15.getFont().deriveFont((float)11));
         jLabel15.setText("No. Plat :"); // NOI18N
         jPanel11.add(jLabel15);
-        jLabel15.setBounds(10, 10, 100, 20);
+        jLabel15.setBounds(10, 90, 100, 20);
 
         cbnoplat.setFont(cbnoplat.getFont().deriveFont((float)11));
         cbnoplat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -748,50 +959,96 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel11.add(cbnoplat);
-        cbnoplat.setBounds(110, 10, 130, 24);
+        cbnoplat.setBounds(120, 170, 130, 0);
 
         jLabel16.setFont(jLabel16.getFont().deriveFont((float)11));
-        jLabel16.setText("Jenis :"); // NOI18N
+        jLabel16.setText("Engine :"); // NOI18N
         jPanel11.add(jLabel16);
-        jLabel16.setBounds(10, 30, 100, 20);
+        jLabel16.setBounds(10, 70, 100, 20);
 
-        txtjenis.setFont(txtjenis.getFont().deriveFont((float)11));
-        txtjenis.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtUnit4.setFont(txtUnit4.getFont().deriveFont((float)11));
+        txtUnit4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtjenisMouseEntered(evt);
+                txtUnit4MouseEntered(evt);
             }
         });
-        jPanel11.add(txtjenis);
-        txtjenis.setBounds(110, 30, 360, 24);
+        jPanel11.add(txtUnit4);
+        txtUnit4.setBounds(110, 70, 360, 24);
 
         jLabel17.setFont(jLabel17.getFont().deriveFont((float)11));
-        jLabel17.setText("Color  :"); // NOI18N
+        jLabel17.setText("Warna  :"); // NOI18N
         jPanel11.add(jLabel17);
-        jLabel17.setBounds(10, 70, 100, 20);
+        jLabel17.setBounds(10, 130, 100, 20);
 
-        txtwarna.setFont(txtwarna.getFont().deriveFont((float)11));
-        jPanel11.add(txtwarna);
-        txtwarna.setBounds(110, 70, 360, 24);
+        txtUnit7.setFont(txtUnit7.getFont().deriveFont((float)11));
+        jPanel11.add(txtUnit7);
+        txtUnit7.setBounds(110, 130, 360, 24);
 
         jLabel28.setFont(jLabel28.getFont().deriveFont((float)11));
-        jLabel28.setText("Type :"); // NOI18N
+        jLabel28.setText("Chassis :"); // NOI18N
         jPanel11.add(jLabel28);
         jLabel28.setBounds(10, 50, 100, 20);
 
-        txttype.setFont(txttype.getFont().deriveFont((float)11));
-        jPanel11.add(txttype);
-        txttype.setBounds(110, 50, 360, 24);
+        txtUnit3.setFont(txtUnit3.getFont().deriveFont((float)11));
+        jPanel11.add(txtUnit3);
+        txtUnit3.setBounds(110, 50, 360, 24);
 
         jLabel29.setFont(jLabel29.getFont().deriveFont((float)11));
-        jLabel29.setText("Year :"); // NOI18N
+        jLabel29.setText("Tahun :"); // NOI18N
         jPanel11.add(jLabel29);
-        jLabel29.setBounds(10, 90, 100, 20);
+        jLabel29.setBounds(10, 110, 100, 20);
 
-        txtthn.setFont(txtthn.getFont().deriveFont((float)11));
-        jPanel11.add(txtthn);
-        txtthn.setBounds(110, 90, 360, 24);
+        txtUnit6.setFont(txtUnit6.getFont().deriveFont((float)11));
+        txtUnit6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnit6ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(txtUnit6);
+        txtUnit6.setBounds(110, 110, 360, 24);
 
-        tabdet.addTab("Vehicle", jPanel11);
+        jLabel61.setFont(jLabel61.getFont().deriveFont((float)11));
+        jLabel61.setText("Code :"); // NOI18N
+        jPanel11.add(jLabel61);
+        jLabel61.setBounds(10, 10, 100, 20);
+
+        txtUnit1.setFont(txtUnit1.getFont().deriveFont((float)11));
+        txtUnit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtUnit1MouseEntered(evt);
+            }
+        });
+        jPanel11.add(txtUnit1);
+        txtUnit1.setBounds(110, 10, 360, 24);
+
+        jLabel62.setFont(jLabel62.getFont().deriveFont((float)11));
+        jLabel62.setText("Tipe :"); // NOI18N
+        jPanel11.add(jLabel62);
+        jLabel62.setBounds(10, 30, 100, 20);
+
+        txtUnit2.setFont(txtUnit2.getFont().deriveFont((float)11));
+        jPanel11.add(txtUnit2);
+        txtUnit2.setBounds(110, 30, 360, 24);
+
+        txtUnit5.setFont(txtUnit5.getFont().deriveFont((float)11));
+        txtUnit5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnit5ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(txtUnit5);
+        txtUnit5.setBounds(110, 90, 360, 24);
+
+        jLabel63.setFont(jLabel63.getFont().deriveFont((float)11));
+        jLabel63.setText("Lokasi  :"); // NOI18N
+        jPanel11.add(jLabel63);
+        jLabel63.setBounds(10, 150, 100, 20);
+
+        txtUnit8.setFont(txtUnit8.getFont().deriveFont((float)11));
+        jPanel11.add(txtUnit8);
+        txtUnit8.setBounds(110, 150, 360, 24);
+
+        tabdet.addTab("Unit", jPanel11);
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -818,214 +1075,25 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel12.add(cbdriver);
-        cbdriver.setBounds(110, 10, 130, 24);
+        cbdriver.setBounds(110, 10, 130, 0);
 
         jLabel30.setFont(jLabel30.getFont().deriveFont((float)11));
         jLabel30.setText("Driver Phone :"); // NOI18N
         jPanel12.add(jLabel30);
-        jLabel30.setBounds(10, 50, 100, 20);
+        jLabel30.setBounds(10, 50, 100, 0);
 
         txtdripho1.setFont(txtdripho1.getFont().deriveFont((float)11));
         jPanel12.add(txtdripho1);
-        txtdripho1.setBounds(110, 50, 360, 24);
+        txtdripho1.setBounds(110, 50, 360, 0);
+
+        txtDriCode.setFont(txtDriCode.getFont().deriveFont((float)11));
+        jPanel12.add(txtDriCode);
+        txtDriCode.setBounds(110, 10, 360, 24);
 
         tabdet.addTab("Driver", jPanel12);
 
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel13.setPreferredSize(new java.awt.Dimension(0, 440));
-        jPanel13.setLayout(null);
-
-        jLabel32.setFont(jLabel32.getFont().deriveFont((float)11));
-        jLabel32.setText("Driver Dept :"); // NOI18N
-        jPanel13.add(jLabel32);
-        jLabel32.setBounds(10, 10, 100, 20);
-
-        jLabel33.setFont(jLabel33.getFont().deriveFont((float)11));
-        jLabel33.setText("Opr. Dept :"); // NOI18N
-        jPanel13.add(jLabel33);
-        jLabel33.setBounds(10, 30, 100, 20);
-
-        jLabel34.setFont(jLabel34.getFont().deriveFont((float)11));
-        jLabel34.setText("CSO :"); // NOI18N
-        jPanel13.add(jLabel34);
-        jLabel34.setBounds(10, 50, 100, 20);
-
-        jLabel35.setFont(jLabel35.getFont().deriveFont((float)11));
-        jLabel35.setText("Plate/Type :"); // NOI18N
-        jPanel13.add(jLabel35);
-        jLabel35.setBounds(10, 220, 100, 20);
-
-        jLabel36.setFont(jLabel36.getFont().deriveFont((float)11));
-        jLabel36.setText("Meet/Contact :"); // NOI18N
-        jPanel13.add(jLabel36);
-        jLabel36.setBounds(10, 100, 100, 20);
-
-        jLabel37.setFont(jLabel37.getFont().deriveFont((float)11));
-        jLabel37.setText("Cust. name :"); // NOI18N
-        jPanel13.add(jLabel37);
-        jLabel37.setBounds(10, 80, 100, 20);
-
-        jLabel38.setFont(jLabel38.getFont().deriveFont((float)11));
-        jLabel38.setText("Phone No :"); // NOI18N
-        jPanel13.add(jLabel38);
-        jLabel38.setBounds(10, 120, 100, 20);
-
-        jLabel39.setFont(jLabel39.getFont().deriveFont((float)11));
-        jLabel39.setText("Address :"); // NOI18N
-        jPanel13.add(jLabel39);
-        jLabel39.setBounds(10, 140, 100, 20);
-
-        jLabel40.setFont(jLabel40.getFont().deriveFont((float)11));
-        jLabel40.setText("Original car :"); // NOI18N
-        jPanel13.add(jLabel40);
-        jLabel40.setBounds(10, 200, 100, 20);
-
-        jLabel41.setFont(jLabel41.getFont().deriveFont((float)11));
-        jLabel41.setText("Replacement car :"); // NOI18N
-        jPanel13.add(jLabel41);
-        jLabel41.setBounds(10, 240, 100, 20);
-
-        jLabel42.setFont(jLabel42.getFont().deriveFont((float)11));
-        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel42.setText("Until :"); // NOI18N
-        jPanel13.add(jLabel42);
-        jLabel42.setBounds(230, 320, 80, 20);
-
-        jLabel43.setFont(jLabel43.getFont().deriveFont((float)11));
-        jLabel43.setText("Plate/Type :"); // NOI18N
-        jPanel13.add(jLabel43);
-        jLabel43.setBounds(10, 260, 100, 20);
-
-        jLabel44.setFont(jLabel44.getFont().deriveFont((float)11));
-        jLabel44.setText("Delivery Date :"); // NOI18N
-        jPanel13.add(jLabel44);
-        jLabel44.setBounds(10, 280, 100, 20);
-
-        jLabel45.setFont(jLabel45.getFont().deriveFont((float)11));
-        jLabel45.setText("Driver Phone :"); // NOI18N
-        jPanel13.add(jLabel45);
-        jLabel45.setBounds(10, 300, 100, 20);
-
-        jLabel46.setFont(jLabel46.getFont().deriveFont((float)11));
-        jLabel46.setText("Start From :"); // NOI18N
-        jPanel13.add(jLabel46);
-        jLabel46.setBounds(10, 320, 100, 20);
-
-        jLabel47.setFont(jLabel47.getFont().deriveFont((float)11));
-        jLabel47.setText("Memo :"); // NOI18N
-        jPanel13.add(jLabel47);
-        jLabel47.setBounds(10, 340, 100, 20);
-
-        jLabel48.setFont(jLabel48.getFont().deriveFont((float)11));
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText("Time :"); // NOI18N
-        jPanel13.add(jLabel48);
-        jLabel48.setBounds(230, 280, 80, 20);
-
-        txtrdridpt.setFont(txtrdridpt.getFont().deriveFont((float)11));
-        jPanel13.add(txtrdridpt);
-        txtrdridpt.setBounds(110, 10, 350, 24);
-
-        txtrcso.setFont(txtrcso.getFont().deriveFont((float)11));
-        jPanel13.add(txtrcso);
-        txtrcso.setBounds(110, 50, 350, 24);
-
-        txtroprdpt.setFont(txtroprdpt.getFont().deriveFont((float)11));
-        jPanel13.add(txtroprdpt);
-        txtroprdpt.setBounds(110, 30, 350, 24);
-
-        txtrcusnm.setFont(txtrcusnm.getFont().deriveFont((float)11));
-        jPanel13.add(txtrcusnm);
-        txtrcusnm.setBounds(110, 80, 350, 24);
-
-        txtrcontact.setFont(txtrcontact.getFont().deriveFont((float)11));
-        jPanel13.add(txtrcontact);
-        txtrcontact.setBounds(110, 100, 350, 24);
-
-        txtrphoneno.setFont(txtrphoneno.getFont().deriveFont((float)11));
-        txtrphoneno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtrphonenoActionPerformed(evt);
-            }
-        });
-        jPanel13.add(txtrphoneno);
-        txtrphoneno.setBounds(110, 120, 350, 24);
-
-        txtrmemo.setColumns(20);
-        txtrmemo.setFont(new java.awt.Font("Tahoma", 0, 11));
-        txtrmemo.setRows(5);
-        jScrollPane9.setViewportView(txtrmemo);
-
-        jPanel13.add(jScrollPane9);
-        jScrollPane9.setBounds(110, 340, 350, 60);
-
-        txtroricarplate.setFont(txtroricarplate.getFont().deriveFont((float)11));
-        jPanel13.add(txtroricarplate);
-        txtroricarplate.setBounds(110, 220, 350, 24);
-
-        txtrrepcarpalte.setFont(txtrrepcarpalte.getFont().deriveFont((float)11));
-        jPanel13.add(txtrrepcarpalte);
-        txtrrepcarpalte.setBounds(110, 260, 350, 24);
-
-        dtruntil.setDateFormatString("dd-MM-yyyy");
-        dtruntil.setFont(dtruntil.getFont().deriveFont((float)11));
-        jPanel13.add(dtruntil);
-        dtruntil.setBounds(310, 320, 120, 24);
-
-        dtrdeliver.setDateFormatString("dd-MM-yyyy");
-        dtrdeliver.setFont(dtrdeliver.getFont().deriveFont((float)11));
-        jPanel13.add(dtrdeliver);
-        dtrdeliver.setBounds(110, 280, 120, 24);
-
-        dtrstart.setDateFormatString("dd-MM-yyyy");
-        dtrstart.setFont(dtrstart.getFont().deriveFont((float)11));
-        jPanel13.add(dtrstart);
-        dtrstart.setBounds(110, 320, 120, 24);
-
-        txtraddr.setColumns(20);
-        txtraddr.setFont(new java.awt.Font("Tahoma", 0, 11));
-        txtraddr.setRows(5);
-        jScrollPane10.setViewportView(txtraddr);
-
-        jPanel13.add(jScrollPane10);
-        jScrollPane10.setBounds(110, 140, 350, 60);
-
-        txtrdripho.setFont(txtrdripho.getFont().deriveFont((float)11));
-        jPanel13.add(txtrdripho);
-        txtrdripho.setBounds(110, 300, 350, 24);
-
-        cbroristat.setFont(cbroristat.getFont().deriveFont((float)11));
-        cbroristat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "ANTAR", "AMBIL" }));
-        cbroristat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbroristatActionPerformed(evt);
-            }
-        });
-        jPanel13.add(cbroristat);
-        cbroristat.setBounds(110, 200, 120, 24);
-
-        cbrrepstat.setFont(cbrrepstat.getFont().deriveFont((float)11));
-        cbrrepstat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "ANTAR", "AMBIL" }));
-        jPanel13.add(cbrrepstat);
-        cbrrepstat.setBounds(110, 240, 120, 24);
-
-        try {
-            txtrdelivertime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtrdelivertime.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtrdelivertime.setFont(txtrdelivertime.getFont().deriveFont((float)11));
-        jPanel13.add(txtrdelivertime);
-        txtrdelivertime.setBounds(310, 280, 100, 24);
-
-        jScrollPane8.setViewportView(jPanel13);
-
-        tabdet.addTab("Replacement Car", jScrollPane8);
-
         jPanel1.add(tabdet);
-        tabdet.setBounds(10, 185, 492, 250);
+        tabdet.setBounds(10, 200, 492, 280);
 
         btncall.setFont(btncall.getFont().deriveFont(btncall.getFont().getStyle() | java.awt.Font.BOLD, 11));
         btncall.setForeground(new java.awt.Color(0, 153, 51));
@@ -1037,7 +1105,7 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btncall);
-        btncall.setBounds(240, 435, 60, 25);
+        btncall.setBounds(240, 460, 60, 0);
 
         btnfax.setFont(btnfax.getFont().deriveFont(btnfax.getFont().getStyle() | java.awt.Font.BOLD, 11));
         btnfax.setForeground(new java.awt.Color(0, 153, 51));
@@ -1049,7 +1117,7 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnfax);
-        btnfax.setBounds(430, 435, 60, 25);
+        btnfax.setBounds(430, 460, 60, 0);
 
         btnmail.setFont(btnmail.getFont().deriveFont(btnmail.getFont().getStyle() | java.awt.Font.BOLD, 11));
         btnmail.setForeground(new java.awt.Color(0, 153, 51));
@@ -1061,7 +1129,7 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnmail);
-        btnmail.setBounds(360, 435, 70, 25);
+        btnmail.setBounds(360, 480, 70, 20);
 
         btnsms.setFont(btnsms.getFont().deriveFont(btnsms.getFont().getStyle() | java.awt.Font.BOLD, 11));
         btnsms.setForeground(new java.awt.Color(0, 153, 51));
@@ -1073,7 +1141,7 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnsms);
-        btnsms.setBounds(300, 435, 60, 25);
+        btnsms.setBounds(300, 480, 60, 20);
 
         jLabel54.setFont(jLabel54.getFont().deriveFont((float)11));
         jLabel54.setText("Department :"); // NOI18N
@@ -1083,7 +1151,7 @@ public class ticket extends javax.swing.JFrame {
         jLabel56.setFont(jLabel56.getFont().deriveFont((float)11));
         jLabel56.setText("Category Detail :"); // NOI18N
         jPanel1.add(jLabel56);
-        jLabel56.setBounds(20, 120, 100, 20);
+        jLabel56.setBounds(20, 140, 100, 20);
 
         cbTicketType.setFont(cbTicketType.getFont().deriveFont((float)11));
         cbTicketType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1093,27 +1161,36 @@ public class ticket extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbTicketType);
-        cbTicketType.setBounds(120, 80, 360, 24);
+        cbTicketType.setBounds(120, 100, 360, 24);
 
         jLabel57.setFont(jLabel57.getFont().deriveFont((float)11));
         jLabel57.setText("Ticket type :"); // NOI18N
         jPanel1.add(jLabel57);
-        jLabel57.setBounds(20, 80, 100, 20);
+        jLabel57.setBounds(20, 100, 100, 20);
 
         jLabel55.setFont(jLabel55.getFont().deriveFont((float)11));
         jLabel55.setText("Cc Department :"); // NOI18N
         jPanel1.add(jLabel55);
-        jLabel55.setBounds(20, 140, 100, 20);
+        jLabel55.setBounds(20, 160, 100, 20);
 
         cbcatdetail.setFont(cbcatdetail.getFont().deriveFont((float)11));
         cbcatdetail.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cbcatdetail);
-        cbcatdetail.setBounds(120, 120, 360, 24);
+        cbcatdetail.setBounds(120, 140, 360, 24);
 
         cbArea.setFont(cbArea.getFont().deriveFont((float)11));
         cbArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cbArea);
-        cbArea.setBounds(120, 40, 360, 24);
+        cbArea.setBounds(120, 80, 360, 24);
+
+        jLabel58.setFont(jLabel58.getFont().deriveFont((float)11));
+        jLabel58.setText("Prority :"); // NOI18N
+        jPanel1.add(jLabel58);
+        jLabel58.setBounds(20, 20, 100, 20);
+
+        txtCaseArea.setFont(txtCaseArea.getFont().deriveFont(txtCaseArea.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        jPanel1.add(txtCaseArea);
+        txtCaseArea.setBounds(120, 40, 360, 24);
 
         jPanel7.add(jPanel1);
         jPanel1.setBounds(10, 10, 510, 610);
@@ -1374,6 +1451,240 @@ public class ticket extends javax.swing.JFrame {
         getContentPane().add(jScrollPane5);
         jScrollPane5.setBounds(0, 0, 1020, 630);
 
+        pnluser.setBackground(new java.awt.Color(255, 255, 255));
+        pnluser.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pnluser.setLayout(null);
+
+        jLabel11.setFont(jLabel11.getFont().deriveFont((float)11));
+        jLabel11.setText("User Name :"); // NOI18N
+        pnluser.add(jLabel11);
+        jLabel11.setBounds(10, 10, 100, 20);
+
+        txtusr.setFont(txtusr.getFont().deriveFont((float)11));
+        pnluser.add(txtusr);
+        txtusr.setBounds(110, 10, 360, 24);
+        txtusr.getText().toUpperCase();
+
+        jLabel12.setFont(jLabel12.getFont().deriveFont((float)11));
+        jLabel12.setText("User Address :"); // NOI18N
+        pnluser.add(jLabel12);
+        jLabel12.setBounds(10, 50, 100, 20);
+
+        txtusrpho.setFont(txtusrpho.getFont().deriveFont((float)11));
+        pnluser.add(txtusrpho);
+        txtusrpho.setBounds(110, 30, 360, 24);
+
+        jLabel27.setFont(jLabel27.getFont().deriveFont((float)11));
+        jLabel27.setText("User Phone :"); // NOI18N
+        pnluser.add(jLabel27);
+        jLabel27.setBounds(10, 30, 100, 20);
+
+        txtusraddr.setColumns(20);
+        txtusraddr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtusraddr.setRows(5);
+        jScrollPane7.setViewportView(txtusraddr);
+
+        pnluser.add(jScrollPane7);
+        jScrollPane7.setBounds(110, 50, 360, 76);
+
+        hiddenTab.addTab("User", pnluser);
+
+        pnlRep.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRep.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pnlRep.setPreferredSize(new java.awt.Dimension(0, 440));
+        pnlRep.setLayout(null);
+
+        jLabel32.setFont(jLabel32.getFont().deriveFont((float)11));
+        jLabel32.setText("Driver Dept :"); // NOI18N
+        pnlRep.add(jLabel32);
+        jLabel32.setBounds(10, 10, 100, 20);
+
+        jLabel33.setFont(jLabel33.getFont().deriveFont((float)11));
+        jLabel33.setText("Opr. Dept :"); // NOI18N
+        pnlRep.add(jLabel33);
+        jLabel33.setBounds(10, 30, 100, 20);
+
+        jLabel34.setFont(jLabel34.getFont().deriveFont((float)11));
+        jLabel34.setText("CSO :"); // NOI18N
+        pnlRep.add(jLabel34);
+        jLabel34.setBounds(10, 50, 100, 20);
+
+        jLabel35.setFont(jLabel35.getFont().deriveFont((float)11));
+        jLabel35.setText("Plate/Type :"); // NOI18N
+        pnlRep.add(jLabel35);
+        jLabel35.setBounds(10, 220, 100, 20);
+
+        jLabel36.setFont(jLabel36.getFont().deriveFont((float)11));
+        jLabel36.setText("Meet/Contact :"); // NOI18N
+        pnlRep.add(jLabel36);
+        jLabel36.setBounds(10, 100, 100, 20);
+
+        jLabel37.setFont(jLabel37.getFont().deriveFont((float)11));
+        jLabel37.setText("Cust. name :"); // NOI18N
+        pnlRep.add(jLabel37);
+        jLabel37.setBounds(10, 80, 100, 20);
+
+        jLabel38.setFont(jLabel38.getFont().deriveFont((float)11));
+        jLabel38.setText("Phone No :"); // NOI18N
+        pnlRep.add(jLabel38);
+        jLabel38.setBounds(10, 120, 100, 20);
+
+        jLabel39.setFont(jLabel39.getFont().deriveFont((float)11));
+        jLabel39.setText("Address :"); // NOI18N
+        pnlRep.add(jLabel39);
+        jLabel39.setBounds(10, 140, 100, 20);
+
+        jLabel40.setFont(jLabel40.getFont().deriveFont((float)11));
+        jLabel40.setText("Original car :"); // NOI18N
+        pnlRep.add(jLabel40);
+        jLabel40.setBounds(10, 200, 100, 20);
+
+        jLabel41.setFont(jLabel41.getFont().deriveFont((float)11));
+        jLabel41.setText("Replacement car :"); // NOI18N
+        pnlRep.add(jLabel41);
+        jLabel41.setBounds(10, 240, 100, 20);
+
+        jLabel42.setFont(jLabel42.getFont().deriveFont((float)11));
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel42.setText("Until :"); // NOI18N
+        pnlRep.add(jLabel42);
+        jLabel42.setBounds(230, 320, 80, 20);
+
+        jLabel43.setFont(jLabel43.getFont().deriveFont((float)11));
+        jLabel43.setText("Plate/Type :"); // NOI18N
+        pnlRep.add(jLabel43);
+        jLabel43.setBounds(10, 260, 100, 20);
+
+        jLabel44.setFont(jLabel44.getFont().deriveFont((float)11));
+        jLabel44.setText("Delivery Date :"); // NOI18N
+        pnlRep.add(jLabel44);
+        jLabel44.setBounds(10, 280, 100, 20);
+
+        jLabel45.setFont(jLabel45.getFont().deriveFont((float)11));
+        jLabel45.setText("Driver Phone :"); // NOI18N
+        pnlRep.add(jLabel45);
+        jLabel45.setBounds(10, 300, 100, 20);
+
+        jLabel46.setFont(jLabel46.getFont().deriveFont((float)11));
+        jLabel46.setText("Start From :"); // NOI18N
+        pnlRep.add(jLabel46);
+        jLabel46.setBounds(10, 320, 100, 20);
+
+        jLabel47.setFont(jLabel47.getFont().deriveFont((float)11));
+        jLabel47.setText("Memo :"); // NOI18N
+        pnlRep.add(jLabel47);
+        jLabel47.setBounds(10, 340, 100, 20);
+
+        jLabel48.setFont(jLabel48.getFont().deriveFont((float)11));
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel48.setText("Time :"); // NOI18N
+        pnlRep.add(jLabel48);
+        jLabel48.setBounds(230, 280, 80, 20);
+
+        txtrdridpt.setFont(txtrdridpt.getFont().deriveFont((float)11));
+        pnlRep.add(txtrdridpt);
+        txtrdridpt.setBounds(110, 10, 350, 24);
+
+        txtrcso.setFont(txtrcso.getFont().deriveFont((float)11));
+        pnlRep.add(txtrcso);
+        txtrcso.setBounds(110, 50, 350, 24);
+
+        txtroprdpt.setFont(txtroprdpt.getFont().deriveFont((float)11));
+        pnlRep.add(txtroprdpt);
+        txtroprdpt.setBounds(110, 30, 350, 24);
+
+        txtrcusnm.setFont(txtrcusnm.getFont().deriveFont((float)11));
+        pnlRep.add(txtrcusnm);
+        txtrcusnm.setBounds(110, 80, 350, 24);
+
+        txtrcontact.setFont(txtrcontact.getFont().deriveFont((float)11));
+        pnlRep.add(txtrcontact);
+        txtrcontact.setBounds(110, 100, 350, 24);
+
+        txtrphoneno.setFont(txtrphoneno.getFont().deriveFont((float)11));
+        txtrphoneno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrphonenoActionPerformed(evt);
+            }
+        });
+        pnlRep.add(txtrphoneno);
+        txtrphoneno.setBounds(110, 120, 350, 24);
+
+        txtrmemo.setColumns(20);
+        txtrmemo.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtrmemo.setRows(5);
+        jScrollPane9.setViewportView(txtrmemo);
+
+        pnlRep.add(jScrollPane9);
+        jScrollPane9.setBounds(110, 340, 350, 60);
+
+        txtroricarplate.setFont(txtroricarplate.getFont().deriveFont((float)11));
+        pnlRep.add(txtroricarplate);
+        txtroricarplate.setBounds(110, 220, 350, 24);
+
+        txtrrepcarpalte.setFont(txtrrepcarpalte.getFont().deriveFont((float)11));
+        pnlRep.add(txtrrepcarpalte);
+        txtrrepcarpalte.setBounds(110, 260, 350, 24);
+
+        dtruntil.setDateFormatString("dd-MM-yyyy");
+        dtruntil.setFont(dtruntil.getFont().deriveFont((float)11));
+        pnlRep.add(dtruntil);
+        dtruntil.setBounds(310, 320, 120, 24);
+
+        dtrdeliver.setDateFormatString("dd-MM-yyyy");
+        dtrdeliver.setFont(dtrdeliver.getFont().deriveFont((float)11));
+        pnlRep.add(dtrdeliver);
+        dtrdeliver.setBounds(110, 280, 120, 24);
+
+        dtrstart.setDateFormatString("dd-MM-yyyy");
+        dtrstart.setFont(dtrstart.getFont().deriveFont((float)11));
+        pnlRep.add(dtrstart);
+        dtrstart.setBounds(110, 320, 120, 24);
+
+        txtraddr.setColumns(20);
+        txtraddr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtraddr.setRows(5);
+        jScrollPane10.setViewportView(txtraddr);
+
+        pnlRep.add(jScrollPane10);
+        jScrollPane10.setBounds(110, 140, 350, 60);
+
+        txtrdripho.setFont(txtrdripho.getFont().deriveFont((float)11));
+        pnlRep.add(txtrdripho);
+        txtrdripho.setBounds(110, 300, 350, 24);
+
+        cbroristat.setFont(cbroristat.getFont().deriveFont((float)11));
+        cbroristat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "ANTAR", "AMBIL" }));
+        cbroristat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbroristatActionPerformed(evt);
+            }
+        });
+        pnlRep.add(cbroristat);
+        cbroristat.setBounds(110, 200, 120, 24);
+
+        cbrrepstat.setFont(cbrrepstat.getFont().deriveFont((float)11));
+        cbrrepstat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "ANTAR", "AMBIL" }));
+        pnlRep.add(cbrrepstat);
+        cbrrepstat.setBounds(110, 240, 120, 24);
+
+        try {
+            txtrdelivertime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtrdelivertime.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtrdelivertime.setFont(txtrdelivertime.getFont().deriveFont((float)11));
+        pnlRep.add(txtrdelivertime);
+        txtrdelivertime.setBounds(310, 280, 100, 24);
+
+        jScrollPane8.setViewportView(pnlRep);
+
+        hiddenTab.addTab("Replacement Car", jScrollPane8);
+
+        getContentPane().add(hiddenTab);
+        hiddenTab.setBounds(0, 0, 98, 0);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1437,9 +1748,7 @@ public class ticket extends javax.swing.JFrame {
 
     private void btnsrchcusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsrchcusMouseClicked
         // TODO add your handling code here:
-        Search_customer sc = new Search_customer();
-        sc.setVisible(true);
-        sc.Form=1;
+        
     }//GEN-LAST:event_btnsrchcusMouseClicked
 
     private void txtcsoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtcsoCaretUpdate
@@ -1453,9 +1762,9 @@ public class ticket extends javax.swing.JFrame {
 
     private void btncreateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncreateMouseEntered
         // TODO add your handling code here:
-        if (txtcsomail.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Cso Mail cannot be empty !!", "MAILING",JOptionPane.WARNING_MESSAGE);
-        }
+//        if (txtcsomail.getText().equals("")){
+//            JOptionPane.showMessageDialog(null, "Cso Mail cannot be empty !!", "MAILING",JOptionPane.WARNING_MESSAGE);
+//        }
     }//GEN-LAST:event_btncreateMouseEntered
 
     private void cksubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cksubmitMouseClicked
@@ -1521,13 +1830,13 @@ public class ticket extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcsoActionPerformed
 
-    private void txtcsocodeCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtcsocodeCaretUpdate
+    private void txtCro1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCro1CaretUpdate
         // TODO add your handling code here:
-}//GEN-LAST:event_txtcsocodeCaretUpdate
+}//GEN-LAST:event_txtCro1CaretUpdate
 
-    private void txtcsocodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcsocodeActionPerformed
+    private void txtCro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCro1ActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_txtcsocodeActionPerformed
+}//GEN-LAST:event_txtCro1ActionPerformed
 
     private void cbnoplatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnoplatMouseExited
         // TODO add your handling code here:
@@ -1539,13 +1848,13 @@ public class ticket extends javax.swing.JFrame {
 //                System.out.print(sql);
                 while(rs.next()){
 //                    System.out.print("\nset txt");
-                    txtjenis.setText(rs.getString(1));
+                    txtUnit4.setText(rs.getString(1));
 //                    System.out.print("\nset txt " +rs.getString(1));
-                    txtthn.setText(rs.getString(2));
+                    txtUnit6.setText(rs.getString(2));
 //                    System.out.print("\nset txt " +rs.getString(2));
-                    txttype.setText(rs.getString(3));
+                    txtUnit3.setText(rs.getString(3));
 //                    System.out.print("\nset txt " +rs.getString(3));
-                    txtwarna.setText(rs.getString(4));
+                    txtUnit7.setText(rs.getString(4));
 //                    System.out.print("\nset txt " +rs.getString(4));
                 }
             }catch(Exception e){
@@ -1559,13 +1868,13 @@ public class ticket extends javax.swing.JFrame {
 //                System.out.print(sql);
                 while(rs.next()){
 //                    System.out.print("\nset txt");
-                    txtjenis.setText(rs.getString(1));
+                    txtUnit4.setText(rs.getString(1));
 //                    System.out.print("\nset txt " +rs.getString(1));
-                    txtthn.setText(rs.getString(2));
+                    txtUnit6.setText(rs.getString(2));
 //                    System.out.print("\nset txt " +rs.getString(2));
-                    txttype.setText(rs.getString(3));
+                    txtUnit3.setText(rs.getString(3));
 //                    System.out.print("\nset txt " +rs.getString(3));
-                    txtwarna.setText(rs.getString(4));
+                    txtUnit7.setText(rs.getString(4));
 //                    System.out.print("\nset txt " +rs.getString(4));
                 }
             }catch(Exception e){
@@ -1574,7 +1883,7 @@ public class ticket extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbnoplatMouseExited
 
-    private void txtjenisMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtjenisMouseEntered
+    private void txtUnit4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnit4MouseEntered
         // TODO add your handling code here:
         if(cbnoplat.getSelectedIndex()==1){
 //            System.out.print(cbnoplat.getSelectedIndex());
@@ -1584,13 +1893,13 @@ public class ticket extends javax.swing.JFrame {
 //                System.out.print(sql);
                 while(rs.next()){
 //                    System.out.print("\nset txt");
-                    txtjenis.setText(rs.getString(1));
+                    txtUnit4.setText(rs.getString(1));
 //                    System.out.print("\nset txt " +rs.getString(1));
-                    txtthn.setText(rs.getString(2));
+                    txtUnit6.setText(rs.getString(2));
 //                    System.out.print("\nset txt " +rs.getString(2));
-                    txttype.setText(rs.getString(3));
+                    txtUnit3.setText(rs.getString(3));
 //                    System.out.print("\nset txt " +rs.getString(3));
-                    txtwarna.setText(rs.getString(4));
+                    txtUnit7.setText(rs.getString(4));
 //                    System.out.print("\nset txt " +rs.getString(4));
                 }
             }catch(Exception e){
@@ -1604,20 +1913,20 @@ public class ticket extends javax.swing.JFrame {
 //                System.out.print(sql);
                 while(rs.next()){
 //                    System.out.print("\nset txt");
-                    txtjenis.setText(rs.getString(1));
+                    txtUnit4.setText(rs.getString(1));
 //                    System.out.print("\nset txt " +rs.getString(1));
-                    txtthn.setText(rs.getString(2));
+                    txtUnit6.setText(rs.getString(2));
 //                    System.out.print("\nset txt " +rs.getString(2));
-                    txttype.setText(rs.getString(3));
+                    txtUnit3.setText(rs.getString(3));
 //                    System.out.print("\nset txt " +rs.getString(3));
-                    txtwarna.setText(rs.getString(4));
+                    txtUnit7.setText(rs.getString(4));
 //                    System.out.print("\nset txt " +rs.getString(4));
                 }
             }catch(Exception e){
                 System.out.println(e);
             }
         }
-    }//GEN-LAST:event_txtjenisMouseEntered
+    }//GEN-LAST:event_txtUnit4MouseEntered
 
     private void btnfaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfaxActionPerformed
         // TODO add your handling code here:
@@ -1693,9 +2002,9 @@ public class ticket extends javax.swing.JFrame {
         // TODO add your handling code here:
         opdt();
         optm();
-        if (txtcsomail.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Cso Mail cannot be empty !! Ticket Cannot be Created", "MAILING",JOptionPane.WARNING_MESSAGE);
-        }else{
+//        if (txtcsomail.getText().equals("")){
+//            JOptionPane.showMessageDialog(null, "Cso Mail cannot be empty !! Ticket Cannot be Created", "MAILING",JOptionPane.WARNING_MESSAGE);
+//        }else{
             if(cksubmit.isSelected()==true){
                 submit=1;
             }else{
@@ -1946,26 +2255,27 @@ public class ticket extends javax.swing.JFrame {
             if (newtic==true){
                 System.out.print("\nnewtic=true "+newtic);
                 if (inputValid()==true || txtcsomail.getText().equals("")){
-                    getdept();getcateg();getcatdet();
+                    getTicType();getdept();getcateg();getcatdet();getReArea();
                     usrlvl();
                     try{
                     sql="insert into tickets set _status=0, dept_id='"+deptid+"', dept_cc='"+txtCcDept.getText()+"'"
-                            + ", _servicearea='"+cbArea.getSelectedItem()+"'"
+                            + ", _servicearea='"+txtCaseArea.getText()+"', representative_area_id='"+ReArea+"'"
                             + ", category_id='"+catid+"', category='"+cbcategory.getSelectedItem()+"'"
                             + ", category_detail_id='"+catdetid+"', category_detail='"+cbcatdetail.getSelectedItem()+"'"
                             + ", _type='"+cbTicketType.getSelectedItem()+"', assign_dept='"+deptid+"', _priority='"+cbprior.getSelectedIndex()+"'"
-                            + ", sla='"+sla+"', contract_no='"+txtcontract.getText()+"', cust_code='"+txtcuscod.getText()+"'"
-                            + ", cust_name='"+txtcusnam.getText()+"', cust_address='"+txtcustadd.getText()+"', cust_phone='"+txtcusfax.getText()+"'"
-                            + ", cust_fax='"+txtcusfax.getText()+"', cust_pic='"+txtcuspic.getText()+"'"
-                            + ", contract_startdate='"+txtcusconst.getText()+"', contract_enddate='"+txtcusconend.getText()+"'"
-                            + ", startdate='"+txtcusconst1.getText()+"', user='"+txtusr.getText()+"'"
-                            + ", user_phone='"+txtusrpho.getText()+"', user_address='"+txtusraddr.getText()+"'"
-                            + ", cso_code='"+txtcsocode.getText()+"', cso_name='"+txtcso.getText()+"'"
-                            + ", cso_phone='"+txtcsopho.getText()+"', cso_mail='"+txtcsomail.getText()+"'"
-                            + ", vehicle_platno='"+cbnoplat.getSelectedItem()+"', vehicle_jenis='"+txtjenis.getText()+"'"
-                            + ", vehicle_type='"+txttype.getText()+"', vehicle_tahun='"+txtthn.getText()+"', vehicle_warna='"+txtwarna.getText()+"'"
-                            + ", driver_code='"+cbdriver.getSelectedItem()+"', driver_name='"+txtdrinm.getText()+"'"
-                            + ", driver_phone='"+txtdripho1.getText()+"'"
+                            + ", sla='"+sla+"'"
+                            + ", cust_code='"+txtcuscod.getText()+"', cust_name='"+txtcusnam.getText()+"', cust_address='"+txtcustadd.getText()+"', cust_phone='"+txtcuspho.getText()+"', cust_email='"+txtcusemail.getText()+"'"
+                            + ", cust_pic='"+txtcuspic.getText()+"', cust_pic_address='"+txtPicadd.getText()+"', cust_pic_phone='"+txtpicPho.getText()+"'"
+                            + ", cust_note='"+txtcustNote.getText()+"', agreement_id='"+AgreeId+"'"
+//                            + ", contract_startdate='"+txtcusconst.getText()+"', contract_enddate='"+txtcusconend.getText()+"'"
+//                            + ", startdate='"+txtcusconst1.getText()+"', user='"+txtusr.getText()+"'"
+//                            + ", user_phone='"+txtusrpho.getText()+"', user_address='"+txtusraddr.getText()+"'"
+//                            + ", cso_code='"+txtcsocode.getText()+"', cso_name='"+txtcso.getText()+"'"
+//                            + ", cso_phone='"+txtcsopho.getText()+"', cso_mail='"+txtcsomail.getText()+"'"
+//                            + ", vehicle_platno='"+cbnoplat.getSelectedItem()+"', vehicle_jenis='"+txtUnitEngine.getText()+"'"
+//                            + ", vehicle_type='"+txtUnitChassis.getText()+"', vehicle_tahun='"+txtUnitThn.getText()+"', vehicle_warna='"+txtUnitWarna.getText()+"'"
+//                            + ", driver_code='"+cbdriver.getSelectedItem()+"', driver_name='"+txtdrinm.getText()+"'"
+//                            + ", driver_phone='"+txtdripho1.getText()+"'"
                             + ", details='"+txtdetails.getText()+"'"
                             + ", note='"+CCanj.lbluser.getText()+"@"+opdt.substring(8,10)+"/"+opdt.substring(5,7)+"/"+opdt.substring(0,4)+" "+optm.replace(':','.')+" : \nCategory : "+cbcategory.getSelectedItem()+"\nDetail Category : "+cbcatdetail.getSelectedItem()+"\n"+txtnote.getText()+"==='"
                             + ", open_date='"+opdt+"', open_time='"+optm+"', open_username='"+CCanj.lbluser.getText()+"'"
@@ -1986,7 +2296,7 @@ public class ticket extends javax.swing.JFrame {
                             sql2="insert into ticket_viewer set ticket_id='"+id+"', dept_id='"+deptid+"', _opener=0, _owner=1";
                             Log.jconn.SQLExecute(sql2, Log.conn);
                         }
-                        if(!txtCcDept.getText().equals("<None>")||!txtCcDept.getText().equals("")){
+                        if(!txtCcDept.getText().equals("<None>")||!txtCcDept.getText().equals("")||txtCcDept.getText().length()<2){
                             int p,index,opener,owner;
                             int coma;
                             boolean ticviw;
@@ -2078,30 +2388,30 @@ public class ticket extends javax.swing.JFrame {
                     sql2="insert into log_tickets (log_date,log_time,username,user_level,ticket_id,_status,info,ticket_no) values ('"+opdt+"','"+optm+"','"+CCanj.lbluser.getText()+"','"+usrlvl+"','"+id+"',0,'TICKET OPENED \n\n Category : "+cbcategory.getSelectedItem()+"\nDetail Category : "+cbcatdetail.getSelectedItem()+"\n\n"+txtdetails.getText()+" \n\n "+txtnote.getText()+", "+rnarasi+"','"+no1+"')";
                     CCanj.jconn.SQLExecute(sql2,CCanj.conn);
                     if(submit==0){
-//                        JOptionPane.showMessageDialog(null, "TICKET "+no1+" CREATED\n "+sql+"", "TICKETING",JOptionPane.WARNING_MESSAGE);
-                        JOptionPane.showMessageDialog(null, "TICKET "+no1+" CREATED", "TICKETING",JOptionPane.WARNING_MESSAGE);
-                        if (cbdept.getSelectedItem().equals("DEPT. MARKETING")){
-                            sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','<Ticket>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n CREATED','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                            CCanj.jconn.SQLExecute(sql1,CCanj.conn);
-                        }else{
-                            sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','<CC>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n CREATED','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                            CCanj.jconn.SQLExecute(sql1,CCanj.conn);
-                        }
-                        JOptionPane.showMessageDialog(null, "EMAIL SENT", "MAILING",JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "TICKET "+no1+" CREATED", "TICKETING",JOptionPane.WARNING_MESSAGE);                        
                     }else{
+                        String mailto="";
                         JOptionPane.showMessageDialog(null, "TICKET "+no1+" SUBMITED", "TICKETING",JOptionPane.WARNING_MESSAGE);
-                        CCanj.s = "TICKET|ASSIGN|"+deptid+"|"+no1+"\r\n";
-                        CCanj.kirimBroad();
-                        if (cbdept.getSelectedItem().equals("DEPT. MARKETING")){
-                            sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','<Ticket>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                            CCanj.jconn.SQLExecute(sql1,CCanj.conn);
-                        }else{
-                            sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','<CC>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                            CCanj.jconn.SQLExecute(sql1,CCanj.conn);
+                        CCanj.s = "TICKET|ASSIGN|"+deptid+"|"+no1+"\r\n";CCanj.kirimBroad();
+                        sqlno1="select ifnull(pic_email,'') from _representativearea where representative_area_id='"+ReArea+"'";
+                        rs0=CCanj.jconn.SQLExecuteRS(sqlno1,CCanj.conn);
+                        while (rs0.next()) {
+                            mailto=rs0.getString(1);
                         }
+                        sql1="insert into log_mail "
+                                + " (mail_date,mail_time"
+                                + ", mail_from, mail_to"
+                                + ", mail_subject, mail_text"
+                                + ", ticket_id, direction, username, direction_type)"
+                                + " values"
+                                + " (current_date,current_time"
+                                + ", 'tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id='"+catdetid+"'),\',\','"+mailto+"'))"
+                                + ", '"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
+                                + ", '"+id+"',1, '"+CCanj.lbluser.getText()+"', 'Internal')";
+                        CCanj.jconn.SQLExecute(sql1,CCanj.conn);
                         JOptionPane.showMessageDialog(null, "EMAIL SENT", "MAILING",JOptionPane.WARNING_MESSAGE);
+                        dispose();
                     }
-
                         bersih();
                     }catch(Exception e){
                         System.out.println(e);
@@ -2115,27 +2425,32 @@ public class ticket extends javax.swing.JFrame {
             }else{
                 System.out.print("\nnewtic = false = "+newtic);
                 System.out.print("\nsubmit = 0 = "+ submit);
-                    getdept();getcateg();getcatdet();
+                    getTicType();getdept();getcateg();getcatdet();getReArea();
                     usrlvl();
                     if(ass==-1){
                         ass=Integer.parseInt(deptid);
                     }
                     try{
                         sql="update tickets set dept_id='"+deptid+"' , dept_cc='"+txtCcDept.getText()+"'"
-                                + ", _servicearea='"+cbArea.getSelectedItem()+"'"
+                                + ", _servicearea='"+cbArea.getSelectedItem()+"', representative_area_id='"+ReArea+"'"
                                 + ",category_id='"+catid+"', category='"+cbcategory.getSelectedItem()+"' "
                                 + ", category_detail_id='"+catdetid+"',category_detail='"+cbcatdetail.getSelectedItem()+"' "
                                 + ",_type='"+cbTicketType.getSelectedItem()+"' "
                                 + ",assign_dept='"+ass+"' "
                                 + ",_priority='"+cbprior.getSelectedIndex()+"' "
-                                + ",sla='"+sla+"' ,cust_name='"+txtcusnam.getText()+"' "
-                                + ",cust_address='"+txtcustadd.getText()+"' ,cust_phone='"+txtcusfax.getText()+"' "
-                                + ",cust_pic='"+txtcuspic.getText()+"' ,user='"+txtusr.getText()+"' "
-                                + ",user_phone='"+txtusrpho.getText()+"' ,cso_name='"+txtcso.getText()+"' "
-                                + ",cso_phone='"+txtcsopho.getText()+"' ,cso_mail='"+txtcsomail.getText()+"' "
-                                + ",vehicle_platno='"+cbnoplat.getSelectedItem()+"' ,vehicle_type='"+txtjenis.getText()+"' "
-                                + ",vehicle_warna='"+txtwarna.getText()+"' ,driver_name='"+cbdriver.getSelectedItem()+"' "
-                                + ",driver_phone='"+txtdrinm.getText()+"' ,details='"+txtdetails.getText()+"'" +
+                                + ",sla='"+sla+"' "
+                                + ", cust_code='"+txtcuscod.getText()+"', cust_name='"+txtcusnam.getText()+"', cust_address='"+txtcustadd.getText()+"', cust_phone='"+txtcuspho.getText()+"', cust_email='"+txtcusemail.getText()+"'"
+                                + ", cust_pic='"+txtcuspic.getText()+"', cust_pic_address='"+txtPicadd.getText()+"', cust_pic_phone='"+txtpicPho.getText()+"'"
+                                + ", cust_note='"+txtcustNote.getText()+"', agreement_id='"+AgreeId
+//                                + ",cust_name='"+txtcusnam.getText()+"' "
+//                                + ",cust_address='"+txtcustadd.getText()+"' ,cust_phone='"+txtcusfax.getText()+"' "
+//                                + ",cust_pic='"+txtcuspic.getText()+"' ,user='"+txtusr.getText()+"' "
+//                                + ",user_phone='"+txtusrpho.getText()+"' ,cso_name='"+txtcso.getText()+"' "
+//                                + ",cso_phone='"+txtcsopho.getText()+"' ,cso_mail='"+txtcsomail.getText()+"' "
+//                                + ",vehicle_platno='"+cbnoplat.getSelectedItem()+"' ,vehicle_type='"+txtUnitEngine.getText()+"' "
+//                                + ",vehicle_warna='"+txtUnitWarna.getText()+"' ,driver_name='"+cbdriver.getSelectedItem()+"' "
+//                                + ",driver_phone='"+txtdrinm.getText()+"' "
+                                + ",details='"+txtdetails.getText()+"'" +
                                 ",note='"+CCanj.lbluser.getText()+"@"+opdt.substring(8,10)+"/"+opdt.substring(5,7)+"/"+opdt.substring(0,4)+" "+optm.replace(':','.')+" : \n"+txtnote.getText()+"===\n"+txtlastnote.getText()+"'" +
                                 ", _submitted='"+submit+"' where ticket_id='"+id+"'";
                         CCanj.jconn.SQLExecute(sql,CCanj.conn);
@@ -2233,33 +2548,31 @@ public class ticket extends javax.swing.JFrame {
                             statuss=1;
                         }
                         if(submit==1){
+                            String mailto="";
                             JOptionPane.showMessageDialog(null, "TICKET "+txtnotic.getText()+" SUBMITED", "TICKETING",JOptionPane.WARNING_MESSAGE);
-                            if (cbdept.getSelectedItem().equals("DEPT. MARKETING")){
-                                sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','<Ticket>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+txtnotic.getText()+"','Submitted by : "+CCanj.lbluser.getText()+"\n"+opdt+"\n"+optm+"\n\n"+txtdetails.getText()+"\n\n"+txtlastnote.getText()+"\n\n Action Status : "+rnarasi+"','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                                System.out.print("\n isi sql insert mail "+sql1 );
-                                CCanj.jconn.SQLExecute(sql1,CCanj.conn);
-
-                            }else{
-                                sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','<CC>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+txtnotic.getText()+"','Submitted by : "+CCanj.lbluser.getText()+"@"+opdt+"\n"+optm+"\n\n"+txtdetails.getText()+"\n\n"+txtlastnote.getText()+"\n\n Action Status : "+rnarasi+"','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                                System.out.print("\n isi sql insert mail "+sql1 );
-                                CCanj.jconn.SQLExecute(sql1,CCanj.conn);
+                            sqlno1="select ifnull(pic_email,'') from _representativearea where representative_area_id='"+ReArea+"'";
+                            rs0=CCanj.jconn.SQLExecuteRS(sqlno1,CCanj.conn);
+                            while (rs0.next()) {
+                                mailto=rs0.getString(1);
                             }
+                            sql1="insert into log_mail "
+                                    + " (mail_date, mail_time"
+                                    + ", mail_from, mail_to"
+                                    + ", mail_subject, mail_text"
+                                    + ", ticket_id, direction, username, direction_type)"
+                                    + " values"
+                                    + " (current_date,current_time"
+                                    + ", 'tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id=1),\',\','"+mailto+"'))"
+                                    + ", '"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
+                                    + ", '"+id+"',1, '"+CCanj.lbluser.getText()+"', 'Internal')";
+                            CCanj.jconn.SQLExecute(sql1,CCanj.conn);
                             JOptionPane.showMessageDialog(null, "EMAIL SENT", "MAILING",JOptionPane.WARNING_MESSAGE);
                             CCanj.s = "TICKET|ASSIGN|"+deptid+"|"+txtnotic.getText()+"\r\n";
                             CCanj.kirimBroad();
+                            dispose();
                         }else{
                             JOptionPane.showMessageDialog(null, "TICKET UPDATED", "TICKETING",JOptionPane.WARNING_MESSAGE);
-                            if (cbdept.getSelectedItem().equals("DEPT. MARKETING")){
-                                sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','UPDATE<Ticket>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+txtnotic.getText()+"','UPDATE by : "+CCanj.lbluser.getText()+"\n"+opdt+"\n"+optm+"\n\n"+txtdetails.getText()+"\n\n"+txtlastnote.getText()+"\n\n Action Status : "+rnarasi1+" Set to "+rnarasi+"','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                                CCanj.jconn.SQLExecute(sql1,CCanj.conn);
-                            }else{
-                                sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username,direction_type) values ('contact@mpm-rent.com','"+txtcsomail.getText()+"','UPDATE<CC>#"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+txtusr.getText()+"#"+cbcategory.getSelectedItem()+"#"+txtnotic.getText()+"','UPDATE by : "+CCanj.lbluser.getText()+"\n"+opdt+"\n"+optm+"\n\n"+txtdetails.getText()+"\n\n"+txtlastnote.getText()+"\n\n Action Status : "+rnarasi1+" Set to "+rnarasi+"','"+id+"',1,'"+CCanj.lbluser.getText()+"','Internal-CSO')";
-                                CCanj.jconn.SQLExecute(sql1,CCanj.conn);
-                            }
-                            JOptionPane.showMessageDialog(null, "EMAIL SENT", "MAILING",JOptionPane.WARNING_MESSAGE);
-                            CCanj.s = "TICKET|UPDATE|"+deptid+"|"+txtnotic.getText()+"\r\n";
-                            CCanj.kirimBroad();
-        //                    System.out.print(sql1);
+                            CCanj.s = "TICKET|UPDATE|"+deptid+"|"+txtnotic.getText()+"\r\n";CCanj.kirimBroad();
                         }
                     }catch(Exception e){
                         System.out.println(e);
@@ -2269,12 +2582,12 @@ public class ticket extends javax.swing.JFrame {
                 System.out.print("\nsubmit = 1 = "+ submit);
 
             }//end of validasi newticket
-        }//end of validasi txtcso
+//            dispose();
+//        }//end of validasi txtcso
 
         if(caltic==true){
             Obc.txtnotic1.setText(Integer.toString(no1));
         }
-        dispose();
     }//GEN-LAST:event_btncreateActionPerformed
 
     private void btnclosedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclosedActionPerformed
@@ -2313,7 +2626,7 @@ public class ticket extends javax.swing.JFrame {
     private void cbdeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbdeptActionPerformed
         // TODO add your handling code here:
         if(raction==true){
-            showType();
+            showReArea();showType();
         }
     }//GEN-LAST:event_cbdeptActionPerformed
 
@@ -2383,8 +2696,12 @@ public class ticket extends javax.swing.JFrame {
 
     public boolean catdetailupadate=false;
     public boolean catfinalupadate=false;
+    
+    Search_customer sercus = new Search_customer();
     private void btnsrchcusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsrchcusActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        sercus.setVisible(true);
+        sercus.Form=1;
     }//GEN-LAST:event_btnsrchcusActionPerformed
 
     private void btnCcDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCcDeptActionPerformed
@@ -2428,8 +2745,13 @@ Object sel,sel1;int baris;int conter;
     private void cbcategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcategoryActionPerformed
         // TODO add your handling code here:
         if(raction2==true){
-            getdept();getcateg();
-            showCatDet();
+            if(cbdept.getSelectedIndex()!=-1){
+                getTicType();getdept();getcateg();
+                showCatDet();
+            }else{
+                JOptionPane.showMessageDialog(null,"Dept. must be choosed");
+                cbdept.setSelectedIndex(-1);
+            }
         }
     }//GEN-LAST:event_cbcategoryActionPerformed
 
@@ -2438,6 +2760,62 @@ Object sel,sel1;int baris;int conter;
         cbArea.setSelectedIndex(-1);        cbTicketType.setSelectedIndex(-1);        cbcatdetail.setSelectedIndex(-1);
         cbcategory.setSelectedIndex(-1);        cbdept.setSelectedIndex(-1);
     }//GEN-LAST:event_btnresetActionPerformed
+
+    private void txtcusnamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcusnamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcusnamActionPerformed
+
+    private void txtUnit1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnit1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnit1MouseEntered
+
+    private void txtthnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtthnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtthnActionPerformed
+
+    private void txtAgr4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgr4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr4ActionPerformed
+
+    private void txtAgr2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtAgr2CaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr2CaretUpdate
+
+    private void txtAgr2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgr2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr2ActionPerformed
+
+    private void txtAgr1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtAgr1CaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr1CaretUpdate
+
+    private void txtAgr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgr1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr1ActionPerformed
+
+    private void txtAgr9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgr9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr9ActionPerformed
+
+    private void txtAgr7CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtAgr7CaretUpdate
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr7CaretUpdate
+
+    private void txtAgr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgr7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr7ActionPerformed
+
+    private void txtAgr5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgr5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgr5ActionPerformed
+
+    private void txtUnit5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnit5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnit5ActionPerformed
+
+    private void txtUnit6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnit6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnit6ActionPerformed
 
 
      private boolean inputValid(){
@@ -2500,6 +2878,7 @@ Object sel,sel1;int baris;int conter;
     public static com.toedter.calendar.JDateChooser dtrdeliver;
     public static com.toedter.calendar.JDateChooser dtrstart;
     public static com.toedter.calendar.JDateChooser dtruntil;
+    private javax.swing.JTabbedPane hiddenTab;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2553,8 +2932,26 @@ Object sel,sel1;int baris;int conter;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JList jList1;
@@ -2562,7 +2959,6 @@ Object sel,sel1;int baris;int conter;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2573,6 +2969,8 @@ Object sel,sel1;int baris;int conter;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2581,31 +2979,59 @@ Object sel,sel1;int baris;int conter;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JPanel pnlRep;
+    private javax.swing.JPanel pnluser;
     private javax.swing.JScrollPane scpCcList;
     public static javax.swing.JTabbedPane tabdet;
+    public static javax.swing.JTextField txtAgr1;
+    public static javax.swing.JTextField txtAgr10;
+    public static javax.swing.JTextField txtAgr11;
+    public static javax.swing.JTextField txtAgr2;
+    public static javax.swing.JTextField txtAgr3;
+    public static javax.swing.JTextField txtAgr4;
+    public static javax.swing.JTextField txtAgr5;
+    public static javax.swing.JTextField txtAgr6;
+    public static javax.swing.JTextField txtAgr7;
+    public static javax.swing.JTextField txtAgr8;
+    public static javax.swing.JTextField txtAgr9;
+    public static javax.swing.JTextField txtCaseArea;
     public static javax.swing.JTextField txtCcDept;
+    public static javax.swing.JTextField txtCro1;
+    public static javax.swing.JTextField txtDriCode;
+    public static javax.swing.JTextArea txtPicadd;
+    public static javax.swing.JTextField txtUnit1;
+    public static javax.swing.JTextField txtUnit2;
+    public static javax.swing.JTextField txtUnit3;
+    public static javax.swing.JTextField txtUnit4;
+    public static javax.swing.JTextField txtUnit5;
+    public static javax.swing.JTextField txtUnit6;
+    public static javax.swing.JTextField txtUnit7;
+    public static javax.swing.JTextField txtUnit8;
     public static javax.swing.JTextField txtcontract;
     public static javax.swing.JTextField txtcso;
-    public static javax.swing.JTextField txtcsocode;
+    public static javax.swing.JTextField txtcsobranch;
     public static javax.swing.JTextField txtcsomail;
     public static javax.swing.JTextField txtcsopho;
+    public static javax.swing.JTextField txtcsopho1;
     public static javax.swing.JTextField txtcuscod;
     public static javax.swing.JTextField txtcusconend;
     public static javax.swing.JTextField txtcusconst;
     public static javax.swing.JTextField txtcusconst1;
+    public static javax.swing.JTextField txtcusemail;
     public static javax.swing.JTextField txtcusfax;
     public static javax.swing.JTextField txtcusnam;
     public static javax.swing.JTextField txtcuspho;
     public static javax.swing.JTextField txtcuspic;
+    public static javax.swing.JTextArea txtcustNote;
     public static javax.swing.JTextArea txtcustadd;
     public static javax.swing.JTextArea txtdetails;
     public static javax.swing.JTextField txtdrinm;
     public static javax.swing.JTextField txtdripho1;
     public static javax.swing.JTextArea txtinfo;
-    public static javax.swing.JTextField txtjenis;
     public static javax.swing.JTextArea txtlastnote;
     public static javax.swing.JTextArea txtnote;
     public static javax.swing.JTextField txtnotic;
+    public static javax.swing.JTextField txtpicPho;
     public static javax.swing.JTextArea txtques;
     public static javax.swing.JTextArea txtraddr;
     public static javax.swing.JTextField txtrcontact;
@@ -2619,12 +3045,9 @@ Object sel,sel1;int baris;int conter;
     public static javax.swing.JTextField txtroricarplate;
     public static javax.swing.JTextField txtrphoneno;
     public static javax.swing.JTextField txtrrepcarpalte;
-    public static javax.swing.JTextField txtthn;
-    public static javax.swing.JTextField txttype;
     public static javax.swing.JTextField txtusr;
     public static javax.swing.JTextArea txtusraddr;
     public static javax.swing.JTextField txtusrpho;
-    public static javax.swing.JTextField txtwarna;
     // End of variables declaration//GEN-END:variables
 
     public static String sql;
@@ -2651,14 +3074,16 @@ Object sel,sel1;int baris;int conter;
             try{
                 cbnoplat.removeAllItems();
                 cbdriver.removeAllItems();
-                sql="select * from tickets "
+                sql="select *, x.representative_area as rearea from tickets "
                         + " left join _department d on tickets.dept_id=d.dept_id"
+                        + " left join _representativearea x on tickets.representative_area_id=x.representative_area_id"
                         + " where ticket_id='"+id+"' ";
                 rs0=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
     //                 System.out.println(sql);
                 while(rs0.next()){
     //                txtnotic.setText(rs.getString(1));
-                    cbArea.setSelectedItem(rs0.getString("_servicearea"));
+                    cbArea.setSelectedItem(rs0.getString("rearea"));
+                    txtCaseArea.setText(rs0.getString("_servicearea"));
                     cbcategory.setSelectedItem(rs0.getString("category"));
                     cbcatdetail.setSelectedItem(rs0.getString("category_detail"));
                     cbTicketType.setSelectedItem(rs0.getString("_type"));
@@ -2671,31 +3096,42 @@ Object sel,sel1;int baris;int conter;
                     if(rs0.getString("assign_dept")!=null){
                         ass=Integer.parseInt(rs0.getString("assign_dept"));
                     }
-                    txtusr.setText(rs0.getString("user"));
-                    txtusrpho.setText(rs0.getString("user_phone"));
-                    txtusraddr.setText(rs0.getString("user_address"));
-                    cbnoplat.addItem(rs0.getString("vehicle_platno"));
-                    txtjenis.setText(rs0.getString("vehicle_jenis"));
-                    txttype.setText(rs0.getString("vehicle_type"));
-                    txtwarna.setText(rs0.getString("vehicle_warna"));
-                    txtthn.setText(rs0.getString("vehicle_tahun"));
-                    cbdriver.addItem(rs0.getString("driver_code"));
-                    txtdrinm.setText(rs0.getString("driver_name"));
-                    txtdripho1.setText(rs0.getString("driver_phone"));
+                    AgreeId=(String)rs0.getString("agreement_id");
                     txtcuscod.setText(rs0.getString("cust_code"));
                     txtcusnam.setText(rs0.getString("cust_name"));
-                    txtcusfax.setText(rs0.getString("cust_fax"));
-                    txtcuspho.setText(rs0.getString("cust_phone"));
-                    txtcuspic.setText(rs0.getString("cust_pic"));
-                    txtcontract.setText(rs0.getString("contract_no"));
-                    txtcusconst.setText(rs0.getString("contract_startdate"));
-                    txtcusconst1.setText(rs0.getString("startdate"));
-                    txtcusconend.setText(rs0.getString("contract_enddate"));
                     txtcustadd.setText(rs0.getString("cust_address"));
-                    txtcsocode.setText(rs0.getString("cso_code"));
-                    txtcso.setText(rs0.getString("cso_name"));
-                    txtcsopho.setText(rs0.getString("cso_phone"));
-                    txtcsomail.setText(rs0.getString("cso_mail"));
+                    txtcuspho.setText(rs0.getString("cust_phone"));
+                    txtcusemail.setText(rs0.getString("cust_email"));
+                    txtcuspic.setText(rs0.getString("cust_pic"));                    
+                    txtPicadd.setText(rs0.getString("cust_pic_address"));
+                    txtpicPho.setText(rs0.getString("cust_pic_phone"));
+                    txtcustNote.setText(rs0.getString("cust_note"));
+                    
+//                    txtusr.setText(rs0.getString("user"));
+//                    txtusrpho.setText(rs0.getString("user_phone"));
+//                    txtusraddr.setText(rs0.getString("user_address"));
+//                    cbnoplat.addItem(rs0.getString("vehicle_platno"));
+//                    txtUnit4.setText(rs0.getString("vehicle_jenis"));
+//                    txtUnit3.setText(rs0.getString("vehicle_type"));
+//                    txtUnit7.setText(rs0.getString("vehicle_warna"));
+//                    txtUnit6.setText(rs0.getString("vehicle_tahun"));
+//                    cbdriver.addItem(rs0.getString("driver_code"));
+//                    txtdrinm.setText(rs0.getString("driver_name"));
+//                    txtdripho1.setText(rs0.getString("driver_phone"));
+//                    txtcuscod.setText(rs0.getString("cust_code"));
+//                    txtcusnam.setText(rs0.getString("cust_name"));
+//                    txtcusfax.setText(rs0.getString("cust_fax"));
+//                    txtcuspho.setText(rs0.getString("cust_phone"));
+//                    txtcuspic.setText(rs0.getString("cust_pic"));
+//                    txtcontract.setText(rs0.getString("contract_no"));
+//                    txtcusconst.setText(rs0.getString("contract_startdate"));
+//                    txtcusconst1.setText(rs0.getString("startdate"));
+//                    txtcusconend.setText(rs0.getString("contract_enddate"));
+//                    txtcustadd.setText(rs0.getString("cust_address"));
+//                    txtCro1.setText(rs0.getString("cso_code"));
+//                    txtcso.setText(rs0.getString("cso_name"));
+//                    txtcsopho.setText(rs0.getString("cso_phone"));
+//                    txtcsomail.setText(rs0.getString("cso_mail"));    
                     txtdetails.setText(rs0.getString("details"));
                     submit=Integer.parseInt(rs0.getString("_submitted"));
     //                txtlastnote.setText(rs0.getString("solution"));
@@ -2708,39 +3144,39 @@ Object sel,sel1;int baris;int conter;
                     storingyes=Integer.parseInt(rs0.getString("storing_status"));
                     OTHERS=Integer.parseInt(rs0.getString("_other"));
                     othersyes=Integer.parseInt(rs0.getString("other_status"));
-                    txtrdridpt.setText(rs0.getString("r_driverdept"));
-                    txtroprdpt.setText(rs0.getString("r_oprdept"));
-                    txtrcso.setText(rs0.getString("r_cso"));
-                    txtrcusnm.setText(rs0.getString("r_custname"));
-                    txtrcontact.setText(rs0.getString("r_contact"));
-                    txtrphoneno.setText(rs0.getString("r_phoneno"));
-                    txtraddr.setText(rs0.getString("r_address"));
-                    cbroristat.setSelectedItem(rs0.getString("r_orgcar_status"));
-                    txtroricarplate.setText(rs0.getString("r_orgcar_plate"));
-                    cbrrepstat.setSelectedItem(rs0.getString("r_replacecar_status"));
-                    txtrrepcarpalte.setText(rs0.getString("r_replacecar_plate"));
-                    txtrdelivertime.setText(rs0.getString("r_deliverytime"));
-                    txtrdripho.setText(rs0.getString("r_driverphone"));
-                    txtrmemo.setText(rs0.getString("r_memo"));
+//                    txtrdridpt.setText(rs0.getString("r_driverdept"));
+//                    txtroprdpt.setText(rs0.getString("r_oprdept"));
+//                    txtrcso.setText(rs0.getString("r_cso"));
+//                    txtrcusnm.setText(rs0.getString("r_custname"));
+//                    txtrcontact.setText(rs0.getString("r_contact"));
+//                    txtrphoneno.setText(rs0.getString("r_phoneno"));
+//                    txtraddr.setText(rs0.getString("r_address"));
+//                    cbroristat.setSelectedItem(rs0.getString("r_orgcar_status"));
+//                    txtroricarplate.setText(rs0.getString("r_orgcar_plate"));
+//                    cbrrepstat.setSelectedItem(rs0.getString("r_replacecar_status"));
+//                    txtrrepcarpalte.setText(rs0.getString("r_replacecar_plate"));
+//                    txtrdelivertime.setText(rs0.getString("r_deliverytime"));
+//                    txtrdripho.setText(rs0.getString("r_driverphone"));
+//                    txtrmemo.setText(rs0.getString("r_memo"));
                     txtlastnote.setText(rs0.getString("note"));
                     note=(String)rs0.getString("note");
-                    if((rs0.getString("r_deliverydate")!=null&&rs0.getString("r_deliverydate").equals(""))||(rs0.getString("r_startdate")!=null&&rs0.getString("r_startdate").equals(""))||(rs0.getString("r_untildate")!=null&&rs0.getString("r_untildate").equals(""))){
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        dtrdeliver.setDate(sdf.parse(rs0.getString("r_deliverydate")));
-                        dtrstart.setDate(sdf.parse(rs0.getString("r_startdate")));
-                        dtruntil.setDate(sdf.parse(rs0.getString("r_untildate")));
-                    }
-    //            System.out.println("jalan klik 2");
-                    if(txtcsomail.getText().equals("")||txtcsopho.getText().equals("")){
-                        System.out.print("klo mail cso kosong klik 2\n");
-                        sql1 = "select email, phone_no from contact where code='" + txtcsocode.getText() + "'";
-                        rs1 = CCanj.jconn.SQLExecuteRS(sql1, CCanj.conn);
-                        System.out.print(sql1);
-                        while (rs1.next()) {
-                            txtcsopho.setText(rs1.getString("phone_no"));
-                            txtcsomail.setText(rs1.getString("email"));
-                        }
-                    }
+//                    if((rs0.getString("r_deliverydate")!=null&&rs0.getString("r_deliverydate").equals(""))||(rs0.getString("r_startdate")!=null&&rs0.getString("r_startdate").equals(""))||(rs0.getString("r_untildate")!=null&&rs0.getString("r_untildate").equals(""))){
+//                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//                        dtrdeliver.setDate(sdf.parse(rs0.getString("r_deliverydate")));
+//                        dtrstart.setDate(sdf.parse(rs0.getString("r_startdate")));
+//                        dtruntil.setDate(sdf.parse(rs0.getString("r_untildate")));
+//                    }
+//    //            System.out.println("jalan klik 2");
+//                    if(txtcsomail.getText().equals("")||txtcsopho.getText().equals("")){
+//                        System.out.print("klo mail cso kosong klik 2\n");
+//                        sql1 = "select email, phone_no from contact where code='" + txtCro1.getText() + "'";
+//                        rs1 = CCanj.jconn.SQLExecuteRS(sql1, CCanj.conn);
+//                        System.out.print(sql1);
+//                        while (rs1.next()) {
+//                            txtcsopho.setText(rs1.getString("phone_no"));
+//                            txtcsomail.setText(rs1.getString("email"));
+//                        }
+//                    }
                 }
             }catch(Exception e){
                 System.out.println(e);
@@ -2763,6 +3199,7 @@ Object sel,sel1;int baris;int conter;
      }else{
           cksubmit.setSelected(false);
           btncreate.setText("Save");
+          btnclosed.setEnabled(true);
      }
 
      if(newtic==false && CCanj.cbdirection.getSelectedItem().equals("OUTBOUND") && CCanj.btnready.getText().equals("Unregis")){
@@ -2849,7 +3286,7 @@ Object sel,sel1;int baris;int conter;
              sql="select category_name from _ticketcategory"
                      + " join _tickettype t on _ticketcategory.ticket_type_id=t.code "
                      + " join _department d on _ticketcategory.dept_id=d.dept_id"
-                     + " where _deleted=0 ";
+                     + " where _ticketcategory._deleted=0 ";
              if(cbTicketType.getSelectedIndex()!=-1&&cbdept.getSelectedIndex()!=-1){
                  condition=" and t.data='"+cbTicketType.getSelectedItem()+"' "
                          + " and d.dept_name='"+cbdept.getSelectedItem()+"' ";
@@ -2870,66 +3307,89 @@ Object sel,sel1;int baris;int conter;
          try{
             cbnoplat.removeAllItems();
             cbdriver.removeAllItems();
-             sql="select * from customer_order where rec_id='"+contid+"' and contract_no='"+txtcontract.getText()+"'";
+//             sql="select * from customer_order where rec_id='"+contid+"' and contract_no='"+txtcontract.getText()+"'";
+            sql="select * from agreements"
+                    + " left join customers on agreements.customer_code=customers.customer_code"
+                    + " left join customer_address on agreements.customer_code=customer_address.customer_code"
+                    + " left join units on agreements.unit_code=units.unit_code"
+                    + " left join drivers on agreements.driver_code=drivers.driver_code"
+                    + " where agreement_id='"+AgreeId+"' group by customers.customer_code";
              rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
              while(rs.next()){
-                 txtusr.setText(rs.getString("user_name"));
-                txtusrpho.setText(rs.getString("user_phone"));
-                txtusraddr.setText(rs.getString("user_addr"));
-                cbnoplat.addItem(rs.getString("vehicle_platno"));
-                cbnoplat.addItem(rs.getString("gs_vehicle_platno"));
-                txtjenis.setText(rs.getString("vehicle_jenis"));
-                txttype.setText(rs.getString("vehicle_type"));
-                txtwarna.setText(rs.getString("vehicle_warna"));
-                txtthn.setText(rs.getString("vehicle_tahun"));
-                cbdriver.addItem(rs.getString("driver_code"));
-                cbdriver.addItem(rs.getString("gs_driver_code"));
-                txtdrinm.setText(rs.getString("driver_name"));
-                txtdripho1.setText(rs.getString("driver_phone"));
-                txtcuscod.setText(rs.getString("cust_code"));
-                txtcusnam.setText(rs.getString("cust_name"));
-                txtcusfax.setText(rs.getString("cust_fax"));
-                txtcuspho.setText(rs.getString("cust_phone"));
-                txtcuspic.setText(rs.getString("pic_name"));
-                txtcontract.setText(rs.getString("contract_no"));
-                txtcusconst.setText(rs.getString("contract_startdate"));
-                txtcusconst1.setText(rs.getString("startdate"));
-                txtcusconend.setText(rs.getString("contract_enddate"));
-                txtcustadd.setText(rs.getString("cust_addr"));
-                txtcsocode.setText(rs.getString("cso_code"));
-                txtcso.setText(rs.getString("cso_name"));
-                txtcsopho.setText(rs.getString("cso_phone"));
-                txtcsomail.setText(rs.getString("cso_email"));       
+                txtcusnam.setText(rs.getString("fullname"));
+                txtcustadd.setText(rs.getString("alamat"));
+                txtcuscod.setText(rs.getString("customer_code"));                
+//                txtcuspho.setText(rs.getString("cust_phone"));
+                txtAgr1.setText(rs.getString(2));
+                txtAgr2.setText(rs.getString(3));
+                txtAgr3.setText(rs.getString(4));
+                txtAgr4.setText(rs.getString(5));
+                txtAgr5.setText(rs.getString(6));
+                txtAgr6.setText(rs.getString(7));
+                txtAgr7.setText(rs.getString(8));
+                txtAgr8.setText(rs.getString(9));
+                txtAgr9.setText(rs.getString(10));
+                txtAgr10.setText(rs.getString(11));
+                txtAgr11.setText(rs.getString(12));
+                
+                txtUnit1.setText(rs.getString(20));
+                txtUnit2.setText(rs.getString(21));
+                txtUnit3.setText(rs.getString(22));
+                txtUnit4.setText(rs.getString(23));
+                txtUnit5.setText(rs.getString(24));
+                txtUnit6.setText(rs.getString(25));
+                txtUnit7.setText(rs.getString(26));
+                txtUnit8.setText(rs.getString(27));
+                
+                txtDriCode.setText(rs.getString("driver_code"));
+                txtdrinm.setText(rs.getString("driver_name"));             
+                
+                
+                
+                
+//                txtusr.setText(rs.getString("user_name"));
+//                txtcusfax.setText(rs.getString("cust_fax"));
+//                txtcuspic.setText(rs.getString("pic_name"));
+//                txtusrpho.setText(rs.getString("user_phone"));
+//                txtusraddr.setText(rs.getString("user_addr"));
+//                cbnoplat.addItem(rs.getString("vehicle_platno"));
+//                cbnoplat.addItem(rs.getString("gs_vehicle_platno"));
+//                txtUnit4.setText(rs.getString("vehicle_jenis"));
+//                txtUnit3.setText(rs.getString("vehicle_type"));
+//                txtUnit7.setText(rs.getString("vehicle_warna"));
+//                txtUnit6.setText(rs.getString("vehicle_tahun"));
+//                cbdriver.addItem(rs.getString("driver_code"));
+//                cbdriver.addItem(rs.getString("gs_driver_code"));
+//                txtdrinm.setText(rs.getString("driver_name"));
+//                txtdripho1.setText(rs.getString("driver_phone"));
+//                txtcontract.setText(rs.getString("contract_no"));
+//                txtcusconst.setText(rs.getString("contract_startdate"));
+//                txtcusconst1.setText(rs.getString("startdate"));
+//                txtcusconend.setText(rs.getString("contract_enddate"));
+//                txtcsocode.setText(rs.getString("cso_code"));
+//                txtcso.setText(rs.getString("cso_name"));
+//                txtcsopho.setText(rs.getString("cso_phone"));
+//                txtcsomail.setText(rs.getString("cso_email"));       
              }
-                 if(txtcsomail.getText().equals("")){
-                    System.out.print("klo mail cso kosong\n");
-                    sql1 = "select email, phone_no from contact where code='" + txtcsocode.getText() + "'";
+                 if(!txtAgr3.getText().equals("")){
+                    System.out.println("cari cro\n");
+                    sql1 = "select * from cro"
+                            + " join branches on cro.branch_name=branches.branch_name"
+                            + " where branch_code='" + txtAgr3.getText().substring(0,3) + "'";
                     rs1 = CCanj.jconn.SQLExecuteRS(sql1, CCanj.conn);
                     System.out.print(sql1);
                     while (rs1.next()) {
-                        System.out.print("\nisi mail "+rs1.getString("email"));
-                        System.out.print("\nisi phone no "+rs1.getString("phone_no"));
-                        txtcsopho.setText(rs1.getString("phone_no"));
-                        txtcsomail.setText(rs1.getString("email"));
+                        txtCro1.setText(rs1.getString(2));
+                        txtcso.setText(rs1.getString(3));
+                        txtcsopho.setText(rs1.getString(4));
+                        txtcsomail.setText(rs1.getString(5));
+                        txtcsobranch.setText(rs1.getString(6));
+                        txtcsopho1.setText(rs1.getString(7));
                     }
                 }
          }catch(Exception e){
              System.out.println(e);
          }
-//         if(txtcsomail.getText().equals("")){
-//                 System.out.print("klo mail cso kosong\n");
-//            try {
-//                sql1 = "select email, phone_no from contact where code='" + txtcsocode.getText() + "'";
-//                rs1 = jconn.SQLExecuteRS(sql1, conn);
-//                    System.out.print(sql1);
-//                while (rs1.next()) {
-//                    txtcsopho.setText(rs1.getString("phone_no"));
-//                    txtcsomail.setText(rs1.getString("email"));
-//                }
-//            } catch (SQLException ex) {
-//                Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//         }
      }
 
      private void showDept(){
@@ -2987,13 +3447,33 @@ Object sel,sel1;int baris;int conter;
           }
           raction1=true;
       }
-
+      private void showReArea(){
+          raction3=false;
+          condition="";
+          cbArea.removeAllItems();
+          try{
+              sql="select _representativearea.representative_area from _representativearea "
+                      + " join _department on _representativearea.dept_id=_department.dept_id ";
+              if(cbdept.getSelectedIndex()!=-1){
+                  condition=" where _representativearea.dept_id="+cbdept.getSelectedIndex()+"";
+              }
+              sql=sql+condition+" group by _representativearea.representative_area_id";
+              rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
+              while(rs.next()){
+                  cbArea.addItem(rs.getString(1));
+              }
+              cbArea.setSelectedIndex(-1);
+          }catch(Exception e){
+              System.out.println(e);
+          }
+          raction3=true;
+      }
       private void showCatDet(){
           cbcatdetail.removeAllItems();
           try{
               condition="";
               sql="select detail_category_name from _ticketdetailcategory ";
-              if(catid!=null&&!catid.equals("")){
+              if(catid!=null&&!catid.equals("")||cbcategory.getSelectedIndex()!=-1){
                   condition=" where category_id='"+catid+"'";
               }
               sql=sql+condition;
@@ -3006,25 +3486,23 @@ Object sel,sel1;int baris;int conter;
              System.out.println(e);
          }
      }
+      
+      private void showDriver()    {
+          cbdriver.removeAllItems();
+          try{
+              cbdriver.removeAllItems();
+              cbdriver.addItem("--");
 
-         private void showDriver()
-    {
-         cbdriver.removeAllItems();
-        try{
-            cbdriver.removeAllItems();
-            cbdriver.addItem("--");
-
-            sql="select driver_name, driver_phone, gs_driver_name, gs_driver_phone, from customer_order where driver_name is not null GROUP BY driver_name";
-            rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
-            while(rs.next()){
-                txtdrinm.setText(rs.getString(1)+rs.getString(3));
-                txtdripho1.setText(rs.getString(2)+rs.getString(3));
-            }
-        }catch(Exception e){
-            System.out.println(e);
-
-        }
-     }
+              sql="select driver_name, driver_phone, gs_driver_name, gs_driver_phone, from customer_order where driver_name is not null GROUP BY driver_name";
+              rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
+              while(rs.next()){
+                  txtdrinm.setText(rs.getString(1)+rs.getString(3));
+                  txtdripho1.setText(rs.getString(2)+rs.getString(3));
+              }
+          }catch(Exception e){
+              System.out.println(e);
+          }
+      }
 //           private void showPriority()
 //    {
 //         cbprior.removeAllItems();
@@ -3055,12 +3533,24 @@ Object sel,sel1;int baris;int conter;
            }
        }
 
-        private void getcateg(){
+        private void getcateg(){            
            try{
-               sql="select category_id from _ticketcategory where category_name='"+cbcategory.getSelectedItem()+"' and dept_id='"+deptid+"' and _deleted=0";
+               sql1="select category_id from _ticketcategory where category_name='"+cbcategory.getSelectedItem()+"' and dept_id='"+deptid+"' and ticket_type_id='"+TicType+"' and _deleted=0";
+               rs1=CCanj.jconn.SQLExecuteRS(sql1,CCanj.conn);
+               System.out.println("category : "+sql1);
+               while(rs1.next()){
+                   catid=rs1.getString(1).toString();
+               }
+           }catch(Exception e){
+               System.out.print(e);
+           }
+       }
+        private void getReArea(){
+           try{
+               sql="select representative_area_id from _representativearea where representative_area='"+cbArea.getSelectedItem()+"' and dept_id='"+deptid+"'";
                rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
                while(rs.next()){
-                   catid=rs.getString(1);
+                   ReArea=rs.getString(1);
                }
            }catch(Exception e){
                System.out.print(e);
@@ -3068,10 +3558,23 @@ Object sel,sel1;int baris;int conter;
        }
         private void getcatdet(){
            try{
-               sql="select detail_category_id from _ticketdetailcategory where detail_category_name='"+cbcatdetail.getSelectedItem()+"' and category_id='"+catdetid+"' ";
+               sql="select detail_category_id, sla from _ticketdetailcategory where detail_category_name='"+cbcatdetail.getSelectedItem()+"' and category_id='"+catid+"' ";
                rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
+               System.out.println("category detail : "+sql);
                while(rs.next()){
                    catdetid=rs.getString(1);
+                   sla=Integer.parseInt(rs.getString(2));
+               }
+           }catch(Exception e){
+               System.out.print(e);
+           }
+       }
+        private void getTicType(){
+           try{
+               sql="select code from _tickettype where data='"+cbTicketType.getSelectedItem()+"'";
+               rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
+               while(rs.next()){
+                   TicType=rs.getString(1);
                }
            }catch(Exception e){
                System.out.print(e);
@@ -3100,8 +3603,8 @@ Object sel,sel1;int baris;int conter;
         txtusr.setText("");
         txtusrpho.setText("");
         cbnoplat.setSelectedItem("");
-        txtjenis.setText("");
-        txtwarna.setText("");
+        txtUnit4.setText("");
+        txtUnit7.setText("");
         cbdriver.setSelectedItem("");
         txtdrinm.setText("");
         txtcusnam.setText("");

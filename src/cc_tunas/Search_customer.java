@@ -23,12 +23,13 @@ import java.sql.SQLException;
 public class Search_customer extends javax.swing.JFrame {
     private static String cus[]=new String[21];
     private static String condition;
-    public static int Form=0;
+    public static int Form=0,AgreeId;
     /** Creates new form Search_ticket */
     public Search_customer() {
         initComponents();
         tblcus.setModel(tabcus);
-        tbcus(tblcus,new int []{80,80,80,80,300,500,80,80,100,80,50,100,200,80,200,80,100,80,100,200,0});
+        tbcus(tblcus,new int []{180,180,180,180,300,500,180,180,100,0});
+//        tbcus(tblcus,new int []{80,80,80,80,300,500,80,80,100,80,50,100,200,80,200,80,100,80,100,200,0});
         setLocation(0,330);
     }
 
@@ -37,7 +38,7 @@ public class Search_customer extends javax.swing.JFrame {
         this();
         this.CCanj=ccanj;
     }
-    private ticket Tic;
+    public static ticket Tic;
     public Search_customer(ticket tic){
         this();
         this.Tic=tic;
@@ -61,7 +62,9 @@ public class Search_customer extends javax.swing.JFrame {
     public static javax.swing.table.DefaultTableModel getDefaultTabelcus(){
         return new javax.swing.table.DefaultTableModel(
                 new Object [][]{},
-                new String [] {"Contract No.","Contract Start","Contract End","Cust. Code","Cust. Name","Address","Phone","PIC","User","User Phone","No. Plat","Type","Driver","Driver Phone","CSO","CSO Phone","CSO Mail","No. Plat GS","GS Type","GS Driver",""}){
+//                new String [] {"Contract No.","Contract Start","Contract End","Cust. Code","Cust. Name","Type Unit","No. Plat","Warna","Driver","PIC","User","User Phone","Type","Driver","Driver Phone","CSO","CSO Phone","CSO Mail","No. Plat GS","GS Type","GS Driver",""}){
+                new String [] {"Contract No.","Contract Start","Contract End","Cust. Code","Cust. Name"
+                        ,"Type Unit","No. Plat","Warna","Driver","AgreeId"}){
                 boolean[] canEdit=new boolean[]{
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
                 };
@@ -76,13 +79,21 @@ public class Search_customer extends javax.swing.JFrame {
         try{
             int row=0;
 
-            sql="select * from customer_order where _deleted=0 ";
+            sql="select * from agreements"
+                    + " left join customers on agreements.customer_code=customers.customer_code"
+                    + " left join customer_address on agreements.customer_code=customer_address.customer_code"
+                    + " left join units on agreements.unit_code=units.unit_code"
+                    + " left join drivers on agreements.driver_code=drivers.driver_code"
+                    + " where agreement_id!=0 ";
             condition="";
+            if(!txtcuscode.getText().equals("")){
+                condition=condition+" and agreements.customer_code like '%"+txtcuscode.getText()+"%'";
+            }
             if(!txtcusnm.getText().equals("")){
-                condition=condition+" and cust_name like '%"+txtcusnm.getText()+"%'";
+                condition=condition+" and customers.fullname like '%"+txtcusnm.getText()+"%'";
             }
             if(!txtnopl.getText().equals("")){
-                condition=condition+" and vehicle_platno like '%"+txtnopl.getText()+"%'";
+                condition=condition+" and units.no_plat like '%"+txtnopl.getText()+"%'";
             }
             if(!txtdri.getText().equals("")){
                 condition=condition+" and driver_name like '%"+txtdri.getText()+"%'";
@@ -105,32 +116,32 @@ public class Search_customer extends javax.swing.JFrame {
                 condition=condition+" and user_name like '%"+txtuser.getText()+"%'";
             }
 
-            sql=sql+condition;
+            sql=sql+condition+" group by customers.customer_code";
             rs=CCanj.jconn.SQLExecuteRS(sql, CCanj.conn);
 //            System.out.println(sql);
 
             while(rs.next()){
                 cus[0]=rs.getString("contract_no");
-                cus[1]=rs.getString("contract_startdate");
-                cus[2]=rs.getString("contract_enddate");
-                cus[3]=rs.getString(4);
-                cus[4]=rs.getString(5);
-                cus[5]=rs.getString(6);
-                cus[6]=rs.getString(7);
-                cus[7]=rs.getString(9);
-                cus[8]=rs.getString(14);
-                cus[9]=rs.getString(15);
-                cus[10]=rs.getString(21);
-                cus[11]=rs.getString(23);
-                cus[12]=rs.getString(33);
-                cus[13]=rs.getString(34);
-                cus[14]=rs.getString(18);
-                cus[15]=rs.getString(19);
-                cus[16]=rs.getString(20);
-                cus[17]=rs.getString(26);
-                cus[18]=rs.getString(28);
-                cus[19]=rs.getString(37);
-                cus[20]=rs.getString(1);
+                cus[1]=rs.getString("awal_kontrak");
+                cus[2]=rs.getString("akhir_kontrak");
+                cus[3]=rs.getString("customer_code");
+                cus[4]=rs.getString("fullname");
+                cus[5]=rs.getString("tipe");
+                cus[6]=rs.getString("no_plat");
+                cus[7]=rs.getString("warna");
+                cus[8]=rs.getString("driver_name");
+                cus[9]=rs.getString("agreement_id");
+//                cus[10]=rs.getString(21);
+//                cus[11]=rs.getString(23);
+//                cus[12]=rs.getString(33);
+//                cus[13]=rs.getString(34);
+//                cus[14]=rs.getString(18);
+//                cus[15]=rs.getString(19);
+//                cus[16]=rs.getString(20);
+//                cus[17]=rs.getString(26);
+//                cus[18]=rs.getString(28);
+//                cus[19]=rs.getString(37);
+//                cus[20]=rs.getString(1);
                 tabcus.addRow(cus);
                 row+=1;
             }if(row==0){
@@ -177,13 +188,15 @@ public class Search_customer extends javax.swing.JFrame {
         txtplatnogs = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtuser = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtcuscode = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Search Customer");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
-        jPanel1.setFont(new java.awt.Font("Calibri", 0, 11));
+        jPanel1.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         jPanel1.setLayout(null);
 
         jScrollPane1.setAutoscrolls(true);
@@ -241,7 +254,7 @@ public class Search_customer extends javax.swing.JFrame {
 
         txtcso.setFont(txtcso.getFont().deriveFont((float)11));
         jPanel1.add(txtcso);
-        txtcso.setBounds(346, 37, 104, 24);
+        txtcso.setBounds(346, 37, 104, 0);
 
         txtcusnm.setFont(txtcusnm.getFont().deriveFont((float)11));
         txtcusnm.addActionListener(new java.awt.event.ActionListener() {
@@ -250,62 +263,76 @@ public class Search_customer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtcusnm);
-        txtcusnm.setBounds(16, 37, 104, 24);
+        txtcusnm.setBounds(140, 40, 104, 24);
 
         txtnopl.setFont(txtnopl.getFont().deriveFont((float)11));
         jPanel1.add(txtnopl);
-        txtnopl.setBounds(126, 37, 104, 24);
+        txtnopl.setBounds(260, 40, 104, 24);
 
         txtdri.setFont(txtdri.getFont().deriveFont((float)11));
         jPanel1.add(txtdri);
-        txtdri.setBounds(236, 37, 104, 24);
+        txtdri.setBounds(236, 37, 104, 0);
 
         jLabel5.setFont(jLabel5.getFont().deriveFont((float)11));
         jLabel5.setText("Nama");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 20, 27, 14);
+        jLabel5.setBounds(150, 20, 27, 14);
 
         jLabel6.setFont(jLabel6.getFont().deriveFont((float)11));
         jLabel6.setText("No Plat");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(130, 20, 51, 14);
+        jLabel6.setBounds(270, 20, 51, 14);
 
         jLabel7.setFont(jLabel7.getFont().deriveFont((float)11));
         jLabel7.setText("Driver");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(240, 20, 51, 14);
+        jLabel7.setBounds(240, 20, 51, 0);
 
         jLabel8.setFont(jLabel8.getFont().deriveFont((float)11));
         jLabel8.setText("CSO");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(350, 20, 51, 14);
+        jLabel8.setBounds(350, 20, 51, 0);
 
         jLabel9.setFont(jLabel9.getFont().deriveFont((float)11));
         jLabel9.setText("GS Driver");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(460, 20, 51, 14);
+        jLabel9.setBounds(460, 20, 51, 0);
 
         txtgsdriver.setFont(txtgsdriver.getFont().deriveFont((float)11));
         jPanel1.add(txtgsdriver);
-        txtgsdriver.setBounds(456, 37, 104, 24);
+        txtgsdriver.setBounds(456, 37, 104, 0);
 
         jLabel10.setFont(jLabel10.getFont().deriveFont((float)11));
         jLabel10.setText("No Plat GS");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(570, 20, 74, 14);
+        jLabel10.setBounds(570, 20, 74, 0);
 
         txtplatnogs.setFont(txtplatnogs.getFont().deriveFont((float)11));
         jPanel1.add(txtplatnogs);
-        txtplatnogs.setBounds(566, 37, 104, 24);
+        txtplatnogs.setBounds(566, 37, 104, 0);
 
         jLabel11.setFont(jLabel11.getFont().deriveFont((float)11));
         jLabel11.setText("User");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(680, 20, 74, 14);
+        jLabel11.setBounds(680, 20, 74, 0);
 
         txtuser.setFont(txtuser.getFont().deriveFont((float)11));
         jPanel1.add(txtuser);
-        txtuser.setBounds(676, 37, 104, 24);
+        txtuser.setBounds(676, 37, 104, 0);
+
+        jLabel12.setFont(jLabel12.getFont().deriveFont((float)11));
+        jLabel12.setText("Cust Code");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(30, 20, 60, 14);
+
+        txtcuscode.setFont(txtcuscode.getFont().deriveFont((float)11));
+        txtcuscode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcuscodeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtcuscode);
+        txtcuscode.setBounds(20, 40, 104, 24);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -337,27 +364,9 @@ public class Search_customer extends javax.swing.JFrame {
             if(evt.getClickCount()==2){
                 switch (Form){
                     case 1:
-                        Tic.cbnoplat.removeAllItems();
-                        Tic.cbdriver.removeAllItems();
+                        Tic.AgreeId=(String)tblcus.getValueAt(tblcus.getSelectedRow(), tblcus.getTableHeader().getColumnModel().getColumnIndex("AgreeId"));
 
-                        Tic.txtcontract.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),0));
-                        Tic.txtcuscod.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),3));
-                        Tic.txtcusnam.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),4));
-                        Tic.txtcustadd.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),5));
-                        Tic.txtcusfax.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),6));
-                        Tic.txtcuspic.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),7));
-                        Tic.txtdrinm.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),12));
-                        Tic.txtcso.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),14));
-                        Tic.txtcsopho.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),15));
-                        Tic.txtcsomail.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),16));
-            //            Tic.cbnoplat.addItem((String)tblcus.getValueAt(tblcus.getSelectedRow(),10));
-            //            Tic.cbnoplat.addItem((String)tblcus.getValueAt(tblcus.getSelectedRow(),16));
-                        Tic.cbdriver.addItem((String)tblcus.getValueAt(tblcus.getSelectedRow(),12));
-                        Tic.cbdriver.addItem((String)tblcus.getValueAt(tblcus.getSelectedRow(),18));
-                        Tic.contid=Integer.parseInt((String)tblcus.getValueAt(tblcus.getSelectedRow(),20));
-
-//                        Tic.showPlat();
-                        Tic.showcus();
+                        Tic.showcus();                        
                         break;
                     case 2:
                         Inc.IdCust=((String)tblcus.getValueAt(tblcus.getSelectedRow(),0));
@@ -379,6 +388,10 @@ public class Search_customer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsrchActionPerformed
 
+    private void txtcuscodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcuscodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcuscodeActionPerformed
+
    
     /**
     * @param args the command line arguments
@@ -396,6 +409,7 @@ public class Search_customer extends javax.swing.JFrame {
     private javax.swing.JButton btnsrch;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -405,6 +419,7 @@ public class Search_customer extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblcus;
     public static javax.swing.JTextField txtcso;
+    public static javax.swing.JTextField txtcuscode;
     public static javax.swing.JTextField txtcusnm;
     public static javax.swing.JTextField txtdri;
     public static javax.swing.JTextField txtgsdriver;

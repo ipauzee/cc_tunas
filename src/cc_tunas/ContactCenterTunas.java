@@ -197,7 +197,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         tbin(tblfou,new int []{100,100,100,100,100
                 ,100,100,100,100,100
                 ,100,100,100});
-        tbin(tblreptic,new int []{85,85,120,85,75,75,375,225,150,120,85,120,120,100,100,275,500,120,120,375,150,150,150,225,80,375,85,100,120,150,100,100,150,100,125,120,110,100,100,150,100,500,50,60,50,60,50,60,50,60,150,150,150,150,150,150,300,120,120,120,120,100,100,150,100,100,300,500,85,85,90,100,150,85,85,90,100,85,85,90,85,100,90,85,150,125,150,85});
+        tbin(tblreptic,new int []{85,85,120,150,150,150,175,225,150,120,85,120,120,100,100,275,500,120,120,375,150,150,150,225,80,375,85,100,120,150,100,100,150,100,125,120,110,100,100,150,100,500,50,60,50,60,50,60,50,60,150,150,150,150,150,150,300,120,120,120,120,100,100,150,100,100,300,500,85,85,90,100,150,85,85,90,100,85,85,90,85,100,90,85,150,125,150,85});
         tbin(tblrepcal,new int []{0,85,85,90,75,100,90,90,90,75,75,75,110,90,85,85,85,90,110,120,110,350,300,85,85,85,90,110,175,85,110,160,150});
         tbin(tblticconf,new int []{100,115,100,350,200,100,300,120,250,100,170,120,120,120});
         tbin(tbltic,new int []{100,100,100,120,100      ,150,200,200,150,300,100
@@ -274,9 +274,11 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         msg=new Timer(1000, inbound);
 
         if(Log.version!=Log.Loc){
-//            connect();
-            connecttele();
-            connectuploder();
+            if(!Log.data[0].equals("herfan")){
+                //            connect();
+                connecttele();
+                connectuploder();
+            }
         }else{
 //            setTitle("CONTACT CENTER KONICA MINOLTA");
 //            lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/km_logo.jpg")));
@@ -288,7 +290,8 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         usr();
         btnrelease.setEnabled(true);
 //        }
-        showCust();
+        showCust();showDept();showStatus();
+        jtab.setEnabledAt(7, false);
     }
 
         private ticket Tic;
@@ -499,10 +502,9 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
                 new Object [][]{},
 //                new String [] {"Ticket No.","Status","Category","Assign Dept.","Assign User","Customer","Phone number","Username","No. Plat","Type","Driver","Phone","Ticket Id","GS","GT","STORING","OTHER"}){
                 new String [] {"Ticket No.","Priority","Type","Status","No. Plat","Open By"
-                        ,"Department","Assign Dept.","Assign User","Category","Follow Up By","CSO name"
+                        ,"Department","Assign Dept.","Assign User","Category","Follow Up By","User name"
                         ,"Customer","Phone number","PIC","Jenis","Type"
-                        ,"Tahun","Driver","Phone","Details","GS"
-                        ,"GT","STORING","OTHER","Solution","Ticket Id"}){
+                        ,"Tahun","Driver","Phone","Details","Solution","Ticket Id"}){
                 boolean[] canEdit=new boolean[]{
                     false,false,false,false,false,false
                             ,false,false,false,false,false
@@ -565,6 +567,9 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             if(cksubmit.isSelected()==true){
                 condition=condition+" and a._submitted=0";
             }
+            if(ckFCR.isSelected()==true){
+                condition=condition+" and a.confirm=1";
+            }
             if(!txtcus.getText().equals("")){
                 condition=condition+" and a.cust_name like '%"+txtcus.getText()+"%'";
             }
@@ -603,10 +608,10 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
                 tic[x]=rs.getString(19);x++;
                 tic[x]=rs.getString(20);x++;
                 tic[x]=rs.getString(21);x++;
-                tic[x]=rs.getString(22);x++;
-                tic[x]=rs.getString(23);x++;
-                tic[x]=rs.getString(24);x++;
-                tic[x]=rs.getString(25);x++;
+//                tic[x]=rs.getString(22);x++;
+//                tic[x]=rs.getString(23);x++;
+//                tic[x]=rs.getString(24);x++;
+//                tic[x]=rs.getString(25);x++;
                 tic[x]=rs.getString(26);x++;
                 tic[x]=rs.getString(27);x++;
                 tabtic.addRow(tic);
@@ -962,20 +967,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         cbagenin = new javax.swing.JComboBox();
         lblcalincount = new javax.swing.JLabel();
         lblrepticcount12 = new javax.swing.JLabel();
-        pnlou = new javax.swing.JPanel();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        tblout = new javax.swing.JTable();
-        jScrollPane17 = new javax.swing.JScrollPane();
-        tblticconf = new javax.swing.JTable();
-        jLabel59 = new javax.swing.JLabel();
-        dctic7 = new com.toedter.calendar.JDateChooser();
-        dctic8 = new com.toedter.calendar.JDateChooser();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        btnoutsrch = new javax.swing.JButton();
-        cbagenou = new javax.swing.JComboBox();
-        lblcaloutcount = new javax.swing.JLabel();
-        lblrepticcount11 = new javax.swing.JLabel();
         pnltic = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbltic = new javax.swing.JTable();
@@ -1018,6 +1009,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jLabel97 = new javax.swing.JLabel();
         jLabel98 = new javax.swing.JLabel();
         cbFollowUp = new javax.swing.JComboBox();
+        ckFCR = new javax.swing.JCheckBox();
         pnlact = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblact = new javax.swing.JTable();
@@ -1101,54 +1093,42 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         scpCcList2 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
         btnAttachment1 = new javax.swing.JButton();
-        panelfax = new javax.swing.JTabbedPane();
-        jPanel14 = new javax.swing.JPanel();
-        jScrollPane28 = new javax.swing.JScrollPane();
-        tblfin = new javax.swing.JTable();
-        jLabel65 = new javax.swing.JLabel();
-        dtfi = new com.toedter.calendar.JDateChooser();
-        jLabel69 = new javax.swing.JLabel();
-        dtfi1 = new com.toedter.calendar.JDateChooser();
-        btnfinsrch = new javax.swing.JButton();
-        jScrollPane29 = new javax.swing.JScrollPane();
-        lblview = new javax.swing.JLabel();
-        jLabel90 = new javax.swing.JLabel();
-        cbcust2 = new javax.swing.JComboBox();
-        btncussaveFax = new javax.swing.JButton();
-        jLabel93 = new javax.swing.JLabel();
-        txtnoticfax = new javax.swing.JTextField();
-        jPanel15 = new javax.swing.JPanel();
-        jScrollPane30 = new javax.swing.JScrollPane();
-        tblfou = new javax.swing.JTable();
-        jLabel75 = new javax.swing.JLabel();
-        dtfo = new com.toedter.calendar.JDateChooser();
-        jLabel76 = new javax.swing.JLabel();
-        dtfo1 = new com.toedter.calendar.JDateChooser();
-        btnfoutsrch = new javax.swing.JButton();
-        jScrollPane31 = new javax.swing.JScrollPane();
-        lblview1 = new javax.swing.JLabel();
         tabbpanereport = new javax.swing.JTabbedPane();
         pnlrep = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblreptic = new javax.swing.JTable();
-        txtcategory = new javax.swing.JTextField();
-        txtdriver = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtcustomer = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
         btnreptic = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
-        txtuser = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         dctic1 = new com.toedter.calendar.JDateChooser();
         dctic2 = new com.toedter.calendar.JDateChooser();
-        txtticno = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         btnexporttic = new javax.swing.JButton();
         lblrepticcount = new javax.swing.JLabel();
         lblrepticcount1 = new javax.swing.JLabel();
+        jScrollPane48 = new javax.swing.JScrollPane();
+        jPanel26 = new javax.swing.JPanel();
+        txtticno2 = new javax.swing.JTextField();
+        ckstoring1 = new javax.swing.JCheckBox();
+        jLabel107 = new javax.swing.JLabel();
+        ckassign1 = new javax.swing.JCheckBox();
+        jLabel108 = new javax.swing.JLabel();
+        jLabel109 = new javax.swing.JLabel();
+        cbticstatus1 = new javax.swing.JComboBox();
+        cbdept1 = new javax.swing.JComboBox();
+        cksubmit1 = new javax.swing.JCheckBox();
+        jLabel110 = new javax.swing.JLabel();
+        txtplatno1 = new javax.swing.JTextField();
+        jLabel111 = new javax.swing.JLabel();
+        txtcus1 = new javax.swing.JTextField();
+        txtdriv1 = new javax.swing.JTextField();
+        jLabel112 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        cbcate1 = new javax.swing.JComboBox();
+        txtdrivcode1 = new javax.swing.JTextField();
+        jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
+        cbFollowUp1 = new javax.swing.JComboBox();
+        ckFCR1 = new javax.swing.JCheckBox();
         pnlrep1 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         tblrepcal = new javax.swing.JTable();
@@ -1176,13 +1156,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         dthi = new com.toedter.calendar.JDateChooser();
         btnhi = new javax.swing.JButton();
         btnexportcall1 = new javax.swing.JButton();
-        jPanel18 = new javax.swing.JPanel();
-        jScrollPane40 = new javax.swing.JScrollPane();
-        tblhourout = new javax.swing.JTable();
-        dtho = new com.toedter.calendar.JDateChooser();
-        jLabel79 = new javax.swing.JLabel();
-        btnho = new javax.swing.JButton();
-        btnexportcall2 = new javax.swing.JButton();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel21 = new javax.swing.JPanel();
         jScrollPane43 = new javax.swing.JScrollPane();
@@ -1193,15 +1166,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jLabel84 = new javax.swing.JLabel();
         dtdi1 = new com.toedter.calendar.JDateChooser();
         btnexportcall3 = new javax.swing.JButton();
-        jPanel22 = new javax.swing.JPanel();
-        jScrollPane44 = new javax.swing.JScrollPane();
-        tbldailyout = new javax.swing.JTable();
-        dtdo = new com.toedter.calendar.JDateChooser();
-        jLabel83 = new javax.swing.JLabel();
-        btndo = new javax.swing.JButton();
-        jLabel85 = new javax.swing.JLabel();
-        dtdo1 = new com.toedter.calendar.JDateChooser();
-        btnexportcall4 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane41 = new javax.swing.JScrollPane();
@@ -1212,15 +1176,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         dtpi1 = new com.toedter.calendar.JDateChooser();
         jLabel88 = new javax.swing.JLabel();
         btnexportcall5 = new javax.swing.JButton();
-        jPanel20 = new javax.swing.JPanel();
-        jScrollPane42 = new javax.swing.JScrollPane();
-        tblperformout = new javax.swing.JTable();
-        dtpo = new com.toedter.calendar.JDateChooser();
-        btnpo1 = new javax.swing.JButton();
-        jLabel87 = new javax.swing.JLabel();
-        dtpo1 = new com.toedter.calendar.JDateChooser();
-        jLabel89 = new javax.swing.JLabel();
-        btnexportcall6 = new javax.swing.JButton();
         pnlrep2 = new javax.swing.JPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
         tblrepsms = new javax.swing.JTable();
@@ -1259,25 +1214,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         btnexportmail = new javax.swing.JButton();
         lblrepmailcount = new javax.swing.JLabel();
         lblrepticcount7 = new javax.swing.JLabel();
-        pnlrep4 = new javax.swing.JPanel();
-        jScrollPane16 = new javax.swing.JScrollPane();
-        tblrepfax = new javax.swing.JTable();
-        txtfaxfinm = new javax.swing.JTextField();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        btnrepfax = new javax.swing.JButton();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        dcfax1 = new com.toedter.calendar.JDateChooser();
-        jLabel42 = new javax.swing.JLabel();
-        dcfax2 = new com.toedter.calendar.JDateChooser();
-        cbstatusrepfax = new javax.swing.JComboBox();
-        btnexportmail1 = new javax.swing.JButton();
-        cbagenirepfax = new javax.swing.JComboBox();
-        jLabel64 = new javax.swing.JLabel();
-        cbdirfax = new javax.swing.JComboBox();
-        lblrepfaxcount = new javax.swing.JLabel();
-        lblrepticcount9 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         pninbox1 = new javax.swing.JPanel();
         jScrollPane33 = new javax.swing.JScrollPane();
@@ -1340,6 +1276,91 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel24 = new javax.swing.JPanel();
         jScrollPane46 = new javax.swing.JScrollPane();
         jTextArea12 = new javax.swing.JTextArea();
+        pnlou = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tblout = new javax.swing.JTable();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        tblticconf = new javax.swing.JTable();
+        jLabel59 = new javax.swing.JLabel();
+        dctic7 = new com.toedter.calendar.JDateChooser();
+        dctic8 = new com.toedter.calendar.JDateChooser();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        btnoutsrch = new javax.swing.JButton();
+        cbagenou = new javax.swing.JComboBox();
+        lblcaloutcount = new javax.swing.JLabel();
+        lblrepticcount11 = new javax.swing.JLabel();
+        panelfax = new javax.swing.JTabbedPane();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane28 = new javax.swing.JScrollPane();
+        tblfin = new javax.swing.JTable();
+        jLabel65 = new javax.swing.JLabel();
+        dtfi = new com.toedter.calendar.JDateChooser();
+        jLabel69 = new javax.swing.JLabel();
+        dtfi1 = new com.toedter.calendar.JDateChooser();
+        btnfinsrch = new javax.swing.JButton();
+        jScrollPane29 = new javax.swing.JScrollPane();
+        lblview = new javax.swing.JLabel();
+        jLabel90 = new javax.swing.JLabel();
+        cbcust2 = new javax.swing.JComboBox();
+        btncussaveFax = new javax.swing.JButton();
+        jLabel93 = new javax.swing.JLabel();
+        txtnoticfax = new javax.swing.JTextField();
+        jPanel15 = new javax.swing.JPanel();
+        jScrollPane30 = new javax.swing.JScrollPane();
+        tblfou = new javax.swing.JTable();
+        jLabel75 = new javax.swing.JLabel();
+        dtfo = new com.toedter.calendar.JDateChooser();
+        jLabel76 = new javax.swing.JLabel();
+        dtfo1 = new com.toedter.calendar.JDateChooser();
+        btnfoutsrch = new javax.swing.JButton();
+        jScrollPane31 = new javax.swing.JScrollPane();
+        lblview1 = new javax.swing.JLabel();
+        pnlRepHidden = new javax.swing.JTabbedPane();
+        pnlHoOu = new javax.swing.JPanel();
+        jScrollPane40 = new javax.swing.JScrollPane();
+        tblhourout = new javax.swing.JTable();
+        dtho = new com.toedter.calendar.JDateChooser();
+        jLabel79 = new javax.swing.JLabel();
+        btnho = new javax.swing.JButton();
+        btnexportcall2 = new javax.swing.JButton();
+        pnlDayOu = new javax.swing.JPanel();
+        jScrollPane44 = new javax.swing.JScrollPane();
+        tbldailyout = new javax.swing.JTable();
+        dtdo = new com.toedter.calendar.JDateChooser();
+        jLabel83 = new javax.swing.JLabel();
+        btndo = new javax.swing.JButton();
+        jLabel85 = new javax.swing.JLabel();
+        dtdo1 = new com.toedter.calendar.JDateChooser();
+        btnexportcall4 = new javax.swing.JButton();
+        pnlPerfOu = new javax.swing.JPanel();
+        jScrollPane42 = new javax.swing.JScrollPane();
+        tblperformout = new javax.swing.JTable();
+        dtpo = new com.toedter.calendar.JDateChooser();
+        btnpo1 = new javax.swing.JButton();
+        jLabel87 = new javax.swing.JLabel();
+        dtpo1 = new com.toedter.calendar.JDateChooser();
+        jLabel89 = new javax.swing.JLabel();
+        btnexportcall6 = new javax.swing.JButton();
+        pnlrepFax = new javax.swing.JPanel();
+        txtfaxfinm = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        btnrepfax = new javax.swing.JButton();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        dcfax1 = new com.toedter.calendar.JDateChooser();
+        jLabel42 = new javax.swing.JLabel();
+        dcfax2 = new com.toedter.calendar.JDateChooser();
+        cbstatusrepfax = new javax.swing.JComboBox();
+        btnexportmail1 = new javax.swing.JButton();
+        cbagenirepfax = new javax.swing.JComboBox();
+        jLabel64 = new javax.swing.JLabel();
+        cbdirfax = new javax.swing.JComboBox();
+        lblrepfaxcount = new javax.swing.JLabel();
+        lblrepticcount9 = new javax.swing.JLabel();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        tblrepfax = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setTitle("CONTACT CENTER TUNAS RENTAL");
@@ -1347,7 +1368,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jdp.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbldate.setFont(new java.awt.Font("Calibri", 1, 24));
+        lbldate.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         lbldate.setForeground(new java.awt.Color(255, 255, 255));
         lbldate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbldate.setText("Date Time");
@@ -1357,10 +1378,10 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setForeground(new java.awt.Color(255, 102, 0));
-        jPanel1.setFont(new java.awt.Font("Calibri", 0, 11));
+        jPanel1.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         jPanel1.setLayout(null);
 
-        btncall.setFont(new java.awt.Font("Calibri", 0, 14));
+        btncall.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btncall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cal1.jpg"))); // NOI18N
         btncall.setBorder(null);
         btncall.setEnabled(false);
@@ -1372,7 +1393,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.add(btncall);
         btncall.setBounds(320, 20, 80, 80);
 
-        btnsms.setFont(new java.awt.Font("Calibri", 0, 14));
+        btnsms.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnsms.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sm.jpg"))); // NOI18N
         btnsms.setBorder(null);
         btnsms.setEnabled(false);
@@ -1384,7 +1405,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.add(btnsms);
         btnsms.setBounds(410, 20, 80, 80);
 
-        btnmail.setFont(new java.awt.Font("Calibri", 0, 14));
+        btnmail.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/mail.jpg"))); // NOI18N
         btnmail.setBorder(null);
         btnmail.setEnabled(false);
@@ -1396,7 +1417,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.add(btnmail);
         btnmail.setBounds(500, 20, 80, 80);
 
-        btnlogout.setFont(new java.awt.Font("Calibri", 0, 14));
+        btnlogout.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117830_public.png"))); // NOI18N
         btnlogout.setToolTipText("LOG OUT");
         btnlogout.addActionListener(new java.awt.event.ActionListener() {
@@ -1407,7 +1428,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.add(btnlogout);
         btnlogout.setBounds(920, 20, 50, 40);
 
-        lbluser.setFont(new java.awt.Font("Calibri", 1, 20));
+        lbluser.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         lbluser.setForeground(new java.awt.Color(255, 102, 51));
         lbluser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbluser.setText("Username");
@@ -1420,7 +1441,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.add(lbllogo);
         lbllogo.setBounds(10, 20, 210, 90);
 
-        btnoutbound.setFont(new java.awt.Font("Calibri", 0, 14));
+        btnoutbound.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnoutbound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/out.jpg"))); // NOI18N
         btnoutbound.setToolTipText("OutBound");
         btnoutbound.setEnabled(false);
@@ -1430,16 +1451,16 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnoutbound);
-        btnoutbound.setBounds(690, 20, 70, 50);
+        btnoutbound.setBounds(690, 20, 70, 0);
 
-        lblpas.setFont(new java.awt.Font("Calibri", 0, 14));
+        lblpas.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         lblpas.setText("jLabel1");
         lblpas.setEnabled(false);
         lblpas.setRequestFocusEnabled(false);
         jPanel1.add(lblpas);
         lblpas.setBounds(110, 70, 40, 0);
 
-        lblactivity.setFont(new java.awt.Font("Calibri", 1, 14));
+        lblactivity.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblactivity.setForeground(new java.awt.Color(255, 102, 51));
         lblactivity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblactivity.setText("Disconnected");
@@ -1461,20 +1482,20 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.add(cbdirection);
         cbdirection.setBounds(220, 40, 90, 24);
 
-        lblshift.setFont(new java.awt.Font("Calibri", 0, 14));
+        lblshift.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         lblshift.setEnabled(false);
         lblshift.setRequestFocusEnabled(false);
         jPanel1.add(lblshift);
         lblshift.setBounds(110, 70, 0, 0);
 
-        lblshift1.setFont(new java.awt.Font("Calibri", 0, 14));
+        lblshift1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         lblshift1.setEnabled(false);
         lblshift1.setRequestFocusEnabled(false);
         jPanel1.add(lblshift1);
         lblshift1.setBounds(110, 70, 0, 0);
 
         txtcalnoti.setEditable(false);
-        txtcalnoti.setFont(new java.awt.Font("Calibri", 1, 18));
+        txtcalnoti.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         txtcalnoti.setForeground(new java.awt.Color(255, 0, 0));
         txtcalnoti.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtcalnoti.setBorder(null);
@@ -1488,7 +1509,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         txtcalnoti.setBounds(710, 70, 30, 20);
 
         txtfaxnoti.setEditable(false);
-        txtfaxnoti.setFont(new java.awt.Font("Calibri", 1, 18));
+        txtfaxnoti.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         txtfaxnoti.setForeground(new java.awt.Color(255, 0, 0));
         txtfaxnoti.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtfaxnoti.setBorder(null);
@@ -1497,7 +1518,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         txtfaxnoti.setBounds(600, 100, 60, 20);
 
         txtsmsnoti.setEditable(false);
-        txtsmsnoti.setFont(new java.awt.Font("Calibri", 1, 18));
+        txtsmsnoti.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         txtsmsnoti.setForeground(new java.awt.Color(255, 0, 0));
         txtsmsnoti.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtsmsnoti.setBorder(null);
@@ -1506,7 +1527,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         txtsmsnoti.setBounds(420, 100, 60, 20);
 
         txtmailnoti.setEditable(false);
-        txtmailnoti.setFont(new java.awt.Font("Calibri", 1, 18));
+        txtmailnoti.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         txtmailnoti.setForeground(new java.awt.Color(255, 0, 0));
         txtmailnoti.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtmailnoti.setBorder(null);
@@ -1519,7 +1540,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel1.add(txtmailnoti);
         txtmailnoti.setBounds(510, 100, 60, 20);
 
-        btnfax.setFont(new java.awt.Font("Calibri", 0, 14));
+        btnfax.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnfax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/fax.jpg"))); // NOI18N
         btnfax.setBorder(null);
         btnfax.setEnabled(false);
@@ -1529,7 +1550,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnfax);
-        btnfax.setBounds(590, 20, 80, 80);
+        btnfax.setBounds(590, 20, 0, 80);
 
         pnlscroll.setBackground(new java.awt.Color(255, 255, 255));
         pnlscroll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1658,7 +1679,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblin);
 
         pnlinbon.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 40, 950, 390);
+        jScrollPane1.setBounds(10, 40, 950, 390);
 
         jLabel55.setFont(jLabel55.getFont().deriveFont((float)11));
         jLabel55.setText("Open From");
@@ -1724,129 +1745,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         lblrepticcount12.setBounds(920, 0, 40, 10);
 
         jtab.addTab("InBound", pnlinbon);
-
-        pnlou.setBackground(new java.awt.Color(255, 255, 255));
-        pnlou.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        pnlou.setLayout(null);
-
-        tblout.setAutoCreateRowSorter(true);
-        tblout.setFont(tblout.getFont().deriveFont((float)11));
-        tblout.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Ticket No.", "Status", "Category", "Assign Dept.", "Assign user", "Customer", "Phone Number", "User", "No.Plat", "Type", "Driver", "Phone", "id"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblout.setRowHeight(20);
-        tblout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbloutMouseClicked(evt);
-            }
-        });
-        jScrollPane12.setViewportView(tblout);
-
-        pnlou.add(jScrollPane12);
-        jScrollPane12.setBounds(10, 40, 950, 180);
-
-        tblticconf.setAutoCreateRowSorter(true);
-        tblticconf.setFont(tblticconf.getFont().deriveFont((float)11));
-        tblticconf.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Ticket No.", "Confirm Username", "Status", "Category", "Assign Dept.", "Assign user", "Customer", "Phone Number", "User", "No.Plat", "Type", "Driver", "Phone", "id"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblticconf.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tblticconf.setRowHeight(20);
-        tblticconf.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblticconfMouseClicked(evt);
-            }
-        });
-        jScrollPane17.setViewportView(tblticconf);
-
-        pnlou.add(jScrollPane17);
-        jScrollPane17.setBounds(10, 230, 950, 200);
-
-        jLabel59.setFont(jLabel59.getFont().deriveFont((float)11));
-        jLabel59.setText("Open From");
-        pnlou.add(jLabel59);
-        jLabel59.setBounds(10, 10, 100, 10);
-
-        dctic7.setDateFormatString("dd/MM/yyyy");
-        dctic7.setFont(dctic7.getFont().deriveFont((float)11));
-        pnlou.add(dctic7);
-        dctic7.setBounds(10, 20, 120, 24);
-
-        dctic8.setDateFormatString("dd/MM/yyyy");
-        dctic8.setFont(dctic8.getFont().deriveFont((float)11));
-        pnlou.add(dctic8);
-        dctic8.setBounds(130, 20, 120, 24);
-
-        jLabel60.setFont(jLabel60.getFont().deriveFont((float)11));
-        jLabel60.setText("Until");
-        pnlou.add(jLabel60);
-        jLabel60.setBounds(130, 10, 100, 10);
-
-        jLabel61.setFont(jLabel61.getFont().deriveFont((float)11));
-        jLabel61.setText("Agen");
-        pnlou.add(jLabel61);
-        jLabel61.setBounds(260, 10, 100, 10);
-
-        btnoutsrch.setFont(btnoutsrch.getFont().deriveFont(btnoutsrch.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnoutsrch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
-        btnoutsrch.setText("Search By");
-        btnoutsrch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnoutsrchActionPerformed(evt);
-            }
-        });
-        pnlou.add(btnoutsrch);
-        btnoutsrch.setBounds(370, 20, 120, 24);
-
-        cbagenou.setFont(cbagenou.getFont().deriveFont((float)11));
-        cbagenou.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "aan", "ramos", "john", "yusnita", "tri", "fitri", "mariana", "mitha", "dessy", "andrianto", "nurdin", "david", "yudho", "favel", "feronika", "oktaviani", "rudi" }));
-        pnlou.add(cbagenou);
-        cbagenou.setBounds(260, 20, 100, 24);
-
-        lblcaloutcount.setFont(lblcaloutcount.getFont().deriveFont((float)11));
-        lblcaloutcount.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        pnlou.add(lblcaloutcount);
-        lblcaloutcount.setBounds(880, 0, 40, 10);
-
-        lblrepticcount11.setFont(lblrepticcount11.getFont().deriveFont((float)11));
-        lblrepticcount11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblrepticcount11.setText("list");
-        pnlou.add(lblrepticcount11);
-        lblrepticcount11.setBounds(920, 0, 40, 10);
-
-        jtab.addTab("OutBound", pnlou);
 
         pnltic.setBackground(new java.awt.Color(255, 255, 255));
         pnltic.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -1938,7 +1836,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         btnsenddept.setBounds(10, 410, 130, 24);
 
         cktgl.setBackground(new java.awt.Color(255, 255, 204));
-        cktgl.setFont(new java.awt.Font("Calibri", 0, 14));
+        cktgl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         cktgl.setSelected(true);
         cktgl.setOpaque(false);
         cktgl.addActionListener(new java.awt.event.ActionListener() {
@@ -1959,7 +1857,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         txtsolution.setColumns(20);
         txtsolution.setEditable(false);
-        txtsolution.setFont(new java.awt.Font("Tahoma", 0, 11));
+        txtsolution.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtsolution.setLineWrap(true);
         txtsolution.setRows(5);
         jScrollPane37.setViewportView(txtsolution);
@@ -1969,7 +1867,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         txtdetail.setColumns(20);
         txtdetail.setEditable(false);
-        txtdetail.setFont(new java.awt.Font("Tahoma", 0, 11));
+        txtdetail.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtdetail.setLineWrap(true);
         txtdetail.setRows(5);
         jScrollPane38.setViewportView(txtdetail);
@@ -1998,7 +1896,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         ckstoring.setBackground(new java.awt.Color(255, 255, 204));
         ckstoring.setFont(ckstoring.getFont().deriveFont((float)11));
-        ckstoring.setText("Storing");
+        ckstoring.setText("RAM");
         ckstoring.setOpaque(false);
         ckstoring.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2006,7 +1904,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             }
         });
         jPanel25.add(ckstoring);
-        ckstoring.setBounds(530, 0, 80, 20);
+        ckstoring.setBounds(420, 0, 80, 20);
 
         jLabel62.setFont(jLabel62.getFont().deriveFont((float)11));
         jLabel62.setText("Plat No");
@@ -2018,7 +1916,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         ckassign.setText("Assigned");
         ckassign.setOpaque(false);
         jPanel25.add(ckassign);
-        ckassign.setBounds(530, 20, 80, 20);
+        ckassign.setBounds(420, 20, 80, 20);
 
         jLabel68.setFont(jLabel68.getFont().deriveFont((float)11));
         jLabel68.setText("Status");
@@ -2062,7 +1960,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             }
         });
         jPanel25.add(cksubmit);
-        cksubmit.setBounds(610, 0, 120, 20);
+        cksubmit.setBounds(500, 0, 120, 20);
 
         jLabel53.setFont(jLabel53.getFont().deriveFont((float)11));
         jLabel53.setText("No Ticket");
@@ -2076,25 +1974,25 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jLabel94.setFont(jLabel94.getFont().deriveFont((float)11));
         jLabel94.setText("Customer");
         jPanel25.add(jLabel94);
-        jLabel94.setBounds(720, 10, 80, 10);
+        jLabel94.setBounds(610, 10, 80, 10);
 
         txtcus.setFont(txtcus.getFont().deriveFont((float)11));
         jPanel25.add(txtcus);
-        txtcus.setBounds(720, 20, 110, 24);
+        txtcus.setBounds(610, 20, 110, 24);
 
         txtdriv.setFont(txtdriv.getFont().deriveFont((float)11));
         jPanel25.add(txtdriv);
-        txtdriv.setBounds(980, 20, 110, 24);
+        txtdriv.setBounds(870, 20, 110, 24);
 
         jLabel95.setFont(jLabel95.getFont().deriveFont((float)11));
         jLabel95.setText("Driver Name");
         jPanel25.add(jLabel95);
-        jLabel95.setBounds(980, 10, 80, 10);
+        jLabel95.setBounds(870, 10, 80, 10);
 
         jLabel96.setFont(jLabel96.getFont().deriveFont((float)11));
         jLabel96.setText("Category");
         jPanel25.add(jLabel96);
-        jLabel96.setBounds(830, 10, 100, 10);
+        jLabel96.setBounds(720, 10, 100, 10);
 
         cbcate.setFont(cbcate.getFont().deriveFont((float)11));
         cbcate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DEPT. CALL CENTER", "DEPT. KENDARAAN KEBON JERUK", "DEPT. DRIVER", "DEPT. MARKETING", " ", "DEPT. KENDARAAN LUAR KOTA", "--" }));
@@ -2106,21 +2004,26 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             }
         });
         jPanel25.add(cbcate);
-        cbcate.setBounds(830, 20, 150, 24);
+        cbcate.setBounds(720, 20, 150, 24);
 
         txtdrivcode.setFont(txtdrivcode.getFont().deriveFont((float)11));
+        txtdrivcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdrivcodeActionPerformed(evt);
+            }
+        });
         jPanel25.add(txtdrivcode);
-        txtdrivcode.setBounds(1090, 20, 80, 24);
+        txtdrivcode.setBounds(980, 20, 80, 24);
 
         jLabel97.setFont(jLabel97.getFont().deriveFont((float)11));
         jLabel97.setText("Driver Code");
         jPanel25.add(jLabel97);
-        jLabel97.setBounds(1090, 10, 80, 10);
+        jLabel97.setBounds(980, 10, 80, 10);
 
         jLabel98.setFont(jLabel98.getFont().deriveFont((float)11));
         jLabel98.setText("Follow Up By");
         jPanel25.add(jLabel98);
-        jLabel98.setBounds(420, 10, 100, 10);
+        jLabel98.setBounds(420, 10, 100, 0);
 
         cbFollowUp.setFont(cbFollowUp.getFont().deriveFont((float)11));
         cbFollowUp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "OPEN", "PROCESS", "CLOSED", "CANCEL", "--" }));
@@ -2131,7 +2034,19 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             }
         });
         jPanel25.add(cbFollowUp);
-        cbFollowUp.setBounds(420, 20, 100, 24);
+        cbFollowUp.setBounds(420, 20, 100, 0);
+
+        ckFCR.setBackground(new java.awt.Color(255, 255, 204));
+        ckFCR.setFont(ckFCR.getFont().deriveFont((float)11));
+        ckFCR.setText("F.C.R");
+        ckFCR.setOpaque(false);
+        ckFCR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckFCRActionPerformed(evt);
+            }
+        });
+        jPanel25.add(ckFCR);
+        ckFCR.setBounds(500, 20, 120, 20);
 
         jScrollPane47.setViewportView(jPanel25);
 
@@ -2271,7 +2186,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jLabel49.setBounds(10, 260, 100, 20);
 
         txtimsg2.setColumns(20);
-        txtimsg2.setFont(new java.awt.Font("Tahoma", 0, 11));
+        txtimsg2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtimsg2.setLineWrap(true);
         txtimsg2.setRows(5);
         jScrollPane19.setViewportView(txtimsg2);
@@ -2397,7 +2312,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jLabel35.setBounds(10, 260, 100, 20);
 
         txtimsg1.setColumns(20);
-        txtimsg1.setFont(new java.awt.Font("Tahoma", 0, 11));
+        txtimsg1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtimsg1.setLineWrap(true);
         txtimsg1.setRows(5);
         jScrollPane18.setViewportView(txtimsg1);
@@ -2746,205 +2661,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jtab.addTab("Email", panelmail);
 
-        panelfax.setBackground(new java.awt.Color(255, 255, 255));
-        panelfax.setFont(panelfax.getFont().deriveFont((float)10));
-        panelfax.setOpaque(true);
-        panelfax.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelfaxMouseClicked(evt);
-            }
-        });
-
-        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel14.setLayout(null);
-
-        tblfin.setAutoCreateRowSorter(true);
-        tblfin.setFont(tblfin.getFont().deriveFont((float)11));
-        tblfin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "From", "Subject", "Date", "Read", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblfin.setRowHeight(20);
-        tblfin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblfinMouseClicked(evt);
-            }
-        });
-        jScrollPane28.setViewportView(tblfin);
-
-        jPanel14.add(jScrollPane28);
-        jScrollPane28.setBounds(10, 40, 950, 140);
-
-        jLabel65.setFont(jLabel65.getFont().deriveFont((float)11));
-        jLabel65.setText("From :");
-        jPanel14.add(jLabel65);
-        jLabel65.setBounds(10, 10, 100, 10);
-
-        dtfi.setDateFormatString("dd/MM/yyyy");
-        dtfi.setFont(dtfi.getFont().deriveFont((float)11));
-        jPanel14.add(dtfi);
-        dtfi.setBounds(10, 20, 120, 24);
-
-        jLabel69.setFont(jLabel69.getFont().deriveFont((float)11));
-        jLabel69.setText("Until :");
-        jPanel14.add(jLabel69);
-        jLabel69.setBounds(130, 10, 100, 10);
-
-        dtfi1.setDateFormatString("dd/MM/yyyy");
-        dtfi1.setFont(dtfi1.getFont().deriveFont((float)11));
-        jPanel14.add(dtfi1);
-        dtfi1.setBounds(130, 20, 120, 24);
-
-        btnfinsrch.setFont(btnfinsrch.getFont().deriveFont(btnfinsrch.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnfinsrch.setText("Search");
-        btnfinsrch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnfinsrchActionPerformed(evt);
-            }
-        });
-        jPanel14.add(btnfinsrch);
-        btnfinsrch.setBounds(260, 20, 100, 24);
-
-        lblview.setBackground(new java.awt.Color(204, 204, 255));
-        lblview.setOpaque(true);
-        jScrollPane29.setViewportView(lblview);
-
-        jPanel14.add(jScrollPane29);
-        jScrollPane29.setBounds(10, 180, 950, 220);
-
-        jLabel90.setFont(jLabel90.getFont().deriveFont((float)11));
-        jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel90.setText("Cust. Company");
-        jPanel14.add(jLabel90);
-        jLabel90.setBounds(670, 10, 90, 10);
-
-        cbcust2.setFont(cbcust2.getFont().deriveFont((float)11));
-        cbcust2.setMaximumRowCount(9);
-        cbcust2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Non-customer", "Customer-Driver", "Customer-User", "Customer-PIC", "Customer-Other", "Internal-ANJ", "Internal-CC", "Internal-CSO", "Internal-Driver", "Internal-Other" }));
-        cbcust2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbcust2ActionPerformed(evt);
-            }
-        });
-        jPanel14.add(cbcust2);
-        cbcust2.setBounds(670, 20, 200, 24);
-
-        btncussaveFax.setFont(btncussaveFax.getFont().deriveFont(btncussaveFax.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btncussaveFax.setText("Save");
-        btncussaveFax.setEnabled(false);
-        btncussaveFax.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncussaveFaxActionPerformed(evt);
-            }
-        });
-        jPanel14.add(btncussaveFax);
-        btncussaveFax.setBounds(880, 20, 80, 24);
-
-        jLabel93.setFont(jLabel93.getFont().deriveFont((float)11));
-        jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel93.setText("Ticket No");
-        jPanel14.add(jLabel93);
-        jLabel93.setBounds(530, 10, 60, 10);
-
-        txtnoticfax.setFont(txtnoticfax.getFont().deriveFont((float)11));
-        jPanel14.add(txtnoticfax);
-        txtnoticfax.setBounds(530, 20, 140, 24);
-
-        panelfax.addTab("InBox", jPanel14);
-
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel15.setLayout(null);
-
-        tblfou.setAutoCreateRowSorter(true);
-        tblfou.setFont(tblfou.getFont().deriveFont((float)11));
-        tblfou.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "To", "Subject", "Date", "Cc", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblfou.setRowHeight(20);
-        tblfou.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblfouMouseClicked(evt);
-            }
-        });
-        jScrollPane30.setViewportView(tblfou);
-
-        jPanel15.add(jScrollPane30);
-        jScrollPane30.setBounds(10, 40, 950, 140);
-
-        jLabel75.setFont(jLabel75.getFont().deriveFont((float)11));
-        jLabel75.setText("From :");
-        jPanel15.add(jLabel75);
-        jLabel75.setBounds(10, 10, 100, 10);
-
-        dtfo.setDateFormatString("dd/MM/yyyy");
-        dtfo.setFont(dtfo.getFont().deriveFont((float)11));
-        jPanel15.add(dtfo);
-        dtfo.setBounds(10, 20, 120, 24);
-
-        jLabel76.setFont(jLabel76.getFont().deriveFont((float)11));
-        jLabel76.setText("Until :");
-        jPanel15.add(jLabel76);
-        jLabel76.setBounds(130, 10, 100, 10);
-
-        dtfo1.setDateFormatString("dd/MM/yyyy");
-        dtfo1.setFont(dtfo1.getFont().deriveFont((float)11));
-        jPanel15.add(dtfo1);
-        dtfo1.setBounds(130, 20, 120, 24);
-
-        btnfoutsrch.setFont(btnfoutsrch.getFont().deriveFont(btnfoutsrch.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnfoutsrch.setText("Search");
-        btnfoutsrch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnfoutsrchActionPerformed(evt);
-            }
-        });
-        jPanel15.add(btnfoutsrch);
-        btnfoutsrch.setBounds(260, 20, 90, 24);
-
-        lblview1.setBackground(new java.awt.Color(204, 204, 255));
-        lblview1.setOpaque(true);
-        jScrollPane31.setViewportView(lblview1);
-
-        jPanel15.add(jScrollPane31);
-        jScrollPane31.setBounds(10, 180, 950, 220);
-
-        panelfax.addTab("OutBox", jPanel15);
-
-        jtab.addTab("Fax", panelfax);
-
         tabbpanereport.setBackground(new java.awt.Color(255, 255, 255));
         tabbpanereport.setFont(tabbpanereport.getFont().deriveFont(tabbpanereport.getFont().getStyle() | java.awt.Font.BOLD, 10));
         tabbpanereport.setOpaque(true);
@@ -2974,54 +2690,18 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jScrollPane4.setViewportView(tblreptic);
 
         pnlrep.add(jScrollPane4);
-        jScrollPane4.setBounds(10, 40, 950, 340);
-
-        txtcategory.setFont(txtcategory.getFont().deriveFont((float)11));
-        pnlrep.add(txtcategory);
-        txtcategory.setBounds(560, 20, 100, 24);
-
-        txtdriver.setFont(txtdriver.getFont().deriveFont((float)11));
-        pnlrep.add(txtdriver);
-        txtdriver.setBounds(460, 20, 100, 24);
-
-        jLabel7.setFont(jLabel7.getFont().deriveFont((float)11));
-        jLabel7.setText("Driver");
-        pnlrep.add(jLabel7);
-        jLabel7.setBounds(460, 10, 100, 10);
-
-        jLabel6.setFont(jLabel6.getFont().deriveFont((float)11));
-        jLabel6.setText("Category");
-        pnlrep.add(jLabel6);
-        jLabel6.setBounds(560, 10, 100, 10);
-
-        txtcustomer.setFont(txtcustomer.getFont().deriveFont((float)11));
-        pnlrep.add(txtcustomer);
-        txtcustomer.setBounds(360, 20, 100, 24);
-
-        jLabel19.setFont(jLabel19.getFont().deriveFont((float)11));
-        jLabel19.setText("Customer");
-        pnlrep.add(jLabel19);
-        jLabel19.setBounds(360, 10, 100, 10);
+        jScrollPane4.setBounds(10, 60, 950, 320);
 
         btnreptic.setFont(btnreptic.getFont().deriveFont(btnreptic.getFont().getStyle() | java.awt.Font.BOLD, 11));
         btnreptic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
-        btnreptic.setText("Search Ticket");
+        btnreptic.setText("Search");
         btnreptic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnrepticActionPerformed(evt);
             }
         });
         pnlrep.add(btnreptic);
-        btnreptic.setBounds(770, 20, 150, 24);
-
-        jLabel20.setFont(jLabel20.getFont().deriveFont((float)11));
-        jLabel20.setText("User");
-        pnlrep.add(jLabel20);
-        jLabel20.setBounds(260, 10, 100, 10);
-
-        txtuser.setFont(txtuser.getFont().deriveFont((float)11));
-        pnlrep.add(txtuser);
-        txtuser.setBounds(260, 20, 100, 24);
+        btnreptic.setBounds(840, 20, 110, 24);
 
         jLabel37.setFont(jLabel37.getFont().deriveFont((float)11));
         jLabel37.setText("Open From");
@@ -3043,15 +2723,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         pnlrep.add(dctic2);
         dctic2.setBounds(130, 20, 120, 24);
 
-        txtticno.setFont(txtticno.getFont().deriveFont((float)11));
-        pnlrep.add(txtticno);
-        txtticno.setBounds(660, 20, 100, 24);
-
-        jLabel9.setFont(jLabel9.getFont().deriveFont((float)11));
-        jLabel9.setText("No Ticket");
-        pnlrep.add(jLabel9);
-        jLabel9.setBounds(660, 10, 100, 10);
-
         btnexporttic.setFont(btnexporttic.getFont().deriveFont(btnexporttic.getFont().getStyle() | java.awt.Font.BOLD, 11));
         btnexporttic.setText("Export");
         btnexporttic.addActionListener(new java.awt.event.ActionListener() {
@@ -3072,6 +2743,173 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         lblrepticcount1.setText("list");
         pnlrep.add(lblrepticcount1);
         lblrepticcount1.setBounds(920, 0, 40, 10);
+
+        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel26.setPreferredSize(new java.awt.Dimension(1200, 60));
+        jPanel26.setLayout(null);
+
+        txtticno2.setFont(txtticno2.getFont().deriveFont((float)11));
+        jPanel26.add(txtticno2);
+        txtticno2.setBounds(10, 20, 80, 24);
+
+        ckstoring1.setBackground(new java.awt.Color(255, 255, 204));
+        ckstoring1.setFont(ckstoring1.getFont().deriveFont((float)11));
+        ckstoring1.setText("RAM");
+        ckstoring1.setOpaque(false);
+        ckstoring1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckstoring1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(ckstoring1);
+        ckstoring1.setBounds(420, 0, 80, 20);
+
+        jLabel107.setFont(jLabel107.getFont().deriveFont((float)11));
+        jLabel107.setText("Plat No");
+        jPanel26.add(jLabel107);
+        jLabel107.setBounds(90, 10, 80, 10);
+
+        ckassign1.setBackground(new java.awt.Color(255, 255, 204));
+        ckassign1.setFont(ckassign1.getFont().deriveFont((float)11));
+        ckassign1.setText("Assigned");
+        ckassign1.setOpaque(false);
+        jPanel26.add(ckassign1);
+        ckassign1.setBounds(420, 20, 80, 20);
+
+        jLabel108.setFont(jLabel108.getFont().deriveFont((float)11));
+        jLabel108.setText("Status");
+        jPanel26.add(jLabel108);
+        jLabel108.setBounds(320, 10, 100, 10);
+
+        jLabel109.setFont(jLabel109.getFont().deriveFont((float)11));
+        jLabel109.setText("Dept.");
+        jPanel26.add(jLabel109);
+        jLabel109.setBounds(170, 10, 100, 10);
+
+        cbticstatus1.setFont(cbticstatus1.getFont().deriveFont((float)11));
+        cbticstatus1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "OPEN", "PROCESS", "CLOSED", "CANCEL", "--" }));
+        cbticstatus1.setSelectedIndex(4);
+        cbticstatus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbticstatus1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(cbticstatus1);
+        cbticstatus1.setBounds(320, 20, 100, 24);
+
+        cbdept1.setFont(cbdept1.getFont().deriveFont((float)11));
+        cbdept1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DEPT. CALL CENTER", "DEPT. KENDARAAN KEBON JERUK", "DEPT. DRIVER", "DEPT. MARKETING", " ", "DEPT. KENDARAAN LUAR KOTA", "--" }));
+        cbdept1.setSelectedIndex(6);
+        cbdept1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbdept1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(cbdept1);
+        cbdept1.setBounds(170, 20, 150, 24);
+
+        cksubmit1.setBackground(new java.awt.Color(255, 255, 204));
+        cksubmit1.setFont(cksubmit1.getFont().deriveFont((float)11));
+        cksubmit1.setText("Not Submitted");
+        cksubmit1.setOpaque(false);
+        cksubmit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cksubmit1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(cksubmit1);
+        cksubmit1.setBounds(500, 0, 120, 20);
+
+        jLabel110.setFont(jLabel110.getFont().deriveFont((float)11));
+        jLabel110.setText("No Ticket");
+        jPanel26.add(jLabel110);
+        jLabel110.setBounds(10, 10, 80, 10);
+
+        txtplatno1.setFont(txtplatno1.getFont().deriveFont((float)11));
+        jPanel26.add(txtplatno1);
+        txtplatno1.setBounds(90, 20, 80, 24);
+
+        jLabel111.setFont(jLabel111.getFont().deriveFont((float)11));
+        jLabel111.setText("Customer");
+        jPanel26.add(jLabel111);
+        jLabel111.setBounds(610, 10, 80, 10);
+
+        txtcus1.setFont(txtcus1.getFont().deriveFont((float)11));
+        jPanel26.add(txtcus1);
+        txtcus1.setBounds(610, 20, 110, 24);
+
+        txtdriv1.setFont(txtdriv1.getFont().deriveFont((float)11));
+        jPanel26.add(txtdriv1);
+        txtdriv1.setBounds(870, 20, 110, 24);
+
+        jLabel112.setFont(jLabel112.getFont().deriveFont((float)11));
+        jLabel112.setText("Driver Name");
+        jPanel26.add(jLabel112);
+        jLabel112.setBounds(870, 10, 80, 10);
+
+        jLabel113.setFont(jLabel113.getFont().deriveFont((float)11));
+        jLabel113.setText("Category");
+        jPanel26.add(jLabel113);
+        jLabel113.setBounds(720, 10, 100, 10);
+
+        cbcate1.setFont(cbcate1.getFont().deriveFont((float)11));
+        cbcate1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DEPT. CALL CENTER", "DEPT. KENDARAAN KEBON JERUK", "DEPT. DRIVER", "DEPT. MARKETING", " ", "DEPT. KENDARAAN LUAR KOTA", "--" }));
+        cbcate1.setSelectedIndex(6);
+        cbcate1.setEnabled(false);
+        cbcate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbcate1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(cbcate1);
+        cbcate1.setBounds(720, 20, 150, 24);
+
+        txtdrivcode1.setFont(txtdrivcode1.getFont().deriveFont((float)11));
+        txtdrivcode1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdrivcode1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(txtdrivcode1);
+        txtdrivcode1.setBounds(980, 20, 80, 24);
+
+        jLabel114.setFont(jLabel114.getFont().deriveFont((float)11));
+        jLabel114.setText("Driver Code");
+        jPanel26.add(jLabel114);
+        jLabel114.setBounds(980, 10, 80, 10);
+
+        jLabel115.setFont(jLabel115.getFont().deriveFont((float)11));
+        jLabel115.setText("Follow Up By");
+        jPanel26.add(jLabel115);
+        jLabel115.setBounds(420, 10, 100, 0);
+
+        cbFollowUp1.setFont(cbFollowUp1.getFont().deriveFont((float)11));
+        cbFollowUp1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "OPEN", "PROCESS", "CLOSED", "CANCEL", "--" }));
+        cbFollowUp1.setSelectedIndex(4);
+        cbFollowUp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFollowUp1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(cbFollowUp1);
+        cbFollowUp1.setBounds(420, 20, 100, 0);
+
+        ckFCR1.setBackground(new java.awt.Color(255, 255, 204));
+        ckFCR1.setFont(ckFCR1.getFont().deriveFont((float)11));
+        ckFCR1.setText("F.C.R");
+        ckFCR1.setOpaque(false);
+        ckFCR1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckFCR1ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(ckFCR1);
+        ckFCR1.setBounds(500, 20, 120, 20);
+
+        jScrollPane48.setViewportView(jPanel26);
+
+        pnlrep.add(jScrollPane48);
+        jScrollPane48.setBounds(250, 1, 590, 63);
 
         tabbpanereport.addTab("Tickets", pnlrep);
 
@@ -3255,59 +3093,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Inbound", jPanel17);
 
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setLayout(null);
-
-        tblhourout.setFont(tblhourout.getFont().deriveFont((float)11));
-        tblhourout.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane40.setViewportView(tblhourout);
-
-        jPanel18.add(jScrollPane40);
-        jScrollPane40.setBounds(10, 40, 940, 310);
-
-        dtho.setDateFormatString("dd/MM/yyyy");
-        dtho.setFont(dtho.getFont().deriveFont((float)11));
-        jPanel18.add(dtho);
-        dtho.setBounds(10, 20, 120, 24);
-
-        jLabel79.setFont(jLabel79.getFont().deriveFont((float)11));
-        jLabel79.setText("Date");
-        jPanel18.add(jLabel79);
-        jLabel79.setBounds(10, 10, 100, 10);
-
-        btnho.setFont(btnho.getFont().deriveFont(btnho.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
-        btnho.setText("Refresh");
-        btnho.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnhoActionPerformed(evt);
-            }
-        });
-        jPanel18.add(btnho);
-        btnho.setBounds(150, 20, 115, 24);
-
-        btnexportcall2.setFont(btnexportcall2.getFont().deriveFont(btnexportcall2.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnexportcall2.setText("Export");
-        btnexportcall2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnexportcall2ActionPerformed(evt);
-            }
-        });
-        jPanel18.add(btnexportcall2);
-        btnexportcall2.setBounds(10, 350, 90, 20);
-
-        jTabbedPane1.addTab("Outbound", jPanel18);
-
         tabbpanereport.addTab("Hourly Calls", jTabbedPane1);
 
         jTabbedPane4.setFont(jTabbedPane4.getFont().deriveFont((float)10));
@@ -3375,66 +3160,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTabbedPane4.addTab("Inbound", jPanel21);
 
-        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel22.setLayout(null);
-
-        tbldailyout.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane44.setViewportView(tbldailyout);
-
-        jPanel22.add(jScrollPane44);
-        jScrollPane44.setBounds(10, 40, 940, 310);
-
-        dtdo.setDateFormatString("dd/MM/yyyy");
-        jPanel22.add(dtdo);
-        dtdo.setBounds(10, 20, 120, 24);
-
-        jLabel83.setFont(new java.awt.Font("Calibri", 0, 14));
-        jLabel83.setText("From");
-        jPanel22.add(jLabel83);
-        jLabel83.setBounds(10, 10, 100, 10);
-
-        btndo.setFont(new java.awt.Font("Calibri", 0, 14));
-        btndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
-        btndo.setText("Refresh");
-        btndo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndoActionPerformed(evt);
-            }
-        });
-        jPanel22.add(btndo);
-        btndo.setBounds(270, 20, 115, 24);
-
-        jLabel85.setFont(new java.awt.Font("Calibri", 0, 14));
-        jLabel85.setText("Until");
-        jPanel22.add(jLabel85);
-        jLabel85.setBounds(140, 10, 100, 10);
-
-        dtdo1.setDateFormatString("dd/MM/yyyy");
-        jPanel22.add(dtdo1);
-        dtdo1.setBounds(140, 20, 120, 24);
-
-        btnexportcall4.setFont(new java.awt.Font("Calibri", 0, 14));
-        btnexportcall4.setText("Export");
-        btnexportcall4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnexportcall4ActionPerformed(evt);
-            }
-        });
-        jPanel22.add(btnexportcall4);
-        btnexportcall4.setBounds(10, 350, 90, 20);
-
-        jTabbedPane4.addTab("Outbound", jPanel22);
-
         tabbpanereport.addTab("Daily Calls", jTabbedPane4);
 
         jTabbedPane3.setFont(jTabbedPane3.getFont().deriveFont((float)10));
@@ -3501,69 +3226,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         btnexportcall5.setBounds(10, 350, 90, 20);
 
         jTabbedPane3.addTab("Inbound", jPanel19);
-
-        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.setLayout(null);
-
-        tblperformout.setFont(tblperformout.getFont().deriveFont((float)11));
-        tblperformout.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane42.setViewportView(tblperformout);
-
-        jPanel20.add(jScrollPane42);
-        jScrollPane42.setBounds(10, 40, 940, 310);
-
-        dtpo.setDateFormatString("dd/MM/yyyy");
-        dtpo.setFont(dtpo.getFont().deriveFont((float)11));
-        jPanel20.add(dtpo);
-        dtpo.setBounds(10, 20, 120, 24);
-
-        btnpo1.setFont(btnpo1.getFont().deriveFont(btnpo1.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnpo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
-        btnpo1.setText("Refresh");
-        btnpo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpo1ActionPerformed(evt);
-            }
-        });
-        jPanel20.add(btnpo1);
-        btnpo1.setBounds(270, 20, 115, 24);
-
-        jLabel87.setFont(jLabel87.getFont().deriveFont((float)11));
-        jLabel87.setText("Until");
-        jPanel20.add(jLabel87);
-        jLabel87.setBounds(140, 10, 100, 10);
-
-        dtpo1.setDateFormatString("dd/MM/yyyy");
-        dtpo1.setFont(dtpo1.getFont().deriveFont((float)11));
-        jPanel20.add(dtpo1);
-        dtpo1.setBounds(140, 20, 120, 24);
-
-        jLabel89.setFont(jLabel89.getFont().deriveFont((float)11));
-        jLabel89.setText("From");
-        jPanel20.add(jLabel89);
-        jLabel89.setBounds(10, 10, 100, 10);
-
-        btnexportcall6.setFont(btnexportcall6.getFont().deriveFont(btnexportcall6.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnexportcall6.setText("Export");
-        btnexportcall6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnexportcall6ActionPerformed(evt);
-            }
-        });
-        jPanel20.add(btnexportcall6);
-        btnexportcall6.setBounds(10, 350, 90, 20);
-
-        jTabbedPane3.addTab("Outbound", jPanel20);
 
         tabbpanereport.addTab("Performance", jTabbedPane3);
 
@@ -3797,121 +3459,6 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         tabbpanereport.addTab("Email", pnlrep3);
 
-        pnlrep4.setBackground(new java.awt.Color(255, 255, 255));
-        pnlrep4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        pnlrep4.setLayout(null);
-
-        tblrepfax.setFont(tblrepfax.getFont().deriveFont((float)11));
-        tblrepfax.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblrepfax.setRowHeight(20);
-        jScrollPane16.setViewportView(tblrepfax);
-
-        pnlrep4.add(jScrollPane16);
-        jScrollPane16.setBounds(10, 40, 950, 340);
-
-        txtfaxfinm.setFont(txtfaxfinm.getFont().deriveFont((float)11));
-        pnlrep4.add(txtfaxfinm);
-        txtfaxfinm.setBounds(460, 20, 100, 24);
-
-        jLabel33.setFont(jLabel33.getFont().deriveFont((float)11));
-        jLabel33.setText("Status");
-        pnlrep4.add(jLabel33);
-        jLabel33.setBounds(360, 10, 100, 10);
-
-        jLabel34.setFont(jLabel34.getFont().deriveFont((float)11));
-        jLabel34.setText("File name");
-        pnlrep4.add(jLabel34);
-        jLabel34.setBounds(460, 10, 100, 10);
-
-        btnrepfax.setFont(btnrepfax.getFont().deriveFont(btnrepfax.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnrepfax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
-        btnrepfax.setText("Search Fax");
-        btnrepfax.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnrepfaxActionPerformed(evt);
-            }
-        });
-        pnlrep4.add(btnrepfax);
-        btnrepfax.setBounds(670, 20, 140, 24);
-
-        jLabel36.setFont(jLabel36.getFont().deriveFont((float)11));
-        jLabel36.setText("Username");
-        pnlrep4.add(jLabel36);
-        jLabel36.setBounds(560, 10, 100, 10);
-
-        jLabel41.setFont(jLabel41.getFont().deriveFont((float)11));
-        jLabel41.setText("Open From");
-        pnlrep4.add(jLabel41);
-        jLabel41.setBounds(10, 10, 100, 10);
-
-        dcfax1.setDateFormatString("dd/MM/yyyy");
-        dcfax1.setFont(dcfax1.getFont().deriveFont((float)11));
-        pnlrep4.add(dcfax1);
-        dcfax1.setBounds(10, 20, 120, 24);
-
-        jLabel42.setFont(jLabel42.getFont().deriveFont((float)11));
-        jLabel42.setText("Until");
-        pnlrep4.add(jLabel42);
-        jLabel42.setBounds(130, 10, 100, 10);
-
-        dcfax2.setDateFormatString("dd/MM/yyyy");
-        dcfax2.setFont(dcfax2.getFont().deriveFont((float)11));
-        pnlrep4.add(dcfax2);
-        dcfax2.setBounds(130, 20, 120, 24);
-
-        cbstatusrepfax.setFont(cbstatusrepfax.getFont().deriveFont((float)11));
-        pnlrep4.add(cbstatusrepfax);
-        cbstatusrepfax.setBounds(360, 20, 100, 24);
-
-        btnexportmail1.setFont(btnexportmail1.getFont().deriveFont(btnexportmail1.getFont().getStyle() | java.awt.Font.BOLD, 11));
-        btnexportmail1.setText("Export");
-        btnexportmail1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnexportmail1ActionPerformed(evt);
-            }
-        });
-        pnlrep4.add(btnexportmail1);
-        btnexportmail1.setBounds(10, 380, 90, 20);
-
-        cbagenirepfax.setFont(cbagenirepfax.getFont().deriveFont((float)11));
-        cbagenirepfax.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "aan", "ramos", "john", "yusnita", "tri", "fitri", "mariana", "mitha", "dessy", "andrianto", "nurdin", "david", "yudho", "favel", "feronika", "oktaviani", "rudi" }));
-        pnlrep4.add(cbagenirepfax);
-        cbagenirepfax.setBounds(560, 20, 100, 24);
-
-        jLabel64.setFont(jLabel64.getFont().deriveFont((float)11));
-        jLabel64.setText("Direction");
-        pnlrep4.add(jLabel64);
-        jLabel64.setBounds(260, 10, 100, 10);
-
-        cbdirfax.setFont(cbdirfax.getFont().deriveFont((float)11));
-        cbdirfax.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "INBOUND", "OUTBOUND", "--" }));
-        cbdirfax.setSelectedIndex(2);
-        pnlrep4.add(cbdirfax);
-        cbdirfax.setBounds(260, 20, 100, 24);
-
-        lblrepfaxcount.setFont(lblrepfaxcount.getFont().deriveFont((float)11));
-        lblrepfaxcount.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        pnlrep4.add(lblrepfaxcount);
-        lblrepfaxcount.setBounds(880, 0, 40, 10);
-
-        lblrepticcount9.setFont(lblrepticcount9.getFont().deriveFont((float)11));
-        lblrepticcount9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblrepticcount9.setText("list");
-        pnlrep4.add(lblrepticcount9);
-        lblrepticcount9.setBounds(920, 0, 40, 10);
-
-        tabbpanereport.addTab("Fax", pnlrep4);
-
         jtab.addTab("Report", tabbpanereport);
 
         jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -3990,7 +3537,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jLabel70.setBounds(10, 230, 100, 20);
 
         txtimsg3.setColumns(20);
-        txtimsg3.setFont(new java.awt.Font("Tahoma", 0, 11));
+        txtimsg3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtimsg3.setLineWrap(true);
         txtimsg3.setRows(5);
         jScrollPane34.setViewportView(txtimsg3);
@@ -4094,7 +3641,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jLabel74.setBounds(10, 230, 100, 20);
 
         txtimsg4.setColumns(20);
-        txtimsg4.setFont(new java.awt.Font("Tahoma", 0, 11));
+        txtimsg4.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtimsg4.setLineWrap(true);
         txtimsg4.setRows(5);
         jScrollPane36.setViewportView(txtimsg4);
@@ -4134,9 +3681,9 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setLayout(null);
 
-        jTextArea1.setColumns(20);
         jTextArea1.setEditable(false);
-        jTextArea1.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setTabSize(5);
         jTextArea1.setText("BENGKEL ANJ RENT\n\t\t\t\t\t\nNo  \tNama bengkel\t\t\tAlamat\t\t\t\t\t\tPIC\t\tNo Telp Bengkel \t     No Fax Bengkel\n1    \t Family Serviceindo Kedoya\t\tJl. Arteri kedoya no 16\t\t\t\tJohan\t\t021-5680077\t     021 – 56007126\n2     \t Family Serviceindo Cibitung\t\tJl.Sumatra D4 kawasan Industri MM 2100 CIBITUNG\tEddy/Rofik\t021-89982288\t     021 – 89982233\n3    \t Family Serviceindo Cengkareng\tJl.Bojong raya tepat di depan SMU Vianny\t\t\t\n");
@@ -4155,7 +3702,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea2.setColumns(20);
         jTextArea2.setEditable(false);
-        jTextArea2.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea2.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea2.setRows(5);
         jTextArea2.setTabSize(5);
         jTextArea2.setText("POOL ANJ RENT\t\n\t\t\t\t\nNo\tNama bengkel\t\t\tAlamat\t\t\t\t\t\tPIC\t\tNo Telp Pool \tNo Fax Pool\n1\tANJ Rent Head Office Panjang\tJl. Arteri Kelapa Dua No 16 , Kebon Jeruk Jakarta Barat\tPurwanto\t021 – 5367 0800\t021 – 549 1021\n2\tANJ Rent Cabang Cibitung\t\tJl.Sumatra D4 kawasan Industri MM 2100 CIBITUNG\tMuktar\t\t021 – 89982288\t021 – 89982233\n3\tANJ Rent Cabang Cengkareng\tJl.Bojong raya tepat di depan SMU Vianny\t\tMario\t\t021 – 706 13 421\t021 – 583 04829\n");
@@ -4174,7 +3721,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea3.setColumns(20);
         jTextArea3.setEditable(false);
-        jTextArea3.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea3.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea3.setRows(5);
         jTextArea3.setTabSize(5);
         jTextArea3.setText("EMERGENCY\n\t\t\t\nEMERGENCY\tNama\t\tNo Telp Handphone\tNo Telp Emergency\nPIC  :\t\tDhani\t\t08159312202\t\t021-536 730 35\nStaff  :\t\tTogi\t\t081311064071\t\n\t\tAmung\t\t081385998098\t\n\t\tDedy\t\t085691510607\t\n\t\tGunawan\t\t08179929339\t\n\t\n\t\t\nAlamat Emegency\t\t\t\n\t\t\t\nJl.Bojong raya tepat di depan SMU Vianny\t\t\t\n");
@@ -4193,7 +3740,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea4.setColumns(20);
         jTextArea4.setEditable(false);
-        jTextArea4.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea4.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea4.setRows(5);
         jTextArea4.setTabSize(5);
         jTextArea4.setText("DATA CSO & JAPAN DESK PT. ANJ RENT\t\t\t\t\n\t\t\t\t\nNo\tNama\tHand Phone\tEmail\t\t\tkode CSO\n1\tSiska\t087882817788\tsiska@anjrent.com\t\tCSO078\n2\tFirda\t08111558117\tfirda@anjrent.com\t\tCSO063\n3\tIca\t08111558115\tica@anjrent.com\t\tCSO070\n4\tInez\t0811839744\tinez@anjrent.com\t\tCSO001\n5\tLina\t081806981333\tlina@anjrent.com\t\tCSO059\n6\tRina\t08111558114\trina@anjrent.com\t\tCSO062\n7\tTasya\t081315453800\ttasya@anjrent.com\tCSO067\n8\tRoy\t087881600805\troy@anjrent.com\t\tCSO071\n9\tRosi\t0811839681\trosi@anjrent.com\t\tCSO006 \n10\tDessy\t08119001882\tdessy@anjrent.com\tCSO079\n11\tRizky\t08111558119\trizky@anjrent.com\t\tCSO073\n12\tSarah\t08119201499\tsarah@anjrent.com\tCSO080\n13\tStefy\t08111558116\tstefy@anjrent.com\t\tCSO066\n14\tFani\t087885158737\tstephanie@anjrent.com\tCSO081\n15\tArai\t0811975655\tarai@anjrent.com\t\n16\tTaguchi\t0811152936\ttaguchi@anjrent.com\t\n17\tSaga\t081319333216\tsaga@anjrent.com \t\n");
@@ -4212,7 +3759,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea5.setColumns(20);
         jTextArea5.setEditable(false);
-        jTextArea5.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea5.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea5.setRows(5);
         jTextArea5.setTabSize(5);
         jTextArea5.setText("\tDATA BENGKEL REKANAN\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\tKota\t\t\tJenis\t\tNama\t\t\t\tAlamat\t\t\t\t\t\tTelp\t\t\tFax\t\t\tPIC\n1\tAceh\t\t\tUmum\t\tPutra jaya \t\t\tJL.Imuem leung bata km 2,5 Panterik\t\t\t(0651) 22694\t\t(0651) 29873\t\tPak Hendrik\n\t\t\t\t\t\t\t\n2\tBali\t\t\tMitsubishi\tBumen Redja Abadi\t\tJL. Imam Bonjol 375 R\t\t\t\t(0361) 483002\t\t(0361) 484133\t\tPrasetyo Theriady\n\tBali Gianyar\t\tDaihatsu\t\tPT. Astra International Tbk\t\tBr. Blah Tanah Ds Batuan Sukawati\t\t\t(0361) 974464, 974693\t(0361) 974463\t\tWahyudi\n\tBali, Denpasar\t\tToyota\t\tPT. Astra International Tbk\t\tJL. Hos. Cokroaminoto  No. 81, Ubung, Denpasar\t\t(0361) 422000\t\t(0361) 410311\t\tKetut Diyana (08883610555) PAK WAYAN DARMAWAN ADM SERVICE\n\t\t\t\t\t\t\t\n3\tBalikpapan\t\tMitsubishi\tMandau Berlian Sejati \t\tJL. MT Haryono No. 36 KM 5 Ring Road\t\t\t(0542) 875479\t\t(0542) 875464\t\tYB Yaniko, P'HERY ACC\n\tBalikpapan\t\tToyota\t\tAuto 2000\t\t\tJL. Jend Sudirman No. 29 Balikpapan\t\t\t(0542) 732000\t\t(0542) 734011\t\tFUKUH KA BENG,Taufik\n\tBalikpapan\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Jend. Sudirman No. 50\t\t\t\t(0542) 419000-760000,763819(0542) 442044\t\tJAMAL / Tatang Setiawan\n\tBalikpapan\t\tALL CAR\t\tFamily Serviceindo\t\t\t\t\t\t\t\t\tNur 087878831504\tJoko 0819-5580844\n\tBalikpapan\t\tBAN\t\tPt. Linda Hauta Wijaya\t\tJl. Jendral sudirman no 263 \t\t\t\t(0542) 427966/7\t\tIbu NANA\n\t\t\t\t\t\t\t\n4\tBandung\t\t\tMitsubishi\tPT Surya Putra Sarana\t\tJL. Jend Sudirman no 776-778\t\t\t\t(022) 6033720/2\t\t(022) 6030563\t\tPak Iwan suryadi\n\tBandung\t\t\tSuzuki\t\tPT. Nusantara Jaya Sentosa\t\tJL. Soekarno Hatta No. 289 Bandung 40234\t\t(022) 5204645\t\t(022) 5203942\t\tAri Rakhmadi\n\tBandung\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Asia Afrika No. 127\t\t\t\t(022) 4238977\t\t(022) 4214440\t\tTRISANTOSO\n\tBandung\t\t\tBAN\t\tPD Lautan Ban\t\t\tJL. Astana Anyar 81 Bandung 40241\t\t\t022) 4203443\t\t(022) 4209657\t\tIBU SUSI\n\tBandung\t\t\tMitsubishi\tPT Surya Putra Sarana\t\tJL. Abdulrahman saleh no 4\t\t\t\t022-6031040\t\t(022) 6030636\t\tPak Iwan suryadi\n\tBandung\t\t\tToyota\t\tPT. Astra International Tbk\t\tJL. Soekarno Hatta No. 145 Bandung\t\t\t(022) 6030450\t\t(022) 6031559\t\tAgus Ryanto\n\tBandung\t\t\tMitsubishi\tSrikandi Daimond Motor\t\tJL. Soekarno Hatta No. 342\t\t\t\t(022) 5407000\t\t(022) 5406776\t\tUnang Sunarya MNGR, SA YUYUNG,DENI\n\tBandung\t\t\tHonda\t\tIstana bandung raya Motor\t\tJl. Cicende No 18\t\t\t\t\t(022) 4240888\t\t(022) 4233629\t\tP'ANDRI SUDJANI Svce Mngr HP 0812-2157215\n\tBandung\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Raya Cibeureum 42\t\t\t\t(022) 6031568, 6031058\t(022) 6035615\t\tJunjung Siregar IBU MIKE 022-6031058\n\tBandung\t\t\tNissan\t\tINDOMOBIL TRADA NISSAN\t\tJL. Soekarno Hatta NO 382\t\t\t\t(022) 5207777\t\t(022) 5207181\t\tPETRUS KURNIA\n\tBandung\t\t\tAUTO 2000 Pasteur\tAUTO 2000 \t\tJl. Dr. Djundjunan No. 192 Bandung 40163 \t\t(022) 2000100 \t\t\t\t\tMunif Latief KABENG\n\tBandung\t\t\tAUTO 2000 Soekarno Hatta\tAUTO 2000 \t\tJl. Soekarno - Hatta No.145 Bandung 40223\t\t(022) 6022000 \t\t\t\t\tAgus Riyanto Kabeng\n\t\t\t\t\t\t\t\n5\tBanjarmasin\t\tDaihatsu\t\tNusantara Indah \t\t\tJL. A. yani km 4,5\t\t\t\t\t(0511) 3262791\t\t(0511) 3272900\t\tPak Arbani\n\tBanjarmasin\t\tMitsubishi\tPT sumber berlian motors\t\tJl. km 10.3 no 1 rt 5 kertak hanya banjar kalsel\t\t(0511) 4281699\t\t(0511) 4281664/ 65\t\tIr. H. Ajie MANAGER ,JAMAL KABENG\n\tBanjarmasin\t\tToyota\t\tWira Megah Profitamas\t\tJL. Jend. A. Yani KM 10 Kertak Hanyar\t\t\t(0511) 3272000\t\t(0511) 3263000\t\tHasbullah PAK HARIS SA\n\tBanjarmasin\t\tMitsubishi\tSumber Berlian Motor\t\tJL. Jend. A. Yani KM 5.5 No. 51\t\t\t(0511) 3252216\t\t(0511) 3255657\t\tIr. H. Ajie\n\tBanjarmasin\t\tIsuzu\t\tAstra International  ISUZU\t\tKALIMANTAN\t\t\t\t\t(0511)3265460, 3267000, 3273621 \t(0511)3267465 \t\n\t\t\t\t\t\t\t\n6\tBanyuwangi\t\tToyota\t\tAUTO 2000 Cab Pembantu Jember\tJL A.Yani no 7\t\t\t\t\t(0333) 422000\t\t(0333) 424953\t\tSA Pak Samuji\n\tBanyuwangi\t\tMitsubishi\tPT. Mayangsari Berlian Motor\tJL. Yos Sudarso, No. 69 A Banyuwang\ti\t\t(0333) 424417,424418\t(0333) 424535\t\tNoerhidayat (081559707300)\n\t\t\t\t\t\t\t\n7\tBatam \t\t\tToyota\t\tPt. Agung Automall\t\t\tJl. Yos Sudarso\t\t\t\t\t(0778)  427585\t\t(0778) 427589\t\tKabeng Bpk Eddy Rahmansyah\n\t\t\t\t\t\t\t\n8\tBaturaja\t\t\tSuzuki\t\tPT. Thamrin Bersaudara\t\tJL. Jend. A. Yani No. 99 Baturaja 31112\t\t\t( 0735 ) 321026\t\t\t\t\tBpk. Laily Ramadhan/ Iwan\n\tBaturaja\t\t\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Jend. A. Yani No. 319 Baturaja\t\t\t( 0735 ) 322747, 321333\t ( 0735 ) 320510\t\tBpk. Tarmizi/Bpk. Suparman\n\t\t\t\t\t\t\t\n9\tBengkulu\t\t\tMitsubishi\tLautan berlian utama motor\t\tJL. S. Parman no 61 padang jati Bengkulu\t\t(0736) 20062, 21934\t(0736)  21134\t\n\tBengkulu\t\t\tSuzuki\t\tSuzuki Service\t\t\tJl M.Jend Sutoyo No 88 \t\t\t\t(0736) 21010\t\t(0736) 26446\t\tIBU MEI\n\t\t\t\t\t\t\t\n10\tBogor\t\t\tSuzuki\t\tPT. RMK - Bogor \t\t\tJL. Raya Tajur No. 91, Bogor\t\t\t\t(0251) 8391273,8352282\t(0251) 8352281\t\tPAK AWANG / / HARI SA/  Handy Tjahjadinata\n\tBogor\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Pajajaran No. 22\t\t\t\t(0251) 325737\t\t(0251) 326633\t\tSapto Pamungkas\n\tBogor\t\t\tMitsubishi\tPT. Prabu pandawa motor\t\tJL.Pajajaran no 20 \t\t\t\t\t(0251) 331201-2\t\t(0251) 8312874\t\tPak Imat suyatman\n\t\t\t\t\t\t\t\n11\tCENTURY \t\tMBAK TATI\t\t\t\t\t\t\t\t\t\t\t(021) 5302423\t\t\n\t\t\t\t\t\t\t\n12\tCibinong\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Raya Bogor - Jakarta KM 43 Pabuaran\t\t(021) 8757870\t\t\t\t\tKhaerullah\n\t\t\t\t\t\t\t\n13\tCikarang\t\t\t\t\tOTO ZONE\t\t\tJL. MH. Thamrin Kav. 133 C Lippo Cikarang\t\t(021) 8990 6611\t\t(021) 8990 6622\t\tHalim\n\tCikarang\t\t\tToyota\t\tAuto 2000\t\t\tJl. M. H. Thamrin Kav. 168, Lippo Cikarang\t\t(021) 8990 2000\t\t(021) 8990 3758/57\t\tPak Daniel , Pak PARYOTO, PAK ODRADI\n\tCikarang\t\t\tHonda\t\tPT. Prospect Motor HONDA\t\tJL. MH. Thamrin No. 152 Lippo Cikarang\t\t(021) 8974142/43\t\t(021) 8974144\t\tArif Harsono\n\t\t\t\t\t\t\t\t\n14\tCilegon\t\t\tToyota\t\tTunas Ridean Tbk\t\t\tJL. Raya Cilegon KM 14\t\t\t\t(0254) 394777/394789\t(0254) 391580\t\tYasri Abdullah\n\tCilegon\t\t\tSuzuki\t\tPT. RMK - Cilegon\t\t\tJL. Raya Serang KM 1, Cibeber, Cilegon\t\t\t(0254) 381500\t\t(0254) 380563\t\tLukito (02549195455)\n\tCilegon\t\t\tMitsubishi\tSetia Kawan menara motor\t\tJl. Raya Cilegon No. 101, Cilegon \t\t\t(0254) 391-267 ; 391-773 \t(0254) 391-171 \t\trimbun\n\t\t\t\t\t\t\t\n15\tCimone\t\t\tSuzuki\t\tPT. RMK - Cimone\t\t\tJL. Merdeka  No. 1, Cimone Tangerang\t\t\t(021) 5517876\t\t(021) 5523968\t\tApendi\n\t\t\t\t\t\t\t\n16\tCirebon\t\t\tSuzuki\t\tCinta Damai Putra Bahagia\t\tJl. Kalijaga No 117 \t\t\t\t\t(0231) 230506 / 230477 \t(0231) 210060\t\n\tCirebon\t\t\tToyota\t\tAuto 2000\t\t\tJL. Brigjen Darsono 14 by pass\t\t\t(0231) 232000\t\t(0231) 202009\t\tPak Winawan SA PAK ALIF , PAK TRI ADM, MULYADI SA\n\tCirebon\t\t\t\t\tPENYET VARIASI ALARM\t\t\t\t\t\t\t\t(0231) 230308\t\t\t\t\tKO ATIK\n\tCirebon\t\t\t\t\tRaharja Putra Ban\t\t\tJL. kesambi No 50\t\t\t\t\t(0231) 231129\t\t(0231) 231129\t\t\t\t\tIsye Slamet, SANTI\n\tCirebon\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Tuparev No. 76\t\t\t\t\t(0231) 206691\t\t(0231) 205557\t\t\t\t\tAris Dwinanto\n\tCirebon\t\t\t\t\tPt Bintang Timur\t\t\tJL. Buyut no 4 \t\t\t\t\t(0231) 201040\t\t(0231) 231040\t\tPak Tomy Hadi\n\t\t\t\t\t\t\t\n17\tDenpasar Cokro\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Cokroaminoto 52\t\t\t\t(0361) 429000\t\t(0361) 410928\t\tRatno Yunanto\n\tDenpasar Sanur\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Ngurah Rai 17 X By Pass Sanur\t\t\t(0361) 288323, 288345\t(0361) 288002\t\tWahyudi\n\t\t\t\t\t\t\t\n18\tJakarta\t\t\tHonda\t\tPt Honda autoland\t\t\tjalan raya boulevard barat blok xb 1-2 kelapa gading \t(021) 4501858 / 4501868\t(021) 4529202\t\tibu ERI service\n\tJakarta\t\t\tHonda\t\tPT. IKM\tGedung IKM,\t\t JL. Daan Mogot No. 6\t\t\t\t(021) 5644888\t\t(021) 56962357\t\tRudy Widjaja SA PAK WENI\n\tJakarta\t\t\t\t\tToyota astra motor\t\t\tSUDIRMAN\t\t\t\t\t(021) 2511701-02-07 BOOKING\t(021) 2511700\tDARMA BAYU , SA PAK KUSNAN, JAKA\n\tJakarta\t\t\tHino\t\tPT Hino Motor Sales Indonesia\tJl MT haryono kav 8\t\t\t\t(021) 8564570 / 8564480\t(021) 8515731 / 8517550\tP'DEDEN FAX 5917887\n\tJakarta\t\t\tSuzuki\t\tPT. RMK - Kebon Jeruk\t\tJL. Raya Panjang No. 12  Kebon Jeruk Jakarta Barat\t(021) 5492727\t\t(021) 5493031\t\tAntonius Sumarsono\n\tJakarta\t\t\tHonda\t\tPT. Istana Kebon Jeruk\t\tJL. Panjang No. 200 Jakarta Barat\t\t\t(021) 5492580-81\t\t(021) 5493464\t\tOdik Suhendra (08129928257)\n\tJakarta Barat\t\tToyota\t\tAuto 2000 Daan Mogot\t\tJL. Daan Mogot No.146-147 Jakarta Barat 11510\t\t(021) 5642000\t\t(021) 5688719\t\tDedi Suhendi\n\tJakarta Barat\t\tSemua\t\tPT. Family Servisindo\t\tJL. Arteri Kedoya No.16 Kedoya \t\t\t(021) 5680077\t\t(021) 56007126\t\tWidionarko\n\tJakarta Cibitung\t\tSemua\t\tPT. Family Servisindo\t\tJL. Sumatra D 4 Kawasan Industri MM2100\t\t(021) 89982288\t\t(021) 89982233\t\tRofiq\n\tJakarta klender\t\tAstrido\t\tAstrido Klender\t\t\tKlender\t\t\t\t\t\t021-8610322\t\t021-8610320\t\tP'Tri\n\tJakarta Pusat\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. P. Jayakarta No. 28\t\t\t\t(021) 6590606, 6590600\t(021) 6590610\t\tAgus S.M\n\tJakarta Pusat\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Balikpapan No. 8\t\t\t\t(021) 63864386-87\t\t(021) 63862223\t\tShandy\n\tJakarta Selatan\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Raya Ciputat No. 22\t\t\t\t(021) 7651638, 7651642-44\t(021) 7651639\t\tDjoko Untung\n\tJakarta Selatan\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Sultan Iskandar Muda No. 15\t\t\t(021) 7291011\t\t(021) 7291008\t\tDolf Valentino\n\tJakarta Serpong\t\tDaihatsu\t\tPT. Astra International Tbk - Daihatsu\tBSD City Blok 405/2A Sektor 8 Tangerang\t\t(021) 5380011\t\t(021) 5383888\t\tDARJAT / RAMLI\n\tJakarta Utara\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Raya Pluit Selatan No. 4\t\t\t\t(021) 6690755, 6612341\t(021) 6695092\t\tTeguh Santoso\n\tJakarta Utara\t\tNissan\t\tNissan Diesel, Sunter\t\tJL. Danau Sunter Selatan Blok O 2 No. 5\t\t(021) 6507150\t\t6507161\t\t\tNyoman Puja\n\tJakarta Utara\t\tSuzuki\t\tPT. Sumberbaru sentral mobile \tJl. Inspeksi Kalimalang Kav. Billy & Moon RT 03/01\t(021) 869 03019 \t\t(021) 869 03021 \t\tIbu Anna\n\tJakarta Utara\t\tToyota\t\tPT. Toyota Astra Motor\t\tJL. Laks. Yos Sudarso Sunter II Jakarta 14330\t\t(021) 6515551\t\t(021) 6512238\t\tBudi riyanto FAX 65307639\n\tJakarta Utara\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Yos Sudarso Kav. 24, Sunter II\t\t\t(021) 6511002, 6511720\t(021) 6511043\t\tSudjarwo Priyono\n\tJakarta Utara\t\tIsuzu\t\tPT. Astra International Isuzu\t\tJL. Yos Sudarso No. 30 Sunter\t\t\t\t(021) 65834684\t\t(021)65304434  \t\tArif  \n\t\t\t\t\t\t\t\n19\tJambi\t\t\tSuzuki\t\tCV Jaya Indah Motor\t\tJl. KH Dewantara 66/68 simpang kawat jambi\t\t(0741) 63362 \t\t(0741) 60675 \t\tZul fakar\n\tJambi\t\t\tMitsubishi\tPT Kerinci Permata Motors\t\tJl Abunjani no 10 Simpang 3 sipin Jambi\t\t\t(0741) 60300 /  616 66\t(0741) 60263\t\tP'ERWIN KA BENG, NURAINI/IKE ADM LIA SERVICE\n\tJambi\t\t\tDaihatsu\t\tSurya sentosa primatama\t\tJl kol Abunjani no 9\t\t\t\t\t(0741) 670055-56\t\t(0741) 61573\t\tIMELDA,  \n\t\t\t\t\t\t\t\t\n20\tJember\t\t\tToyota\t\tAUTO 2000 \t\t\tJl Hayam Wuruk No 54 Jember\t\t\t(0331) 422000\t\t\t\t\tKa Beng Pak Lutfi HP 0815-59807529\n\tJember\t\t\tMitsubishi\tPT Mayang Sari Berlian Motors\tJL Gajahmada no 224 A\t\t\t\t(0331) 484366/484367\t(0331) 484633\t\tIbu Dyah\n\tJember\t\t\tDaihatsu\t\tBesuki Raya Motor\t\t\tJL. Hayam Wuruk No. 40\t\t\t\t(0331) 421891\t\t(0331) 482670\t\tArief Subagyo\n\t\t\t\t\t\t\t\n21\tJepara\t\t\tSuzuki\t\t\t\t\t\t\t\t\t\t\t\t0291-3367878 \t\t\t\t\tPAK SUGENG BRAND MANAGER\n\t\t\t\t\t\t\t\n22\tKarawang\t\tSuzuki\t\tPT. RMK - Karawang\t\tJL. Jend. A. Yani No. 36, Karawang\t\t\t(0267) 403085\t\t(0267) 403083\t\tTantri (08128741667)\n\tKarawang\t\tToyota\t\tAUTO 2000 \t\t\t\t\t\t\t\t\t(0267) 412000 \t\t(0267) 402570 \t\tPAK BOBY 0816-787918 P'DASEP\n\tKarawang\t\tASTRA\t\tdaihatsu dan isuzu jg ac\t\tjl. kerta bumi no 38 \t\t\t\t(0267) 402539\t\t(0267) 402006\t\tbpk syahrul, kabeng ato tojiri\n\t\t\t\t\t\t\t\n23\tKbn Jeruk\t\t\tNissan\t\tINDOMOBIL TRADA NISSAN\t\tARTERI KELAPA 2 NO 30\t\t\t\t(021) 5362477\t\t(021)  5324756\t\tP'ALEX, IBU FANIE\n\t\t\t\t\t\t\t\n24\tKediri\t\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Soekarno Hatta 152\t\t\t\t(0354) 688501-2, 684412\t(0354) 684576\t\tA. Chuzaeni\n\tKediri\t\t\tSuzuki\t\tgaruda motor\t\t\tJl. Brawijaya No. 34\t\t\t\t(0354) 681562\t\t(0354) 661371\t\t 081556539655\n25\tKendari SULTENG\t\tSemua\t\tSetia Kawan Motor Suzuki\t\tJL R.Suprapto No 58 kendari\t\t\t\t(0401) 326320\t\t(0401) 3126402\t\tBELUM REKANAN\n\t\t\t\t\t\t\t\n26\tKetapang\t\tMitsubishi\tPd Sumber baru motor\t\tJL.brigjen Katamso KM 2.5 sukaharja \t\t\t(0534) 31200\t\t\t\t\tIBU Kapui\n\t\t\t\t\t\t\t\n27\tKudus - Jateng\t\tToyota\t\tCv Surya Indah Motor\t\tJL.Raya Kudus pati KM 4\t\t\t\t(0291) 433215\t\t(0291) 432091\t\tPak Hartono\n\t\t\t\t\t\t\t\n28\tLampung\t\t\tSuzuki\t\tPT. Persada Lampung Raya\t\tJL. Zainal Abidin Pagar Alam No. 2 Lampung\t\t(0721) 703325, 703329\t(0721) 704953\t\tBpk. Suyono\n\tLampung\t\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Jend. A. Yani No. 1 Tanjung Karang\t\t\t(0721) 269000\t\t(0721) 241283\t\tKahono\n\tLampung\t\t\tBAN\t\tAnugrah Ban \t\t\tJL. Laksamana Hayati No. 8 Telukbetung\t\t(0721) 486458\t\t(0721) 482386\t\tSansan\n\tLampung bandar jaya\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Proklamator Bandar Jaya\t\t\t\t(0725) 528088-528152\t(0725) 528294\t\tPAK Eko Supriyanto\n\tLampung bandar lampung\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. KH. Moch. Salim No. 29 Way Lunik - Panjang\t\t( 0721 ) 31656, 341111\t( 0721 ) 343123\t\tBpk. Misri\n\tLampung Kotabumi\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Jend Sudirman No. 202 Kotabumi - Lampung\t( 0724 ) 22563\t\t( 0724 ) 21983\t\tPak Slamet\n\tlampung Metro\t\tSuzuki\t\tPT. Sriwijaya Metropersada\t\tJL. Jend. Soedirman Ganjaragung 14/11 Metro\t\t ( 0725 ) 42386\t\t ( 0725 ) 42336\t\tBpk. Zuki\n\tLampung Metro\t\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Jend. Sudirman No. 198 Metro - Lampung\t\t ( 0725 ) 42588\t\t ( 0725 ) 42522\t\tBpk. Nyoman\n\tLampung Selatan\t\tToyota\t\tPT. Astra International Tbk \t\tJL. Raya Haji Mena No. 2000, Natar 35362\t\t ( 0721 ) 782000\t \t( 0721 ) 789176\t\tBpk. Elfasri\n\tlampung Tanjung Karang\tToyota\t\tPT. Astra International Tbk\t\tJL. Raden Intan No. 61-A Tanjung Karang 35118\t\t ( 0721 ) 252000\t\t ( 0721 ) 264923\t\tBpk. Murad\n\tLampung Tenggiri\t\tMitsubishi\tLautan berlian utama motor\t\t \t\t\t\t\t( 0721 ) 483000\t\t ( 0721 ) 481765\t\tPak Juanda SA X\n\t\t\t\t\t\t\t\n29\tMadiun\t\t\tDaihatsu\tPt Jolo Indah Motor\t\tJL Cokrominoto no 96\t\t\t\t(0351) 451275 / 464264\t\t\t\tIBU ANA\n\tMadiun\t\t\tToyota\t\tAUTO 2000 \t\t\tJL Cokrominoto no 47\t\t\t\t(0351) 492000\t\t(0351) 493573\t\tPKS DENGAN BASUKI RAHMAD SA SYAIFUL BAHRI\n\tMadiun\t\t\tIsuzu\t\tJolo Motor ASTRA INTENATIONAL\tJl. Urip sumoharjo no 13 Madiun\t\t\t(0351) 464264\t\t(0351) 455021\t\tKepala bengkel bapak andry 081330010280\n\t\t\t\t\t\t\t\n30\tMagelang\t\tToyota\t\tNasmoco toyota\t\t\tJL. Raya magelang km 5 Magelang\t\t\t(0293) 326871\t\t(0293) 326611\t\tIbu Jamela\n\tMagelang\t\tBAN\t\tSetiawan spooring\t\tJL Urip Sumoharjo no 169 \t\t\t\t(0293) 360890\t\t(0293) 360890\t\tIBU SISKA 0888-694525 Adm,PAK Wahyu\n\t\t\t\t\t\t\t\n31\tMakasar\t\t\tToyota\t\tPT. Hadji Kalla II\t\t\tJL. Urip Sumoharjo No. 110 Ujung Pandang\t\t(0411) 448844\t\t(0411) 449303\t\n\tMakasar\t\t\tMitsubishi\tBosowa Berlian Motor\t\tJL. Urip Sumoharjo No. 266 KM 4\t\t\t(0411) 444444\t\t(0411) 447742\t\tZakaria Lande\n\tMakasar\t\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Urip Sumoharjo 64\t\t\t\t(0411) 449111, 449911\t(0411) 449359\t\tEndro Sasongko SDH BUKAN ) SA PAK ISMAIL HP 0852-99300657\n\t\t\t\t\t\t\t\n32\tMalang\t\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. A. Yani 175\t\t\t\t\t(0341) 491743, 496786\t(0341) 491983\t\tSuluh Djatmiko\n\tMalang\t\t\tToyota\t\tPT. Astra International Tbk\t\tJL Let Sutoyo NO 25\t\t\t\t(0341) 472000\t\t(0341) 491003\t\tBERNADHI\n\tMalang\t\t\tSuzuki\t\tPT Sun star motor\t\t\tJL A.Yani no 102\t\t\t\t\t(0341) 456592-3\t\t(0341) 456596\t\n\t\t\t\t\t\t\t\n33\tManado\t\t\tDaihatsu\tPT. Astra International Tbk \t\tJL. RE. Martadinata No. 69\t\t\t\t(0431) 866602\t\t(0431) 851278\t\tPAK ARTHER HP 0431-3398708\n\tManado\t\t\tToyota\t\tCV Kombos\t\t\tJL. Raya Kombos Manado 95233\t\t\t(0431) 813507\t\t(0431) 813537\t\tDiky\n\tManado\t\t\tMitsubishi\tBosowa Berlian Motor\t\tJL. Kairagi No. 36\t\t\t\t\t(0431) 863856\t\t(0431) 862468\t\tRidwan\n\t\t\t\t\t\t\t\n34\tMedan\t\t\tSuzuki\t\tPT. Trans Sumatra Agung\t\tJL. H. Adam Malik D/H Glugur By Pass Medan\t\t(061) 6618006\t\t(061) 6618777\t\tZoson,  \n\tMedan\t\t\tMitsubishi\tPT Sumatra Berlian Motors\t\tJL Tanjung morawa km 7 no 34\t\t\t(061) 7866868\t\t(061) 7867989\t\tPak Didin HP 0812-6507074 / Rina admin\n\tMedan\t\t\tBAN\t\tUD. Banindo Perkasa\t\tJL. Glugur By Pass 100 d/h 90 Medan\t\t\t(061) 6618017\t\t(061) 6632008\t\tKasda / Ali\n\tMedan\t\t\tToyota\t\tAuto 2000 Medan\t\t\tJL. Sisingamangaraja No. 8 Medan\t\t\t(061) 7363388 \t\t(061) 7362300\t\tRobertus Homadi\n\tMedan\t\t\tUmum\t\tCV Asta Padu\t\t\tJL selar No 3 Koala tanjung (aluminium smelting)\t(0621) 21413\t\t(0621) 326474\t\tAyung HP 0811-621948\n\tMedan\t\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Sisingamangaraja No. 170\t\t\t(061) 7349000\t\t(061) 7361133\t\tSutarsono\n\tMedan\t\t\tDaihatsu\tCapella Medan Kisaran Asahan\tJL Imam Bonjol No 303  Kisaran dekat Asahan\t\t(0623) 44236\t\t(0623) 44236\t\tSudarsono\n\tMedan \t\t\tDaihatsu\tCapella Medan \t\t\tJL. Sisingamangaraja KM 6,5 Tanjung Morawa\t\t(061) 7863214\t\t(061) 7863207\t\tT. Sitanggang\n\t\t\t\t\t\t\t\n35\tPadang\t\t\tDaihatsu\tPT. Capella Medan\t\tJL. Prof. Dr. Hamka No. 123 Padang Utara\t\t(0751) 7051777, 7059894 \t(0751) 7057644\t\tYusman ( 0751-7861114\n\tPadang\t\t\tIsuzu\t\tPt.isuindomas\t\t\tJl. S. Parman 182, Padang\t\t\t\t(0751) 51637, 50783, 59124\t(0751) 52130\t\n\t\t\t\t\t\t\t\n36\tPalembang\t\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Raya Jend. A. Yani No. 17 Rt 20/13 Ulu\t\t ( 0711 ) 510583, 510585\t ( 0711 ) 510586\t\tBpk. H. Danu Darmoko\n\tPalembang\t\tSuzuki\t\tPT. Thamrin Bersaudara\t\tJL.Mayor Santoso No. 31 - 38 Palembang\t\t ( 0711 ) 311311, 364072\t ( 0711 ) 311112\t\tBpk. Hendrik Suganda,SA HERY, SOLEH\n\tPalembang\t\tDaihatsu\tPT. Astra International Tbk\t \tJL. Jend. A. Yani 100 - 104 Ulu\t\t\t(0711) 511889, 511812\t(0711) 352621\t\tA. Supardi\n\tPalembang\t\tBAN\t\tSumber Ban\t\t\tJL. Jend. Sudirman KM 3.5 No. 22 AB\t\t\t(0711) 356272\t\t(0711) 314662\t\tAnastasia Makmur\n\tPalembang \t\tToyota\t\tPT. Astra International Tbk - Toyota\tJL. Jend. A. Yani No. 5502 Palembang 30126\t\t ( 0711 ) 512000, 517979\t ( 0711 ) 512943\t\tPak Amin ADM SERVICE\n\tPalembang Prabumulih\tSuzuki\t\tPT. Thamrin Bersaudara Sekarang\tJL. Jend. Soedirman KM 6 Prabumulih\t\t\t ( 0713 ) 321071, 321075\t0713-321779\t\tBpk. Budiono\n\t\t\t\t\t\t\t\n37\tPalu\t\t\tMitsubishi\tBosowa Berlian Motor\t\tJL. RA. Kartini No. 51\t\t\t\t(0451) 422026\t\t(0451) 421196\t\tAbdurahim (0811459337)\n\t\t\t\t\t\t\t\n38\tPangkal pinang\t\tMitsubishi\tPT lautan berlian utama motor\tJl M.S Rachman no 59 A Pangkal Pinang 33144\t\t(0717) 431666 / 422333\t(0717) 431666\t\tEDO\n\t\t\t\t\t\t\t\n39\tPekalongan\t\tDaihatsu\tPT. Astra International Tbk \t\tJL. Merdeka 19\t\t\t\t\t(0285) 412345\t\t(0285) 412828\t\tAli Arifin\n\t\t\t\t\t\t\t\n40\tPekanbaru\t\tDaihatsu\tPT. Capella Medan\t\tJL. Arengka No. 53\t\t\t\t\t(0761) 571900\t\t(0761) 572411\t\tAdi SUCIPTO ( HP : 08127529826 ) SA P'GINTING\n\tPekanbaru\t\tMitsubishi\tPT. Suka Fajar\t\t\tJL. Arengka No. 352-354 No. 140\t\t\t ( 0761 ) 572544\t\t ( 0761 ) 572816\t\tBpk. Taufik\n\tPekanbaru\t\tMitsubishi\tPT Pekan Perkasa Berlian Motors\tJL. Jend. Sudirman No. 230\t\t\t\t(0761) 848808,76129027\t(0761) 848438\t\tBpk. H. GINO HP 0761-3060316\n\tPekanbaru\t\tAC \t\tSekawan Servis\t\t\t. Riau Ujung No. 328\t\t\t\t(0761) 861668/853684\t(0761) 861663 / 858818\tPingping\n\tPekanbaru\t\tToyota\t\tPT. Agung Automall\t\tJL. Dr. Sutomo No. 13, Pakanbaru 28143\t\t(0761) 22252\t\t( 0761 ) 32352\t\tBpk. Made W / Bpk. Gunadi EXT 105 P'HENDRA SA\n\tPekanbaru\t\tAC \t\tCitra Sejuk Klimatindo\t\tJl. Soekarno Hatta no 2 Arengka\t\t\t(0761) 7051340\t\tBpk Kainul 08127534340\n\tPekanbaru\t\tIsuzu\t\tPt. Insuindomas Putra\t\tJl. Tambusai no 347-349\t\t\t\t0761 – 29145/46\t\t(0761) 29147\t\tBpk Yulius\n\t\t\t\t\t\t\t\n41\tPematang Siantar\t\tDaihatsu\tPT Capella Medan\t\t\tJL. Medan Km 6 Simpang Karang Sari \t\t\t(0622) 23711\t\t(0622) 7436522\t\tPak Salam Bangun HP 0812-64301354\n\t\t\t\t\t\t\t\n42\tPontianak\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Imam Bonjol 529\t\t\t\t(0561) 748260, 748262\t(0561) 732768\t\tM. Ismail\n\tPontianak\t\tMitsubishi\tGemilang berlian Indah\t\tJl arteri Supadio km 1.5\t\t\t\t(0561) 589888\t\t(0561) 582999\t\tIBU ERA\n\tPontianak\t\tIsuzu\t\tBorneo auto cemerlang\t\tJl . Pahlawan no 2 & 3 \t\t\t\t(0561) 735757\t\t(0561) 734308\t\tPak Arif\n\tPontianak\t\tBAN\t\tBan Pontianak\t\t\tJl. Imam Bonjol No 8 A\t\t\t\t(0561) 761607/608\t\t\t\t\tKo Atman\n\t\t\t\t\t\t\t\n43\tProbolinggo JATIM\t\tSuzuki\t\tSurya Raya Motor\t\t\tJl Soekarno Hatta  170 \t\t\t\t20420-23108\t\t\t\t\tLIENA  SURYAWATI\n\t\t\t\t\t\t\t\n44\tPurwokerto\t\tMitsubishi\tSinar Berlian Auto Graha\t\tJL. Gerilya Timur 103\t\t\t\t(0281) 635333\t\t(0281) 636777\t\tJumeno\n\tPurwokerto\t\tDaihatsu\tTorana Motor\t\t\tJL. Jend. Sudirman No. 61\t\t\t\t(0281) 633934\t\t\t\t\tYudi ( HP : 08156971260 )\n\t\t\t\t\t\t\t\n45\tSamarinda\t\tDaihatsu\tPT. Astra International Tbk \t\tJL. Ir. H. Juanda No. 55\t\t\t\t(0541) 748595\t\t(0541) 748594\t\tArthur Kindangen\n\t\t\t\t\t\t\t\n46\tSampit\t\t\tMitsubishi\tMurni Berlian Motor\t\t\t\t\t\t\t\t(0531) 30876\t\t(0531) 30867\t\tIBU MILA\n\tSampit\t\t\tSemua\t\tDwi Jaya Motor\t\t\tJL. cilik riwut KM 2 kalteng\t\t\t\t(0531) 32000\t\t(0531) 31700\t\tHelen / yayu/  Agus subagyo bos HP 0811-524001\n\t\t\t\t\t\t\t\t\n47\tSemarang\t\tMitsubishi\tSidodadi Berlian Motor\t\tJL. Siliwangi No. 287 A Kalibanteng\t\t\t(024) 7603957\t\t(024) 7604206\t\tHeru Rubianto\n\tSemarang\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Majapahit No. 111-117\t\t\t\t(024) 6717111, 6718111\t(024) 6723650\t\tA. Bayu Syafe'I\n\tSemarang\t\tSuzuki\t\tPT. Sunmotor Indosentra Strada\tJL. Pemuda No. 65 Semarang\t\t\t(024) 3565000\t\t(024) 3584677\t\tDita Mahar\n\tSemarang\t\tBAN\t\tFajar Baru\t\t\tJL. Barito Raya 58 ( Sebelah Ciliwung II )\t\t(024) 3543156\t\t(024) 3543156 PENCET 101\tWahyu / RITA\n\t\t\t\t\t\t\t\n48\tSidoarjo\t\t\tMitsubishi\tBumen Redja Abadi\t\tJL. Raya Larangan  No. 2 Candi\t\t\t(031) 8950467\t\t(031) 8921401\t\tHeri Winarko IBU UMI SERVICE\n\tSidoarjo\t\t\tUmum\t\tMEGAH ASRI MOTOR\t\tJL Wadug Asri 82-84 Waru Sidoarjo\t\t\t(031) 8672866\t\t(031) 8672844\t\tIBU LENI\n\t\t\t\t\t\t\t\n49\tSolo\t\t\tDaihatsu\tPT. \tAstra International Tbk \t\tJL. Raya Solo Permai - Solo baru\t\t\t(0271) 620973, 620977\t(0271) 620963\t\tM. Surofi\n\tSolo \t\t\tMitsubishi\tPT Satrio Widodo\t\t\tJL. Adisucipto km 7.3\t\t\t\t0274-486706/488601\t0274-489214\t\tPak Sugi\n\t\t\t\t\t\t\t\n50\tSukabumi\t\t\tToyota\t\tSelamet  lestari mandiri\t\tJL Arif rahman hakim no 43\t\t\t\t(0266) 221800 /224976\t(0266) 224976/ 222354\tBudi harso\n\tSukabumi\t\t\tMitsubishi\tPT. Merdeka Motors\t\tJL. KH. A. Sanusi No. 33\t\t\t\t(0266) 222702,225023\t(0266) 225044\t\tRudy ( 08569994398 )\n\t\t\t\t\t\t\t\n51\tSumedang\t\t\t\tCV Sumber Rejeki\t\t\tJL. Mayjen Abdul Rachman no 128-130\t\t(0266) 201527/201953\t(0266) 201720\t\tPak Apandi\n\t\t\t\t\t\t\t\n52\tSurabaya\t\t\tBAN\t\tParamitha Ban\t\t\tJL. Jemur Sari Raya No. 150 Surabaya\t\t\t(031) 8432112\t\t(031) 8497087 /8438701\tDede (DEWI/EKA PIC)\n\tSurabaya\t\t\tToyota\t\tPT. Astra International Tbk\t\tJL. Basuki Rahmat 115-117\t\t\t\t(031) 5452000\t\t(031) 5342060\t\tHartono Kurniawan SA Pak Rofikun / WAHYUWIDIATMOKO\n\tSurabaya\t\t\tMitsubishi\tMurni Berlian Motor\t\tJL. Demak 172 Surabaya\t\t\t\t(031) 5323736 / 5353531\t(031) 5314386\t\tSudarsono\n\tSurabaya\t\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. HR. Muhammad No. 73 Bengkel Sungkono\t\t(031) 7312000\t\t(031) 7314000\t\tAzis ( SA )\n\tSurabaya\t\t\tMitsubishi\tPT Sun star motor\t\t\tJL. Ngagel  no 81-85\t\t\t\t(031) 5015690/1\t\t(031) 5018272\t\tPak Yohan\n\tSurabaya\t\t\tAC \t\tPanca Jaya Ac\t\t\tJl Kapas krampung No 1991\t\t\t\t(031) 5037265 \t\t(031) 5039131\t\tP' Ameng HP 0812-1785198 / 7341156\n\tSurabaya\t\t\tSuzuki\t\tUnited Motor Centre\t\tJL A.Yani no 40 \t\t\t\t\t(031) 8280612\t\t\t\t\tP'BAMBANG SUGIONO\n\tSurabaya\t\t\tIsuzu\t\tAstra Isuzu\t\t\tJL Kombes M Duryat  17\t\t\t\t(031) 5470808\t\t(031) 5342269\t \n\tSurabaya\t\tHonda\t\tHonda Saver\t\t\tJl Genteng Besar 106-110 Surabaya\t\t\t(031) 5460975 – 5325525\t(031) 5346894\t\n\tSurabaya Hr Muhammad\tDaihatsu\tPT. Astra International Tbk\t\tJL. HR Muhammad No. 4 & 6\t\t\t\t(031) 7345700\t\t\t\t\tAndreas Benjamin\n\tSurabaya Waru\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Sawo Tratap Km 15 Waru - Sidoarjo\t\t(031) 8533777, 8535526\t(031) 8533778\t\tAidil FB Swastomo, SA PAK SUWOTO\n\t\t\t\t\t\t\t\n53\tTangerang\t\tHino\t\tPT Hino Motor Sales Indonesia\tJL Raya gatot subroto KM 8.5 Tgr\t\t\t(021) 5918844\t\t(021) 5917887\t\tPak Deden \n\t\t\t\t\t\t\t\n54\tTasikmalaya\t\tSuzuki\t\tCakra Putra Parahyangan\t\tJL. Dr. Moh. Hatta No. 158\t\t\t\t(0265) 337470\t\t(0265) 337471\t\tJono (081802281163) ADM SA IBU AIRIKA\n\t\t\t\t\t\t\t\n55\tTegal\t\t\tDaihatsu\tPT. Astra International Tbk\t\tJL. Kol. Sugiono No. 104\t\t\t\t(0283) 359676, 359677\t(0283) 324954-359678\tAgustinus Karyadi\n\tTegal \t\t\tMitsubishi\tPT Matahari Berlian Motor\t\tJL. Kapten sudibyo no 125\t\t\t\t(0283) 352525/359595\t(0283) 350505\t\n\t\t\t\t\t\t\t\n56\tYogyakarta\t\tBAN\t\tSetiawan spooring\t\tJL Laksda Adisucipto KM 7\t\t\t\t(0274) 867449\t\t(0274) 867449\t\tIBU TUTI/ IBU Galuh adm, PAK Wahid \n\tYogyakarta\t\tDaihatsu\tPT. Astra International Tbk \t\tJL. Magelang KM 7,2\t\t\t\t(0274) 868074, 868075\t(0274) 868650\t\tSuhardiman\n\tYogyakarta\t\tMitsubishi\tUD. Borobudur Motors\t\tJL. Laksda Adi Sucipto Km 73\t\t\t(0274) 486706/488601\t(0274) 512214/ 487169/ 488573 OK\tSugih Utomo IBU SUMIRAH\n\tYogyakarta\t\tToyota\t\tNasmoco toyota\t\t\tJL Raya Magelang km 7\t\t\t\t(0274) 868808\t\t(0274) 868992\t\tP'BANDUNG 0856-643163369\n");
@@ -4229,7 +3776,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea11.setColumns(20);
         jTextArea11.setEditable(false);
-        jTextArea11.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea11.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea11.setRows(5);
         jTextArea11.setTabSize(5);
         jTextArea11.setText("\tDATA BENGKEL REKANAN\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\tKota\t\t\tJenis\t\tNama\t\t\t\tAlamat\t\t\t\t\t\tTelp\t\t\tFax\t\t\tPIC\n1\tAceh\t\t\tUmum\t\tPutra jaya \t\t\tJL.Imuem leung bata km 2,5 Panterik\t\t\t(0651) 22694\t\t(0651) 29873\t\tPak Hendrik\n\t\t\t\t\t\t\t\n2\tBali\t\t\tMitsubishi\tBumen Redja Abadi\t\tJL. Imam Bonjol 375 R\t\t\t\t(0361) 483002\t\t(0361) 484133\t\tPrasetyo Theriady\n\tBali Gianyar\t\tDaihatsu\t\tPT. Astra International Tbk\t\tBr. Blah Tanah Ds Batuan Sukawati\t\t\t(0361) 974464, 974693\t(0361) 974463\t\tWahyudi\n\tBali, Denpasar\t\tToyota\t\tPT. Astra International Tbk\t\tJL. Hos. Cokroaminoto  No. 81, Ubung, Denpasar\t\t(0361) 422000\t\t(0361) 410311\t\tKetut Diyana (08883610555) PAK WAYAN DARMAWAN ADM SERVICE\n\t\t\t\t\t\t\t\n3\tBalikpapan\t\tMitsubishi\tMandau Berlian Sejati \t\tJL. MT Haryono No. 36 KM 5 Ring Road\t\t\t(0542) 875479\t\t(0542) 875464\t\tYB Yaniko, P'HERY ACC\n\tBalikpapan\t\tToyota\t\tAuto 2000\t\t\tJL. Jend Sudirman No. 29 Balikpapan\t\t\t(0542) 732000\t\t(0542) 734011\t\tFUKUH KA BENG,Taufik\n\tBalikpapan\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Jend. Sudirman No. 50\t\t\t\t(0542) 419000-760000,763819(0542) 442044\t\tJAMAL / Tatang Setiawan\n\tBalikpapan\t\tALL CAR\t\tFamily Serviceindo\t\t\t\t\t\t\t\t\tNur 087878831504\tJoko 0819-5580844\n\tBalikpapan\t\tBAN\t\tPt. Linda Hauta Wijaya\t\tJl. Jendral sudirman no 263 \t\t\t\t(0542) 427966/7\t\tIbu NANA\n\t\t\t\t\t\t\t\n4\tBandung\t\t\tMitsubishi\tPT Surya Putra Sarana\t\tJL. Jend Sudirman no 776-778\t\t\t\t(022) 6033720/2\t\t(022) 6030563\t\tPak Iwan suryadi\n\tBandung\t\t\tSuzuki\t\tPT. Nusantara Jaya Sentosa\t\tJL. Soekarno Hatta No. 289 Bandung 40234\t\t(022) 5204645\t\t(022) 5203942\t\tAri Rakhmadi\n\tBandung\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Asia Afrika No. 127\t\t\t\t(022) 4238977\t\t(022) 4214440\t\tTRISANTOSO\n\tBandung\t\t\tBAN\t\tPD Lautan Ban\t\t\tJL. Astana Anyar 81 Bandung 40241\t\t\t022) 4203443\t\t(022) 4209657\t\tIBU SUSI\n\tBandung\t\t\tMitsubishi\tPT Surya Putra Sarana\t\tJL. Abdulrahman saleh no 4\t\t\t\t022-6031040\t\t(022) 6030636\t\tPak Iwan suryadi\n\tBandung\t\t\tToyota\t\tPT. Astra International Tbk\t\tJL. Soekarno Hatta No. 145 Bandung\t\t\t(022) 6030450\t\t(022) 6031559\t\tAgus Ryanto\n\tBandung\t\t\tMitsubishi\tSrikandi Daimond Motor\t\tJL. Soekarno Hatta No. 342\t\t\t\t(022) 5407000\t\t(022) 5406776\t\tUnang Sunarya MNGR, SA YUYUNG,DENI\n\tBandung\t\t\tHonda\t\tIstana bandung raya Motor\t\tJl. Cicende No 18\t\t\t\t\t(022) 4240888\t\t(022) 4233629\t\tP'ANDRI SUDJANI Svce Mngr HP 0812-2157215\n\tBandung\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Raya Cibeureum 42\t\t\t\t(022) 6031568, 6031058\t(022) 6035615\t\tJunjung Siregar IBU MIKE 022-6031058\n\tBandung\t\t\tNissan\t\tINDOMOBIL TRADA NISSAN\t\tJL. Soekarno Hatta NO 382\t\t\t\t(022) 5207777\t\t(022) 5207181\t\tPETRUS KURNIA\n\tBandung\t\t\tAUTO 2000 Pasteur\tAUTO 2000 \t\tJl. Dr. Djundjunan No. 192 Bandung 40163 \t\t(022) 2000100 \t\t\t\t\tMunif Latief KABENG\n\tBandung\t\t\tAUTO 2000 Soekarno Hatta\tAUTO 2000 \t\tJl. Soekarno - Hatta No.145 Bandung 40223\t\t(022) 6022000 \t\t\t\t\tAgus Riyanto Kabeng\n\t\t\t\t\t\t\t\n5\tBanjarmasin\t\tDaihatsu\t\tNusantara Indah \t\t\tJL. A. yani km 4,5\t\t\t\t\t(0511) 3262791\t\t(0511) 3272900\t\tPak Arbani\n\tBanjarmasin\t\tMitsubishi\tPT sumber berlian motors\t\tJl. km 10.3 no 1 rt 5 kertak hanya banjar kalsel\t\t(0511) 4281699\t\t(0511) 4281664/ 65\t\tIr. H. Ajie MANAGER ,JAMAL KABENG\n\tBanjarmasin\t\tToyota\t\tWira Megah Profitamas\t\tJL. Jend. A. Yani KM 10 Kertak Hanyar\t\t\t(0511) 3272000\t\t(0511) 3263000\t\tHasbullah PAK HARIS SA\n\tBanjarmasin\t\tMitsubishi\tSumber Berlian Motor\t\tJL. Jend. A. Yani KM 5.5 No. 51\t\t\t(0511) 3252216\t\t(0511) 3255657\t\tIr. H. Ajie\n\tBanjarmasin\t\tIsuzu\t\tAstra International  ISUZU\t\tKALIMANTAN\t\t\t\t\t(0511)3265460, 3267000, 3273621 \t(0511)3267465 \t\n\t\t\t\t\t\t\t\n6\tBanyuwangi\t\tToyota\t\tAUTO 2000 Cab Pembantu Jember\tJL A.Yani no 7\t\t\t\t\t(0333) 422000\t\t(0333) 424953\t\tSA Pak Samuji\n\tBanyuwangi\t\tMitsubishi\tPT. Mayangsari Berlian Motor\tJL. Yos Sudarso, No. 69 A Banyuwang\ti\t\t(0333) 424417,424418\t(0333) 424535\t\tNoerhidayat (081559707300)\n\t\t\t\t\t\t\t\n7\tBatam \t\t\tToyota\t\tPt. Agung Automall\t\t\tJl. Yos Sudarso\t\t\t\t\t(0778)  427585\t\t(0778) 427589\t\tKabeng Bpk Eddy Rahmansyah\n\t\t\t\t\t\t\t\n8\tBaturaja\t\t\tSuzuki\t\tPT. Thamrin Bersaudara\t\tJL. Jend. A. Yani No. 99 Baturaja 31112\t\t\t( 0735 ) 321026\t\t\t\t\tBpk. Laily Ramadhan/ Iwan\n\tBaturaja\t\t\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Jend. A. Yani No. 319 Baturaja\t\t\t( 0735 ) 322747, 321333\t ( 0735 ) 320510\t\tBpk. Tarmizi/Bpk. Suparman\n\t\t\t\t\t\t\t\n9\tBengkulu\t\t\tMitsubishi\tLautan berlian utama motor\t\tJL. S. Parman no 61 padang jati Bengkulu\t\t(0736) 20062, 21934\t(0736)  21134\t\n\tBengkulu\t\t\tSuzuki\t\tSuzuki Service\t\t\tJl M.Jend Sutoyo No 88 \t\t\t\t(0736) 21010\t\t(0736) 26446\t\tIBU MEI\n\t\t\t\t\t\t\t\n10\tBogor\t\t\tSuzuki\t\tPT. RMK - Bogor \t\t\tJL. Raya Tajur No. 91, Bogor\t\t\t\t(0251) 8391273,8352282\t(0251) 8352281\t\tPAK AWANG / / HARI SA/  Handy Tjahjadinata\n\tBogor\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Pajajaran No. 22\t\t\t\t(0251) 325737\t\t(0251) 326633\t\tSapto Pamungkas\n\tBogor\t\t\tMitsubishi\tPT. Prabu pandawa motor\t\tJL.Pajajaran no 20 \t\t\t\t\t(0251) 331201-2\t\t(0251) 8312874\t\tPak Imat suyatman\n\t\t\t\t\t\t\t\n11\tCENTURY \t\tMBAK TATI\t\t\t\t\t\t\t\t\t\t\t(021) 5302423\t\t\n\t\t\t\t\t\t\t\n12\tCibinong\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Raya Bogor - Jakarta KM 43 Pabuaran\t\t(021) 8757870\t\t\t\t\tKhaerullah\n\t\t\t\t\t\t\t\n13\tCikarang\t\t\t\t\tOTO ZONE\t\t\tJL. MH. Thamrin Kav. 133 C Lippo Cikarang\t\t(021) 8990 6611\t\t(021) 8990 6622\t\tHalim\n\tCikarang\t\t\tToyota\t\tAuto 2000\t\t\tJl. M. H. Thamrin Kav. 168, Lippo Cikarang\t\t(021) 8990 2000\t\t(021) 8990 3758/57\t\tPak Daniel , Pak PARYOTO, PAK ODRADI\n\tCikarang\t\t\tHonda\t\tPT. Prospect Motor HONDA\t\tJL. MH. Thamrin No. 152 Lippo Cikarang\t\t(021) 8974142/43\t\t(021) 8974144\t\tArif Harsono\n\t\t\t\t\t\t\t\t\n14\tCilegon\t\t\tToyota\t\tTunas Ridean Tbk\t\t\tJL. Raya Cilegon KM 14\t\t\t\t(0254) 394777/394789\t(0254) 391580\t\tYasri Abdullah\n\tCilegon\t\t\tSuzuki\t\tPT. RMK - Cilegon\t\t\tJL. Raya Serang KM 1, Cibeber, Cilegon\t\t\t(0254) 381500\t\t(0254) 380563\t\tLukito (02549195455)\n\tCilegon\t\t\tMitsubishi\tSetia Kawan menara motor\t\tJl. Raya Cilegon No. 101, Cilegon \t\t\t(0254) 391-267 ; 391-773 \t(0254) 391-171 \t\trimbun\n\t\t\t\t\t\t\t\n15\tCimone\t\t\tSuzuki\t\tPT. RMK - Cimone\t\t\tJL. Merdeka  No. 1, Cimone Tangerang\t\t\t(021) 5517876\t\t(021) 5523968\t\tApendi\n\t\t\t\t\t\t\t\n16\tCirebon\t\t\tSuzuki\t\tCinta Damai Putra Bahagia\t\tJl. Kalijaga No 117 \t\t\t\t\t(0231) 230506 / 230477 \t(0231) 210060\t\n\tCirebon\t\t\tToyota\t\tAuto 2000\t\t\tJL. Brigjen Darsono 14 by pass\t\t\t(0231) 232000\t\t(0231) 202009\t\tPak Winawan SA PAK ALIF , PAK TRI ADM, MULYADI SA\n\tCirebon\t\t\t\t\tPENYET VARIASI ALARM\t\t\t\t\t\t\t\t(0231) 230308\t\t\t\t\tKO ATIK\n\tCirebon\t\t\t\t\tRaharja Putra Ban\t\t\tJL. kesambi No 50\t\t\t\t\t(0231) 231129\t\t(0231) 231129\t\t\t\t\tIsye Slamet, SANTI\n\tCirebon\t\t\tDaihatsu\t\tPT.Astra International Tbk \t\tJL. Tuparev No. 76\t\t\t\t\t(0231) 206691\t\t(0231) 205557\t\t\t\t\tAris Dwinanto\n\tCirebon\t\t\t\t\tPt Bintang Timur\t\t\tJL. Buyut no 4 \t\t\t\t\t(0231) 201040\t\t(0231) 231040\t\tPak Tomy Hadi\n\t\t\t\t\t\t\t\n17\tDenpasar Cokro\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Cokroaminoto 52\t\t\t\t(0361) 429000\t\t(0361) 410928\t\tRatno Yunanto\n\tDenpasar Sanur\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Ngurah Rai 17 X By Pass Sanur\t\t\t(0361) 288323, 288345\t(0361) 288002\t\tWahyudi\n\t\t\t\t\t\t\t\n18\tJakarta\t\t\tHonda\t\tPt Honda autoland\t\t\tjalan raya boulevard barat blok xb 1-2 kelapa gading \t(021) 4501858 / 4501868\t(021) 4529202\t\tibu ERI service\n\tJakarta\t\t\tHonda\t\tPT. IKM\tGedung IKM,\t\t JL. Daan Mogot No. 6\t\t\t\t(021) 5644888\t\t(021) 56962357\t\tRudy Widjaja SA PAK WENI\n\tJakarta\t\t\t\t\tToyota astra motor\t\t\tSUDIRMAN\t\t\t\t\t(021) 2511701-02-07 BOOKING\t(021) 2511700\tDARMA BAYU , SA PAK KUSNAN, JAKA\n\tJakarta\t\t\tHino\t\tPT Hino Motor Sales Indonesia\tJl MT haryono kav 8\t\t\t\t(021) 8564570 / 8564480\t(021) 8515731 / 8517550\tP'DEDEN FAX 5917887\n\tJakarta\t\t\tSuzuki\t\tPT. RMK - Kebon Jeruk\t\tJL. Raya Panjang No. 12  Kebon Jeruk Jakarta Barat\t(021) 5492727\t\t(021) 5493031\t\tAntonius Sumarsono\n\tJakarta\t\t\tHonda\t\tPT. Istana Kebon Jeruk\t\tJL. Panjang No. 200 Jakarta Barat\t\t\t(021) 5492580-81\t\t(021) 5493464\t\tOdik Suhendra (08129928257)\n\tJakarta Barat\t\tToyota\t\tAuto 2000 Daan Mogot\t\tJL. Daan Mogot No.146-147 Jakarta Barat 11510\t\t(021) 5642000\t\t(021) 5688719\t\tDedi Suhendi\n\tJakarta Barat\t\tSemua\t\tPT. Family Servisindo\t\tJL. Arteri Kedoya No.16 Kedoya \t\t\t(021) 5680077\t\t(021) 56007126\t\tWidionarko\n\tJakarta Cibitung\t\tSemua\t\tPT. Family Servisindo\t\tJL. Sumatra D 4 Kawasan Industri MM2100\t\t(021) 89982288\t\t(021) 89982233\t\tRofiq\n\tJakarta klender\t\tAstrido\t\tAstrido Klender\t\t\tKlender\t\t\t\t\t\t021-8610322\t\t021-8610320\t\tP'Tri\n\tJakarta Pusat\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. P. Jayakarta No. 28\t\t\t\t(021) 6590606, 6590600\t(021) 6590610\t\tAgus S.M\n\tJakarta Pusat\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Balikpapan No. 8\t\t\t\t(021) 63864386-87\t\t(021) 63862223\t\tShandy\n\tJakarta Selatan\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Raya Ciputat No. 22\t\t\t\t(021) 7651638, 7651642-44\t(021) 7651639\t\tDjoko Untung\n\tJakarta Selatan\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Sultan Iskandar Muda No. 15\t\t\t(021) 7291011\t\t(021) 7291008\t\tDolf Valentino\n\tJakarta Serpong\t\tDaihatsu\t\tPT. Astra International Tbk - Daihatsu\tBSD City Blok 405/2A Sektor 8 Tangerang\t\t(021) 5380011\t\t(021) 5383888\t\tDARJAT / RAMLI\n\tJakarta Utara\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Raya Pluit Selatan No. 4\t\t\t\t(021) 6690755, 6612341\t(021) 6695092\t\tTeguh Santoso\n\tJakarta Utara\t\tNissan\t\tNissan Diesel, Sunter\t\tJL. Danau Sunter Selatan Blok O 2 No. 5\t\t(021) 6507150\t\t6507161\t\t\tNyoman Puja\n\tJakarta Utara\t\tSuzuki\t\tPT. Sumberbaru sentral mobile \tJl. Inspeksi Kalimalang Kav. Billy & Moon RT 03/01\t(021) 869 03019 \t\t(021) 869 03021 \t\tIbu Anna\n\tJakarta Utara\t\tToyota\t\tPT. Toyota Astra Motor\t\tJL. Laks. Yos Sudarso Sunter II Jakarta 14330\t\t(021) 6515551\t\t(021) 6512238\t\tBudi riyanto FAX 65307639\n\tJakarta Utara\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Yos Sudarso Kav. 24, Sunter II\t\t\t(021) 6511002, 6511720\t(021) 6511043\t\tSudjarwo Priyono\n\tJakarta Utara\t\tIsuzu\t\tPT. Astra International Isuzu\t\tJL. Yos Sudarso No. 30 Sunter\t\t\t\t(021) 65834684\t\t(021)65304434  \t\tArif  \n\t\t\t\t\t\t\t\n19\tJambi\t\t\tSuzuki\t\tCV Jaya Indah Motor\t\tJl. KH Dewantara 66/68 simpang kawat jambi\t\t(0741) 63362 \t\t(0741) 60675 \t\tZul fakar\n\tJambi\t\t\tMitsubishi\tPT Kerinci Permata Motors\t\tJl Abunjani no 10 Simpang 3 sipin Jambi\t\t\t(0741) 60300 /  616 66\t(0741) 60263\t\tP'ERWIN KA BENG, NURAINI/IKE ADM LIA SERVICE\n\tJambi\t\t\tDaihatsu\t\tSurya sentosa primatama\t\tJl kol Abunjani no 9\t\t\t\t\t(0741) 670055-56\t\t(0741) 61573\t\tIMELDA,  \n\t\t\t\t\t\t\t\t\n20\tJember\t\t\tToyota\t\tAUTO 2000 \t\t\tJl Hayam Wuruk No 54 Jember\t\t\t(0331) 422000\t\t\t\t\tKa Beng Pak Lutfi HP 0815-59807529\n\tJember\t\t\tMitsubishi\tPT Mayang Sari Berlian Motors\tJL Gajahmada no 224 A\t\t\t\t(0331) 484366/484367\t(0331) 484633\t\tIbu Dyah\n\tJember\t\t\tDaihatsu\t\tBesuki Raya Motor\t\t\tJL. Hayam Wuruk No. 40\t\t\t\t(0331) 421891\t\t(0331) 482670\t\tArief Subagyo\n\t\t\t\t\t\t\t\n21\tJepara\t\t\tSuzuki\t\t\t\t\t\t\t\t\t\t\t\t0291-3367878 \t\t\t\t\tPAK SUGENG BRAND MANAGER\n\t\t\t\t\t\t\t\n22\tKarawang\t\tSuzuki\t\tPT. RMK - Karawang\t\tJL. Jend. A. Yani No. 36, Karawang\t\t\t(0267) 403085\t\t(0267) 403083\t\tTantri (08128741667)\n\tKarawang\t\tToyota\t\tAUTO 2000 \t\t\t\t\t\t\t\t\t(0267) 412000 \t\t(0267) 402570 \t\tPAK BOBY 0816-787918 P'DASEP\n\tKarawang\t\tASTRA\t\tdaihatsu dan isuzu jg ac\t\tjl. kerta bumi no 38 \t\t\t\t(0267) 402539\t\t(0267) 402006\t\tbpk syahrul, kabeng ato tojiri\n\t\t\t\t\t\t\t\n23\tKbn Jeruk\t\t\tNissan\t\tINDOMOBIL TRADA NISSAN\t\tARTERI KELAPA 2 NO 30\t\t\t\t(021) 5362477\t\t(021)  5324756\t\tP'ALEX, IBU FANIE\n\t\t\t\t\t\t\t\n24\tKediri\t\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Soekarno Hatta 152\t\t\t\t(0354) 688501-2, 684412\t(0354) 684576\t\tA. Chuzaeni\n\tKediri\t\t\tSuzuki\t\tgaruda motor\t\t\tJl. Brawijaya No. 34\t\t\t\t(0354) 681562\t\t(0354) 661371\t\t 081556539655\n25\tKendari SULTENG\t\tSemua\t\tSetia Kawan Motor Suzuki\t\tJL R.Suprapto No 58 kendari\t\t\t\t(0401) 326320\t\t(0401) 3126402\t\tBELUM REKANAN\n\t\t\t\t\t\t\t\n26\tKetapang\t\t\tMitsubishi\tPd Sumber baru motor\t\tJL.brigjen Katamso KM 2.5 sukaharja \t\t\t(0534) 31200\t\t\t\t\tIBU Kapui\n\t\t\t\t\t\t\t\n27\tKudus - Jateng\t\tToyota\t\tCv Surya Indah Motor\t\tJL.Raya Kudus pati KM 4\t\t\t\t(0291) 433215\t\t(0291) 432091\t\tPak Hartono\n\t\t\t\t\t\t\t\n28\tLampung\t\t\tSuzuki\t\tPT. Persada Lampung Raya\t\tJL. Zainal Abidin Pagar Alam No. 2 Lampung\t\t(0721) 703325, 703329\t(0721) 704953\t\tBpk. Suyono\n\tLampung\t\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Jend. A. Yani No. 1 Tanjung Karang\t\t\t(0721) 269000\t\t(0721) 241283\t\tKahono\n\tLampung\t\t\tBAN\t\tAnugrah Ban \t\t\tJL. Laksamana Hayati No. 8 Telukbetung\t\t(0721) 486458\t\t(0721) 482386\t\tSansan\n\tLampung bandar jaya\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Proklamator Bandar Jaya\t\t\t\t(0725) 528088-528152\t(0725) 528294\t\tPAK Eko Supriyanto\n\tLampung bandar lampung\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. KH. Moch. Salim No. 29 Way Lunik - Panjang\t\t( 0721 ) 31656, 341111\t( 0721 ) 343123\t\tBpk. Misri\n\tLampung Kotabumi\t\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Jend Sudirman No. 202 Kotabumi - Lampung\t( 0724 ) 22563\t\t( 0724 ) 21983\t\tPak Slamet\n\tlampung Metro\t\tSuzuki\t\tPT. Sriwijaya Metropersada\t\tJL. Jend. Soedirman Ganjaragung 14/11 Metro\t\t ( 0725 ) 42386\t\t ( 0725 ) 42336\t\tBpk. Zuki\n\tLampung Metro\t\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Jend. Sudirman No. 198 Metro - Lampung\t\t ( 0725 ) 42588\t\t ( 0725 ) 42522\t\tBpk. Nyoman\n\tLampung Selatan\t\tToyota\t\tPT. Astra International Tbk \t\tJL. Raya Haji Mena No. 2000, Natar 35362\t\t ( 0721 ) 782000\t \t( 0721 ) 789176\t\tBpk. Elfasri\n\tlampung Tanjung Karang\tToyota\t\tPT. Astra International Tbk\t\tJL. Raden Intan No. 61-A Tanjung Karang 35118\t\t ( 0721 ) 252000\t\t ( 0721 ) 264923\t\tBpk. Murad\n\tLampung Tenggiri\t\tMitsubishi\tLautan berlian utama motor\t\t \t\t\t\t\t( 0721 ) 483000\t\t ( 0721 ) 481765\t\tPak Juanda SA X\n\t\t\t\t\t\t\t\n29\tMadiun\t\t\tDaihatsu\t\tPt Jolo Indah Motor\t\tJL Cokrominoto no 96\t\t\t\t(0351) 451275 / 464264\t\t\t\tIBU ANA\n\tMadiun\t\t\tToyota\t\tAUTO 2000 \t\t\tJL Cokrominoto no 47\t\t\t\t(0351) 492000\t\t(0351) 493573\t\tPKS DENGAN BASUKI RAHMAD SA SYAIFUL BAHRI\n\tMadiun\t\t\tIsuzu\t\tJolo Motor ASTRA INTENATIONAL\tJl. Urip sumoharjo no 13 Madiun\t\t\t(0351) 464264\t\t(0351) 455021\t\tKepala bengkel bapak andry 081330010280\n\t\t\t\t\t\t\t\n30\tMagelang\t\tToyota\t\tNasmoco toyota\t\t\tJL. Raya magelang km 5 Magelang\t\t\t(0293) 326871\t\t(0293) 326611\t\tIbu Jamela\n\tMagelang\t\tBAN\t\tSetiawan spooring\t\t\tJL Urip Sumoharjo no 169 \t\t\t\t(0293) 360890\t\t(0293) 360890\t\tIBU SISKA 0888-694525 Adm,PAK Wahyu\n\t\t\t\t\t\t\t\n31\tMakasar\t\t\tToyota\t\tPT. Hadji Kalla II\t\t\tJL. Urip Sumoharjo No. 110 Ujung Pandang\t\t(0411) 448844\t\t(0411) 449303\t\n\tMakasar\t\t\tMitsubishi\tBosowa Berlian Motor\t\tJL. Urip Sumoharjo No. 266 KM 4\t\t\t(0411) 444444\t\t(0411) 447742\t\tZakaria Lande\n\tMakasar\t\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Urip Sumoharjo 64\t\t\t\t(0411) 449111, 449911\t(0411) 449359\t\tEndro Sasongko SDH BUKAN ) SA PAK ISMAIL HP 0852-99300657\n\t\t\t\t\t\t\t\n32\tMalang\t\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. A. Yani 175\t\t\t\t\t(0341) 491743, 496786\t(0341) 491983\t\tSuluh Djatmiko\n\tMalang\t\t\tToyota\t\tPT. Astra International Tbk\t\tJL Let Sutoyo NO 25\t\t\t\t(0341) 472000\t\t(0341) 491003\t\tBERNADHI\n\tMalang\t\t\tSuzuki\t\tPT Sun star motor\t\t\tJL A.Yani no 102\t\t\t\t\t(0341) 456592-3\t\t(0341) 456596\t\n\t\t\t\t\t\t\t\n33\tManado\t\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. RE. Martadinata No. 69\t\t\t\t(0431) 866602\t\t(0431) 851278\t\tPAK ARTHER HP 0431-3398708\n\tManado\t\t\tToyota\t\tCV Kombos\t\t\tJL. Raya Kombos Manado 95233\t\t\t(0431) 813507\t\t(0431) 813537\t\tDiky\n\tManado\t\t\tMitsubishi\tBosowa Berlian Motor\t\tJL. Kairagi No. 36\t\t\t\t\t(0431) 863856\t\t(0431) 862468\t\tRidwan\n\t\t\t\t\t\t\t\n34\tMedan\t\t\tSuzuki\t\tPT. Trans Sumatra Agung\t\tJL. H. Adam Malik D/H Glugur By Pass Medan\t\t(061) 6618006\t\t(061) 6618777\t\tZoson,  \n\tMedan\t\t\tMitsubishi\tPT Sumatra Berlian Motors\t\tJL Tanjung morawa km 7 no 34\t\t\t(061) 7866868\t\t(061) 7867989\t\tPak Didin HP 0812-6507074 / Rina admin\n\tMedan\t\t\tBAN\t\tUD. Banindo Perkasa\t\tJL. Glugur By Pass 100 d/h 90 Medan\t\t\t(061) 6618017\t\t(061) 6632008\t\tKasda / Ali\n\tMedan\t\t\tToyota\t\tAuto 2000 Medan\t\t\tJL. Sisingamangaraja No. 8 Medan\t\t\t(061) 7363388 \t\t(061) 7362300\t\tRobertus Homadi\n\tMedan\t\t\tUmum\t\tCV Asta Padu\t\t\tJL selar No 3 Koala tanjung (aluminium smelting)\t(0621) 21413\t\t(0621) 326474\t\tAyung HP 0811-621948\n\tMedan\t\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Sisingamangaraja No. 170\t\t\t(061) 7349000\t\t(061) 7361133\t\tSutarsono\n\tMedan\t\t\tDaihatsu\t\tCapella Medan Kisaran Asahan\tJL Imam Bonjol No 303  Kisaran dekat Asahan\t\t(0623) 44236\t\t(0623) 44236\t\tSudarsono\n\tMedan \t\t\tDaihatsu\t\tCapella Medan \t\t\tJL. Sisingamangaraja KM 6,5 Tanjung Morawa\t\t(061) 7863214\t\t(061) 7863207\t\tT. Sitanggang\n\t\t\t\t\t\t\t\n35\tPadang\t\t\tDaihatsu\t\tPT. Capella Medan\t\tJL. Prof. Dr. Hamka No. 123 Padang Utara\t\t(0751) 7051777, 7059894 \t(0751) 7057644\t\tYusman ( 0751-7861114\n\tPadang\t\t\tIsuzu\t\tPt.isuindomas\t\t\tJl. S. Parman 182, Padang\t\t\t\t(0751) 51637, 50783, 59124\t(0751) 52130\t\n\t\t\t\t\t\t\t\n36\tPalembang\t\tMitsubishi\tPT. Lautan Berlian Utama Motors\tJL. Raya Jend. A. Yani No. 17 Rt 20/13 Ulu\t\t ( 0711 ) 510583, 510585\t ( 0711 ) 510586\t\tBpk. H. Danu Darmoko\n\tPalembang\t\tSuzuki\t\tPT. Thamrin Bersaudara\t\tJL.Mayor Santoso No. 31 - 38 Palembang\t\t ( 0711 ) 311311, 364072\t ( 0711 ) 311112\t\tBpk. Hendrik Suganda,SA HERY, SOLEH\n\tPalembang\t\tDaihatsu\t\tPT. Astra International Tbk\t \tJL. Jend. A. Yani 100 - 104 Ulu\t\t\t(0711) 511889, 511812\t(0711) 352621\t\tA. Supardi\n\tPalembang\t\tBAN\t\tSumber Ban\t\t\tJL. Jend. Sudirman KM 3.5 No. 22 AB\t\t\t(0711) 356272\t\t(0711) 314662\t\tAnastasia Makmur\n\tPalembang \t\tToyota\t\tPT. Astra International Tbk - Toyota\tJL. Jend. A. Yani No. 5502 Palembang 30126\t\t ( 0711 ) 512000, 517979\t ( 0711 ) 512943\t\tPak Amin ADM SERVICE\n\tPalembang Prabumulih\tSuzuki\t\tPT. Thamrin Bersaudara Sekarang\tJL. Jend. Soedirman KM 6 Prabumulih\t\t\t ( 0713 ) 321071, 321075\t0713-321779\t\tBpk. Budiono\n\t\t\t\t\t\t\t\n37\tPalu\t\t\tMitsubishi\tBosowa Berlian Motor\t\tJL. RA. Kartini No. 51\t\t\t\t(0451) 422026\t\t(0451) 421196\t\tAbdurahim (0811459337)\n\t\t\t\t\t\t\t\n38\tPangkal pinang\t\tMitsubishi\tPT lautan berlian utama motor\tJl M.S Rachman no 59 A Pangkal Pinang 33144\t\t(0717) 431666 / 422333\t(0717) 431666\t\tEDO\n\t\t\t\t\t\t\t\n39\tPekalongan\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Merdeka 19\t\t\t\t\t(0285) 412345\t\t(0285) 412828\t\tAli Arifin\n\t\t\t\t\t\t\t\n40\tPekanbaru\t\tDaihatsu\t\tPT. Capella Medan\t\tJL. Arengka No. 53\t\t\t\t\t(0761) 571900\t\t(0761) 572411\t\tAdi SUCIPTO ( HP : 08127529826 ) SA P'GINTING\n\tPekanbaru\t\tMitsubishi\tPT. Suka Fajar\t\t\tJL. Arengka No. 352-354 No. 140\t\t\t ( 0761 ) 572544\t\t ( 0761 ) 572816\t\tBpk. Taufik\n\tPekanbaru\t\tMitsubishi\tPT Pekan Perkasa Berlian Motors\tJL. Jend. Sudirman No. 230\t\t\t\t(0761) 848808,76129027\t(0761) 848438\t\tBpk. H. GINO HP 0761-3060316\n\tPekanbaru\t\tAC \t\tSekawan Servis\t\t\t. Riau Ujung No. 328\t\t\t\t(0761) 861668/853684\t(0761) 861663 / 858818\tPingping\n\tPekanbaru\t\tToyota\t\tPT. Agung Automall\t\tJL. Dr. Sutomo No. 13, Pakanbaru 28143\t\t(0761) 22252\t\t( 0761 ) 32352\t\tBpk. Made W / Bpk. Gunadi EXT 105 P'HENDRA SA\n\tPekanbaru\t\tAC \t\tCitra Sejuk Klimatindo\t\tJl. Soekarno Hatta no 2 Arengka\t\t\t(0761) 7051340\t\tBpk Kainul 08127534340\n\tPekanbaru\t\tIsuzu\t\tPt. Insuindomas Putra\t\tJl. Tambusai no 347-349\t\t\t\t0761 – 29145/46\t\t(0761) 29147\t\tBpk Yulius\n\t\t\t\t\t\t\t\n41\tPematang Siantar\t\tDaihatsu\t\tPT Capella Medan\t\t\tJL. Medan Km 6 Simpang Karang Sari \t\t\t(0622) 23711\t\t(0622) 7436522\t\tPak Salam Bangun HP 0812-64301354\n\t\t\t\t\t\t\t\n42\tPontianak\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Imam Bonjol 529\t\t\t\t(0561) 748260, 748262\t(0561) 732768\t\tM. Ismail\n\tPontianak\t\tMitsubishi\tGemilang berlian Indah\t\tJl arteri Supadio km 1.5\t\t\t\t(0561) 589888\t\t(0561) 582999\t\tIBU ERA\n\tPontianak\t\tIsuzu\t\tBorneo auto cemerlang\t\tJl . Pahlawan no 2 & 3 \t\t\t\t(0561) 735757\t\t(0561) 734308\t\tPak Arif\n\tPontianak\t\tBAN\t\tBan Pontianak\t\t\tJl. Imam Bonjol No 8 A\t\t\t\t(0561) 761607/608\t\t\t\t\tKo Atman\n\t\t\t\t\t\t\t\n43\tProbolinggo JATIM\t\tSuzuki\t\tSurya Raya Motor\t\t\tJl Soekarno Hatta  170 \t\t\t\t20420-23108\t\t\t\t\tLIENA  SURYAWATI\n\t\t\t\t\t\t\t\n44\tPurwokerto\t\tMitsubishi\tSinar Berlian Auto Graha\t\tJL. Gerilya Timur 103\t\t\t\t(0281) 635333\t\t(0281) 636777\t\tJumeno\n\tPurwokerto\t\tDaihatsu\t\tTorana Motor\t\t\tJL. Jend. Sudirman No. 61\t\t\t\t(0281) 633934\t\t\t\t\tYudi ( HP : 08156971260 )\n\t\t\t\t\t\t\t\n45\tSamarinda\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Ir. H. Juanda No. 55\t\t\t\t(0541) 748595\t\t(0541) 748594\t\tArthur Kindangen\n\t\t\t\t\t\t\t\n46\tSampit\t\t\tMitsubishi\tMurni Berlian Motor\t\t\t\t\t\t\t\t(0531) 30876\t\t(0531) 30867\t\tIBU MILA\n\tSampit\t\t\tSemua\t\tDwi Jaya Motor\t\t\tJL. cilik riwut KM 2 kalteng\t\t\t\t(0531) 32000\t\t(0531) 31700\t\tHelen / yayu/  Agus subagyo bos HP 0811-524001\n\t\t\t\t\t\t\t\t\n47\tSemarang\t\tMitsubishi\tSidodadi Berlian Motor\t\tJL. Siliwangi No. 287 A Kalibanteng\t\t\t(024) 7603957\t\t(024) 7604206\t\tHeru Rubianto\n\tSemarang\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Majapahit No. 111-117\t\t\t\t(024) 6717111, 6718111\t(024) 6723650\t\tA. Bayu Syafe'I\n\tSemarang\t\tSuzuki\t\tPT. Sunmotor Indosentra Strada\tJL. Pemuda No. 65 Semarang\t\t\t(024) 3565000\t\t(024) 3584677\t\tDita Mahar\n\tSemarang\t\tBAN\t\tFajar Baru\t\t\tJL. Barito Raya 58 ( Sebelah Ciliwung II )\t\t(024) 3543156\t\t(024) 3543156 PENCET 101\tWahyu / RITA\n\t\t\t\t\t\t\t\n48\tSidoarjo\t\t\tMitsubishi\tBumen Redja Abadi\t\tJL. Raya Larangan  No. 2 Candi\t\t\t(031) 8950467\t\t(031) 8921401\t\tHeri Winarko IBU UMI SERVICE\n\tSidoarjo\t\t\tUmum\t\tMEGAH ASRI MOTOR\t\tJL Wadug Asri 82-84 Waru Sidoarjo\t\t\t(031) 8672866\t\t(031) 8672844\t\tIBU LENI\n\t\t\t\t\t\t\t\n49\tSolo\t\t\tDaihatsu\tPT. \tAstra International Tbk \t\tJL. Raya Solo Permai - Solo baru\t\t\t(0271) 620973, 620977\t(0271) 620963\t\tM. Surofi\n\tSolo \t\t\tMitsubishi\tPT Satrio Widodo\t\t\tJL. Adisucipto km 7.3\t\t\t\t0274-486706/488601\t0274-489214\t\tPak Sugi\n\t\t\t\t\t\t\t\n50\tSukabumi\t\t\tToyota\t\tSelamet  lestari mandiri\t\tJL Arif rahman hakim no 43\t\t\t\t(0266) 221800 /224976\t(0266) 224976/ 222354\tBudi harso\n\tSukabumi\t\t\tMitsubishi\tPT. Merdeka Motors\t\tJL. KH. A. Sanusi No. 33\t\t\t\t(0266) 222702,225023\t(0266) 225044\t\tRudy ( 08569994398 )\n\t\t\t\t\t\t\t\n51\tSumedang\t\t\t\tCV Sumber Rejeki\t\t\tJL. Mayjen Abdul Rachman no 128-130\t\t(0266) 201527/201953\t(0266) 201720\t\tPak Apandi\n\t\t\t\t\t\t\t\n52\tSurabaya\t\t\tBAN\t\tParamitha Ban\t\t\tJL. Jemur Sari Raya No. 150 Surabaya\t\t\t(031) 8432112\t\t(031) 8497087 /8438701\tDede (DEWI/EKA PIC)\n\tSurabaya\t\t\tToyota\t\tPT. Astra International Tbk\t\tJL. Basuki Rahmat 115-117\t\t\t\t(031) 5452000\t\t(031) 5342060\t\tHartono Kurniawan SA Pak Rofikun / WAHYUWIDIATMOKO\n\tSurabaya\t\t\tMitsubishi\tMurni Berlian Motor\t\tJL. Demak 172 Surabaya\t\t\t\t(031) 5323736 / 5353531\t(031) 5314386\t\tSudarsono\n\tSurabaya\t\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. HR. Muhammad No. 73 Bengkel Sungkono\t\t(031) 7312000\t\t(031) 7314000\t\tAzis ( SA )\n\tSurabaya\t\t\tMitsubishi\tPT Sun star motor\t\t\tJL. Ngagel  no 81-85\t\t\t\t(031) 5015690/1\t\t(031) 5018272\t\tPak Yohan\n\tSurabaya\t\t\tAC \t\tPanca Jaya Ac\t\t\tJl Kapas krampung No 1991\t\t\t\t(031) 5037265 \t\t(031) 5039131\t\tP' Ameng HP 0812-1785198 / 7341156\n\tSurabaya\t\t\tSuzuki\t\tUnited Motor Centre\t\tJL A.Yani no 40 \t\t\t\t\t(031) 8280612\t\t\t\t\tP'BAMBANG SUGIONO\n\tSurabaya\t\t\tIsuzu\t\tAstra Isuzu\t\t\tJL Kombes M Duryat  17\t\t\t\t(031) 5470808\t\t(031) 5342269\t \n\tSurabaya\t\t\tHonda\t\tHonda Saver\t\t\tJl Genteng Besar 106-110 Surabaya\t\t\t(031) 5460975 – 5325525\t(031) 5346894\t\n\tSurabaya Hr Muhammad\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. HR Muhammad No. 4 & 6\t\t\t\t(031) 7345700\t\t\t\t\tAndreas Benjamin\n\tSurabaya Waru\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Sawo Tratap Km 15 Waru - Sidoarjo\t\t(031) 8533777, 8535526\t(031) 8533778\t\tAidil FB Swastomo, SA PAK SUWOTO\n\t\t\t\t\t\t\t\n53\tTangerang\t\tHino\t\tPT Hino Motor Sales Indonesia\tJL Raya gatot subroto KM 8.5 Tgr\t\t\t(021) 5918844\t\t(021) 5917887\t\tPak Deden \n\t\t\t\t\t\t\t\n54\tTasikmalaya\t\tSuzuki\t\tCakra Putra Parahyangan\t\tJL. Dr. Moh. Hatta No. 158\t\t\t\t(0265) 337470\t\t(0265) 337471\t\tJono (081802281163) ADM SA IBU AIRIKA\n\t\t\t\t\t\t\t\n55\tTegal\t\t\tDaihatsu\t\tPT. Astra International Tbk\t\tJL. Kol. Sugiono No. 104\t\t\t\t(0283) 359676, 359677\t(0283) 324954-359678\tAgustinus Karyadi\n\tTegal \t\t\tMitsubishi\tPT Matahari Berlian Motor\t\tJL. Kapten sudibyo no 125\t\t\t\t(0283) 352525/359595\t(0283) 350505\t\n\t\t\t\t\t\t\t\n56\tYogyakarta\t\tBAN\t\tSetiawan spooring\t\t\tJL Laksda Adisucipto KM 7\t\t\t\t(0274) 867449\t\t(0274) 867449\t\tIBU TUTI/ IBU Galuh adm, PAK Wahid \n\tYogyakarta\t\tDaihatsu\t\tPT. Astra International Tbk \t\tJL. Magelang KM 7,2\t\t\t\t(0274) 868074, 868075\t(0274) 868650\t\tSuhardiman\n\tYogyakarta\t\tMitsubishi\tUD. Borobudur Motors\t\tJL. Laksda Adi Sucipto Km 73\t\t\t(0274) 486706/488601\t(0274) 512214/ 487169/ 488573 OK\tSugih Utomo IBU SUMIRAH\n\tYogyakarta\t\tToyota\t\tNasmoco toyota\t\t\tJL Raya Magelang km 7\t\t\t\t(0274) 868808\t\t(0274) 868992\t\tP'BANDUNG 0856-643163369\n");
@@ -4248,7 +3795,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea6.setColumns(20);
         jTextArea6.setEditable(false);
-        jTextArea6.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea6.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea6.setRows(5);
         jTextArea6.setTabSize(5);
         jTextArea6.setText("\nEmergency Unit\t\tPIC\t\ttelepon\t\tketerangan\npic\t\t\tPak Yos\t\t081288536789\turgent\nemergency driver\t\t\t\t021-53673035\toffice hour\nemergency driver\t\t\t\t08118885381\t\n");
@@ -4267,7 +3814,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea7.setColumns(20);
         jTextArea7.setEditable(false);
-        jTextArea7.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea7.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea7.setRows(5);
         jTextArea7.setTabSize(5);
         jTextArea7.setText("Zona & No. HP Koordinator\t\t\t\nKoord. Lapangan\t\t\t\n\t\t\t\nNo.\tZona\t\t\t\tNama\t\tNo. HP\n1\tKarawang, Cikampek\t\tRifai\t\t081311379819\n2\tCikarang\t\t\t\tBayu\t\t08111800327\n3\tBekasi, Cibitung, MM2100\t\tFitra\t\t081310675702\n4\tDalam Kota I\t\t\tZulkarnaen\t081280453599\n5\tDalam Kota II\t\t\tDeni\t\t081280420067\n6\tSelatan Jakarta\t\t\tAbel\t\t081369630978\n7\tLingkar Luar Selatan Jakarta, PMI\tNares (ex Priyo)\t081398584778\n8\tLingkar Luar Barat Jakarta\t\tPriyo\t\t081288308872\n9\tLingkar Luar Utara Jakarta\t\tDavid\t\t081288304222\n10\tLingkar Luar Timur Jakarta\t\tDiki (ex Izul)\t081386555553\n11\tLuar Kota\t\t\t\tDidin\t\t081381756909\n\t\t\t\nKoord. Back-Up\t\t\t\n\t\t\t\nNo.\tZona\t\tNama\t\tNo. HP\n1\tKlarifikasi\t\tHendry\t\t08176621874\n2\tRental / GT\tIwan\t\t085288666869\n3\tGS / Standby \tDidin\t\t081381756909\n4\tTraining\t\tSupardiyanto\t08121315665\n5\tKlarifikasi\t\tSido\t\t085222206161\n6\tTraining Staff\tHartono\t\t085248329822\n");
@@ -4286,7 +3833,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea8.setColumns(20);
         jTextArea8.setEditable(false);
-        jTextArea8.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea8.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea8.setRows(5);
         jTextArea8.setTabSize(5);
         jTextArea8.setText("\nunit LAKA\t\n\t\nPIC\t\tTelepon1\tTelepon2\nRONNY\t\t08161440682\t081380001562");
@@ -4305,7 +3852,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea9.setColumns(20);
         jTextArea9.setEditable(false);
-        jTextArea9.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea9.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea9.setRows(5);
         jTextArea9.setTabSize(5);
         jTextArea9.setText("\t\n\tunit Luar Kota\t\t\n\nno \tPIC\ttelepon\t\tcakupan\n1\tDhani\t08159312202\tsumatera, sulawesi, kalimantan\n2\tAdam\t0817794945\tjawa, bali , papua\n3\tDewi\t02127481033\tsurat luar kota\n");
@@ -4324,7 +3871,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea10.setColumns(20);
         jTextArea10.setEditable(false);
-        jTextArea10.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea10.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea10.setRows(5);
         jTextArea10.setTabSize(5);
         jTextArea10.setText("\n\t\tNo Telepon Storing Unit\t\t\t\n\t\t\t\nStoring\t\tTelepon\t\tFax\t\tPIC\nKedoya\t\t021 - 5680077\t021 - 56007123\tIbu Ria\nCibitung\t\t021 - 89982288\t021 - 89982233\tBpk Edi\n");
@@ -4343,7 +3890,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jTextArea12.setColumns(20);
         jTextArea12.setEditable(false);
-        jTextArea12.setFont(new java.awt.Font("Calibri", 0, 12));
+        jTextArea12.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextArea12.setLineWrap(true);
         jTextArea12.setRows(5);
         jTextArea12.setTabSize(5);
@@ -4365,6 +3912,624 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         jPanel2.setBounds(10, 170, 990, 480);
         jdp.add(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        pnlou.setBackground(new java.awt.Color(255, 255, 255));
+        pnlou.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pnlou.setLayout(null);
+
+        tblout.setAutoCreateRowSorter(true);
+        tblout.setFont(tblout.getFont().deriveFont((float)11));
+        tblout.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Ticket No.", "Status", "Category", "Assign Dept.", "Assign user", "Customer", "Phone Number", "User", "No.Plat", "Type", "Driver", "Phone", "id"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblout.setRowHeight(20);
+        tblout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbloutMouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(tblout);
+
+        pnlou.add(jScrollPane12);
+        jScrollPane12.setBounds(10, 40, 950, 180);
+
+        tblticconf.setAutoCreateRowSorter(true);
+        tblticconf.setFont(tblticconf.getFont().deriveFont((float)11));
+        tblticconf.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Ticket No.", "Confirm Username", "Status", "Category", "Assign Dept.", "Assign user", "Customer", "Phone Number", "User", "No.Plat", "Type", "Driver", "Phone", "id"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblticconf.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblticconf.setRowHeight(20);
+        tblticconf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblticconfMouseClicked(evt);
+            }
+        });
+        jScrollPane17.setViewportView(tblticconf);
+
+        pnlou.add(jScrollPane17);
+        jScrollPane17.setBounds(10, 230, 950, 200);
+
+        jLabel59.setFont(jLabel59.getFont().deriveFont((float)11));
+        jLabel59.setText("Open From");
+        pnlou.add(jLabel59);
+        jLabel59.setBounds(10, 10, 100, 10);
+
+        dctic7.setDateFormatString("dd/MM/yyyy");
+        dctic7.setFont(dctic7.getFont().deriveFont((float)11));
+        pnlou.add(dctic7);
+        dctic7.setBounds(10, 20, 120, 24);
+
+        dctic8.setDateFormatString("dd/MM/yyyy");
+        dctic8.setFont(dctic8.getFont().deriveFont((float)11));
+        pnlou.add(dctic8);
+        dctic8.setBounds(130, 20, 120, 24);
+
+        jLabel60.setFont(jLabel60.getFont().deriveFont((float)11));
+        jLabel60.setText("Until");
+        pnlou.add(jLabel60);
+        jLabel60.setBounds(130, 10, 100, 10);
+
+        jLabel61.setFont(jLabel61.getFont().deriveFont((float)11));
+        jLabel61.setText("Agen");
+        pnlou.add(jLabel61);
+        jLabel61.setBounds(260, 10, 100, 10);
+
+        btnoutsrch.setFont(btnoutsrch.getFont().deriveFont(btnoutsrch.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnoutsrch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
+        btnoutsrch.setText("Search By");
+        btnoutsrch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnoutsrchActionPerformed(evt);
+            }
+        });
+        pnlou.add(btnoutsrch);
+        btnoutsrch.setBounds(370, 20, 120, 24);
+
+        cbagenou.setFont(cbagenou.getFont().deriveFont((float)11));
+        cbagenou.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "aan", "ramos", "john", "yusnita", "tri", "fitri", "mariana", "mitha", "dessy", "andrianto", "nurdin", "david", "yudho", "favel", "feronika", "oktaviani", "rudi" }));
+        pnlou.add(cbagenou);
+        cbagenou.setBounds(260, 20, 100, 24);
+
+        lblcaloutcount.setFont(lblcaloutcount.getFont().deriveFont((float)11));
+        lblcaloutcount.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        pnlou.add(lblcaloutcount);
+        lblcaloutcount.setBounds(880, 0, 40, 10);
+
+        lblrepticcount11.setFont(lblrepticcount11.getFont().deriveFont((float)11));
+        lblrepticcount11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblrepticcount11.setText("list");
+        pnlou.add(lblrepticcount11);
+        lblrepticcount11.setBounds(920, 0, 40, 10);
+
+        pnlou.setBounds(0, 0, 0, 0);
+        jdp.add(pnlou, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        panelfax.setBackground(new java.awt.Color(255, 255, 255));
+        panelfax.setFont(panelfax.getFont().deriveFont((float)10));
+        panelfax.setOpaque(true);
+        panelfax.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelfaxMouseClicked(evt);
+            }
+        });
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel14.setLayout(null);
+
+        tblfin.setAutoCreateRowSorter(true);
+        tblfin.setFont(tblfin.getFont().deriveFont((float)11));
+        tblfin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "From", "Subject", "Date", "Read", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblfin.setRowHeight(20);
+        tblfin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblfinMouseClicked(evt);
+            }
+        });
+        jScrollPane28.setViewportView(tblfin);
+
+        jPanel14.add(jScrollPane28);
+        jScrollPane28.setBounds(10, 40, 950, 140);
+
+        jLabel65.setFont(jLabel65.getFont().deriveFont((float)11));
+        jLabel65.setText("From :");
+        jPanel14.add(jLabel65);
+        jLabel65.setBounds(10, 10, 100, 10);
+
+        dtfi.setDateFormatString("dd/MM/yyyy");
+        dtfi.setFont(dtfi.getFont().deriveFont((float)11));
+        jPanel14.add(dtfi);
+        dtfi.setBounds(10, 20, 120, 24);
+
+        jLabel69.setFont(jLabel69.getFont().deriveFont((float)11));
+        jLabel69.setText("Until :");
+        jPanel14.add(jLabel69);
+        jLabel69.setBounds(130, 10, 100, 10);
+
+        dtfi1.setDateFormatString("dd/MM/yyyy");
+        dtfi1.setFont(dtfi1.getFont().deriveFont((float)11));
+        jPanel14.add(dtfi1);
+        dtfi1.setBounds(130, 20, 120, 24);
+
+        btnfinsrch.setFont(btnfinsrch.getFont().deriveFont(btnfinsrch.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnfinsrch.setText("Search");
+        btnfinsrch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfinsrchActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btnfinsrch);
+        btnfinsrch.setBounds(260, 20, 100, 24);
+
+        lblview.setBackground(new java.awt.Color(204, 204, 255));
+        lblview.setOpaque(true);
+        jScrollPane29.setViewportView(lblview);
+
+        jPanel14.add(jScrollPane29);
+        jScrollPane29.setBounds(10, 180, 950, 220);
+
+        jLabel90.setFont(jLabel90.getFont().deriveFont((float)11));
+        jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel90.setText("Cust. Company");
+        jPanel14.add(jLabel90);
+        jLabel90.setBounds(670, 10, 90, 10);
+
+        cbcust2.setFont(cbcust2.getFont().deriveFont((float)11));
+        cbcust2.setMaximumRowCount(9);
+        cbcust2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Non-customer", "Customer-Driver", "Customer-User", "Customer-PIC", "Customer-Other", "Internal-ANJ", "Internal-CC", "Internal-CSO", "Internal-Driver", "Internal-Other" }));
+        cbcust2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbcust2ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(cbcust2);
+        cbcust2.setBounds(670, 20, 200, 24);
+
+        btncussaveFax.setFont(btncussaveFax.getFont().deriveFont(btncussaveFax.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btncussaveFax.setText("Save");
+        btncussaveFax.setEnabled(false);
+        btncussaveFax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncussaveFaxActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btncussaveFax);
+        btncussaveFax.setBounds(880, 20, 80, 24);
+
+        jLabel93.setFont(jLabel93.getFont().deriveFont((float)11));
+        jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel93.setText("Ticket No");
+        jPanel14.add(jLabel93);
+        jLabel93.setBounds(530, 10, 60, 10);
+
+        txtnoticfax.setFont(txtnoticfax.getFont().deriveFont((float)11));
+        jPanel14.add(txtnoticfax);
+        txtnoticfax.setBounds(530, 20, 140, 24);
+
+        panelfax.addTab("InBox", jPanel14);
+
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel15.setLayout(null);
+
+        tblfou.setAutoCreateRowSorter(true);
+        tblfou.setFont(tblfou.getFont().deriveFont((float)11));
+        tblfou.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "To", "Subject", "Date", "Cc", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblfou.setRowHeight(20);
+        tblfou.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblfouMouseClicked(evt);
+            }
+        });
+        jScrollPane30.setViewportView(tblfou);
+
+        jPanel15.add(jScrollPane30);
+        jScrollPane30.setBounds(10, 40, 950, 140);
+
+        jLabel75.setFont(jLabel75.getFont().deriveFont((float)11));
+        jLabel75.setText("From :");
+        jPanel15.add(jLabel75);
+        jLabel75.setBounds(10, 10, 100, 10);
+
+        dtfo.setDateFormatString("dd/MM/yyyy");
+        dtfo.setFont(dtfo.getFont().deriveFont((float)11));
+        jPanel15.add(dtfo);
+        dtfo.setBounds(10, 20, 120, 24);
+
+        jLabel76.setFont(jLabel76.getFont().deriveFont((float)11));
+        jLabel76.setText("Until :");
+        jPanel15.add(jLabel76);
+        jLabel76.setBounds(130, 10, 100, 10);
+
+        dtfo1.setDateFormatString("dd/MM/yyyy");
+        dtfo1.setFont(dtfo1.getFont().deriveFont((float)11));
+        jPanel15.add(dtfo1);
+        dtfo1.setBounds(130, 20, 120, 24);
+
+        btnfoutsrch.setFont(btnfoutsrch.getFont().deriveFont(btnfoutsrch.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnfoutsrch.setText("Search");
+        btnfoutsrch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfoutsrchActionPerformed(evt);
+            }
+        });
+        jPanel15.add(btnfoutsrch);
+        btnfoutsrch.setBounds(260, 20, 90, 24);
+
+        lblview1.setBackground(new java.awt.Color(204, 204, 255));
+        lblview1.setOpaque(true);
+        jScrollPane31.setViewportView(lblview1);
+
+        jPanel15.add(jScrollPane31);
+        jScrollPane31.setBounds(10, 180, 950, 220);
+
+        panelfax.addTab("OutBox", jPanel15);
+
+        panelfax.setBounds(0, 0, 50, 0);
+        jdp.add(panelfax, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        pnlHoOu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHoOu.setLayout(null);
+
+        tblhourout.setFont(tblhourout.getFont().deriveFont((float)11));
+        tblhourout.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane40.setViewportView(tblhourout);
+
+        pnlHoOu.add(jScrollPane40);
+        jScrollPane40.setBounds(10, 40, 940, 310);
+
+        dtho.setDateFormatString("dd/MM/yyyy");
+        dtho.setFont(dtho.getFont().deriveFont((float)11));
+        pnlHoOu.add(dtho);
+        dtho.setBounds(10, 20, 120, 24);
+
+        jLabel79.setFont(jLabel79.getFont().deriveFont((float)11));
+        jLabel79.setText("Date");
+        pnlHoOu.add(jLabel79);
+        jLabel79.setBounds(10, 10, 100, 10);
+
+        btnho.setFont(btnho.getFont().deriveFont(btnho.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
+        btnho.setText("Refresh");
+        btnho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhoActionPerformed(evt);
+            }
+        });
+        pnlHoOu.add(btnho);
+        btnho.setBounds(150, 20, 115, 24);
+
+        btnexportcall2.setFont(btnexportcall2.getFont().deriveFont(btnexportcall2.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnexportcall2.setText("Export");
+        btnexportcall2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexportcall2ActionPerformed(evt);
+            }
+        });
+        pnlHoOu.add(btnexportcall2);
+        btnexportcall2.setBounds(10, 350, 90, 20);
+
+        pnlRepHidden.addTab("Outbound", pnlHoOu);
+
+        pnlDayOu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDayOu.setLayout(null);
+
+        tbldailyout.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane44.setViewportView(tbldailyout);
+
+        pnlDayOu.add(jScrollPane44);
+        jScrollPane44.setBounds(10, 40, 940, 310);
+
+        dtdo.setDateFormatString("dd/MM/yyyy");
+        pnlDayOu.add(dtdo);
+        dtdo.setBounds(10, 20, 120, 24);
+
+        jLabel83.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel83.setText("From");
+        pnlDayOu.add(jLabel83);
+        jLabel83.setBounds(10, 10, 100, 10);
+
+        btndo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
+        btndo.setText("Refresh");
+        btndo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndoActionPerformed(evt);
+            }
+        });
+        pnlDayOu.add(btndo);
+        btndo.setBounds(270, 20, 115, 24);
+
+        jLabel85.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel85.setText("Until");
+        pnlDayOu.add(jLabel85);
+        jLabel85.setBounds(140, 10, 100, 10);
+
+        dtdo1.setDateFormatString("dd/MM/yyyy");
+        pnlDayOu.add(dtdo1);
+        dtdo1.setBounds(140, 20, 120, 24);
+
+        btnexportcall4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnexportcall4.setText("Export");
+        btnexportcall4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexportcall4ActionPerformed(evt);
+            }
+        });
+        pnlDayOu.add(btnexportcall4);
+        btnexportcall4.setBounds(10, 350, 90, 20);
+
+        pnlRepHidden.addTab("Outbound", pnlDayOu);
+
+        pnlPerfOu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPerfOu.setLayout(null);
+
+        tblperformout.setFont(tblperformout.getFont().deriveFont((float)11));
+        tblperformout.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane42.setViewportView(tblperformout);
+
+        pnlPerfOu.add(jScrollPane42);
+        jScrollPane42.setBounds(10, 40, 940, 310);
+
+        dtpo.setDateFormatString("dd/MM/yyyy");
+        dtpo.setFont(dtpo.getFont().deriveFont((float)11));
+        pnlPerfOu.add(dtpo);
+        dtpo.setBounds(10, 20, 120, 24);
+
+        btnpo1.setFont(btnpo1.getFont().deriveFont(btnpo1.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnpo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
+        btnpo1.setText("Refresh");
+        btnpo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpo1ActionPerformed(evt);
+            }
+        });
+        pnlPerfOu.add(btnpo1);
+        btnpo1.setBounds(270, 20, 115, 24);
+
+        jLabel87.setFont(jLabel87.getFont().deriveFont((float)11));
+        jLabel87.setText("Until");
+        pnlPerfOu.add(jLabel87);
+        jLabel87.setBounds(140, 10, 100, 10);
+
+        dtpo1.setDateFormatString("dd/MM/yyyy");
+        dtpo1.setFont(dtpo1.getFont().deriveFont((float)11));
+        pnlPerfOu.add(dtpo1);
+        dtpo1.setBounds(140, 20, 120, 24);
+
+        jLabel89.setFont(jLabel89.getFont().deriveFont((float)11));
+        jLabel89.setText("From");
+        pnlPerfOu.add(jLabel89);
+        jLabel89.setBounds(10, 10, 100, 10);
+
+        btnexportcall6.setFont(btnexportcall6.getFont().deriveFont(btnexportcall6.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnexportcall6.setText("Export");
+        btnexportcall6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexportcall6ActionPerformed(evt);
+            }
+        });
+        pnlPerfOu.add(btnexportcall6);
+        btnexportcall6.setBounds(10, 350, 90, 20);
+
+        pnlRepHidden.addTab("Outbound", pnlPerfOu);
+
+        pnlrepFax.setBackground(new java.awt.Color(255, 255, 255));
+        pnlrepFax.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pnlrepFax.setLayout(null);
+
+        txtfaxfinm.setFont(txtfaxfinm.getFont().deriveFont((float)11));
+        pnlrepFax.add(txtfaxfinm);
+        txtfaxfinm.setBounds(460, 20, 100, 24);
+
+        jLabel33.setFont(jLabel33.getFont().deriveFont((float)11));
+        jLabel33.setText("Status");
+        pnlrepFax.add(jLabel33);
+        jLabel33.setBounds(360, 10, 100, 10);
+
+        jLabel34.setFont(jLabel34.getFont().deriveFont((float)11));
+        jLabel34.setText("File name");
+        pnlrepFax.add(jLabel34);
+        jLabel34.setBounds(460, 10, 100, 10);
+
+        btnrepfax.setFont(btnrepfax.getFont().deriveFont(btnrepfax.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnrepfax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
+        btnrepfax.setText("Search Fax");
+        btnrepfax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrepfaxActionPerformed(evt);
+            }
+        });
+        pnlrepFax.add(btnrepfax);
+        btnrepfax.setBounds(670, 20, 140, 24);
+
+        jLabel36.setFont(jLabel36.getFont().deriveFont((float)11));
+        jLabel36.setText("Username");
+        pnlrepFax.add(jLabel36);
+        jLabel36.setBounds(560, 10, 100, 10);
+
+        jLabel41.setFont(jLabel41.getFont().deriveFont((float)11));
+        jLabel41.setText("Open From");
+        pnlrepFax.add(jLabel41);
+        jLabel41.setBounds(10, 10, 100, 10);
+
+        dcfax1.setDateFormatString("dd/MM/yyyy");
+        dcfax1.setFont(dcfax1.getFont().deriveFont((float)11));
+        pnlrepFax.add(dcfax1);
+        dcfax1.setBounds(10, 20, 120, 24);
+
+        jLabel42.setFont(jLabel42.getFont().deriveFont((float)11));
+        jLabel42.setText("Until");
+        pnlrepFax.add(jLabel42);
+        jLabel42.setBounds(130, 10, 100, 10);
+
+        dcfax2.setDateFormatString("dd/MM/yyyy");
+        dcfax2.setFont(dcfax2.getFont().deriveFont((float)11));
+        pnlrepFax.add(dcfax2);
+        dcfax2.setBounds(130, 20, 120, 24);
+
+        cbstatusrepfax.setFont(cbstatusrepfax.getFont().deriveFont((float)11));
+        pnlrepFax.add(cbstatusrepfax);
+        cbstatusrepfax.setBounds(360, 20, 100, 24);
+
+        btnexportmail1.setFont(btnexportmail1.getFont().deriveFont(btnexportmail1.getFont().getStyle() | java.awt.Font.BOLD, 11));
+        btnexportmail1.setText("Export");
+        btnexportmail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexportmail1ActionPerformed(evt);
+            }
+        });
+        pnlrepFax.add(btnexportmail1);
+        btnexportmail1.setBounds(10, 380, 90, 20);
+
+        cbagenirepfax.setFont(cbagenirepfax.getFont().deriveFont((float)11));
+        cbagenirepfax.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "aan", "ramos", "john", "yusnita", "tri", "fitri", "mariana", "mitha", "dessy", "andrianto", "nurdin", "david", "yudho", "favel", "feronika", "oktaviani", "rudi" }));
+        pnlrepFax.add(cbagenirepfax);
+        cbagenirepfax.setBounds(560, 20, 100, 24);
+
+        jLabel64.setFont(jLabel64.getFont().deriveFont((float)11));
+        jLabel64.setText("Direction");
+        pnlrepFax.add(jLabel64);
+        jLabel64.setBounds(260, 10, 100, 10);
+
+        cbdirfax.setFont(cbdirfax.getFont().deriveFont((float)11));
+        cbdirfax.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "INBOUND", "OUTBOUND", "--" }));
+        cbdirfax.setSelectedIndex(2);
+        pnlrepFax.add(cbdirfax);
+        cbdirfax.setBounds(260, 20, 100, 24);
+
+        lblrepfaxcount.setFont(lblrepfaxcount.getFont().deriveFont((float)11));
+        lblrepfaxcount.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        pnlrepFax.add(lblrepfaxcount);
+        lblrepfaxcount.setBounds(880, 0, 40, 10);
+
+        lblrepticcount9.setFont(lblrepticcount9.getFont().deriveFont((float)11));
+        lblrepticcount9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblrepticcount9.setText("list");
+        pnlrepFax.add(lblrepticcount9);
+        lblrepticcount9.setBounds(920, 0, 40, 10);
+
+        tblrepfax.setFont(tblrepfax.getFont().deriveFont((float)11));
+        tblrepfax.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblrepfax.setRowHeight(20);
+        jScrollPane16.setViewportView(tblrepfax);
+
+        pnlrepFax.add(jScrollPane16);
+        jScrollPane16.setBounds(10, 40, 950, 340);
+
+        pnlRepHidden.addTab("Fax", pnlrepFax);
+
+        pnlRepHidden.setBounds(0, 0, 64, 0);
+        jdp.add(pnlRepHidden, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -4601,6 +4766,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
                 System.out.print("isi dari ticno"+Tic.ticno);
 
                 Tic.klik();
+                Tic.showcus();
                 ticshow=true;
             }
 
@@ -4800,7 +4966,7 @@ String tic0;
                     Inc.complaint=Integer.parseInt((String)tblin.getValueAt(tblin.getSelectedRow(),7));
                     Inc.inquiry=Integer.parseInt((String)tblin.getValueAt(tblin.getSelectedRow(),6));
                     Inc.wrongnum=Integer.parseInt((String)tblin.getValueAt(tblin.getSelectedRow(),16));
-                    Inc.cbcust.setSelectedItem((String)tblin.getValueAt(tblin.getSelectedRow(),17));
+                    Inc.cbServiceArea.setSelectedItem((String)tblin.getValueAt(tblin.getSelectedRow(),17));
                     Inc.cbInbType.setSelectedItem((String)tblin.getValueAt(tblin.getSelectedRow(),18));
     ////                clbk=((String)tblin.getValueAt(tblin.getSelectedRow(),18));
     //                System.out.print("\nisi dari clbk = "+clbk+"\n");
@@ -4837,6 +5003,23 @@ String tic0;
 //        }
 }//GEN-LAST:event_tbloutMouseClicked
 
+    public static javax.swing.table.DefaultTableModel getDefaultTabelreptic(){
+        return new javax.swing.table.DefaultTableModel(
+                new Object [][]{},
+                new String [] {"Ticket No","Ticket Priority","Case Area","Department","Assigned Deptartment"
+                        ,"Status","Open by","Open Date","Open time","Closed Date","Closed time","Sla"
+                        ,"Solution","Representatvie Area","Ticket Type","Ticket Category","Ticket Detail Category"
+                        ,"Detail Ticket","Cust Name","Cust Address","Cust Code","Awal Kontrak"
+                        ,"Akhir Kontrak","CRO Name","Lisence Plate","Tipe Kendaraan","Tahun"
+                        ,"Driver Name","F.C.R."}){
+                boolean[] canEdit=new boolean[]{
+                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+                };
+                public boolean isCellEditable(int rowIndex, int columnIndex){
+                        return canEdit[columnIndex];
+                }
+        };
+    }
     private static String tic1,tic2,tic3,tic4,cal1,cal2,cal3,cal4,cal5,cal6,sms1,sms2,mail1,mail2,fax1,fax2;
     private void btnrepticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrepticActionPerformed
         // TODO add your handling code here:
@@ -4853,39 +5036,67 @@ String tic0;
                     "a.dept_name as dept," +
                     "b.dept_name as asdept," +
                     "c.dept_name as opdept," +
+                    "d.dept_name as rearea," +
                     " _ticketstatus.data as ticstat, " +
-                    "_ticketpriority.data as prior, " +
-                    "case confirmed " +
-                    "when 0 then 'Belum Konfirmasi' " +
-                    "when 1 then 'Sedang Konfirmasi' " +
-                    "when 2 then 'Sudah Konfirmasi' " +
-                    "end as confirmd, " +
-                    "case confirm_by " +
-                    "when 0 then 'CONTACT CENTER' " +
-                    "when 1 then 'CSO' " +
-                    "end as cnfrm " +
-                    "from tickets" +
-                    " join _department a on tickets.dept_id=a.dept_id" +
-                    " join _department b on tickets.assign_dept=b.dept_id" +
-                    " join _department c on tickets.open_dept=c.dept_id" +
-                    " join _ticketstatus on tickets._status=_ticketstatus.code" +
-                    " join _ticketpriority on tickets._priority=_ticketpriority.code" +
+                    "_ticketpriority.data as prior, " +        
+                    "_yesno.data as fcr" +        
+                    " from tickets" +
+                    " left join _department a on tickets.dept_id=a.dept_id" +
+                    " left join _department b on tickets.assign_dept=b.dept_id" +
+                    " left join _department c on tickets.open_dept=c.dept_id" +
+                    " left join _department d on tickets.representative_area_id=d.dept_id" +
+                    " left join _ticketstatus on tickets._status=_ticketstatus.code" +
+                    " left join _ticketpriority on tickets._priority=_ticketpriority.code" +
+                    " left join agreements on tickets.agreement_id=agreements.agreement_id" +
+                    " left join units on agreements.unit_code=units.unit_code" +
+                    " left join drivers on agreements.driver_code=drivers.driver_code" +
+                    " left join branches on '%'+agreements.contract_no+'%' like branches.branch_code" +
+                    " left join cro on branches.branch_name=cro.branch_name" +
+                    " left join _yesno on tickets.confirm=_yesno.code" +
                     " where open_date between '"+tic1+"' and '"+tic2+"' ";
-            condition="";
-            if(!txtuser.getText().equals("")){
-                condition=condition+" and user like '%"+txtuser.getText()+"%'";
+            condition="";            
+            if(!txtticno2.getText().equals("")){
+                condition=condition+" and ticket_no like '%"+txtticno2.getText()+"%'";
             }
-            if(!txtcategory.getText().equals("")){
-                condition=condition+" and category_name like '%"+txtcategory.getText()+"%'";
+            if(!txtplatno1.getText().equals("")){
+                condition=condition+" and units.no_plat like '%"+txtplatno1.getText()+"%'";
             }
-            if(!txtdriver.getText().equals("")){
-                condition=condition+" and driver_name like '%"+txtdriver.getText()+"%'";
+            if(!cbdept1.getSelectedItem().equals("--")){
+                condition=condition+" and dept_id = '"+cbdept1.getSelectedIndex()+"'";
             }
-            if(!txtcustomer.getText().equals("")){
-                condition=condition+" and cust_name like '%"+txtcustomer.getText()+"%'";
+            if(!cbticstatus1.getSelectedItem().equals("--")){
+                if(!cbticstatus1.getSelectedItem().equals("CANCEL")){
+                    condition=condition+" and _status = '"+cbticstatus1.getSelectedIndex()+"'";
+                }else{
+                    condition=condition+" and _status = '-1'";
+                }
             }
-            if(!txtticno.getText().equals("")){
-                condition=condition+" and ticket_no like '%"+txtticno.getText()+"%'";
+            if(!cbFollowUp1.getSelectedItem().equals("--")){
+                condition=condition+" and follow_up = '"+cbFollowUp1.getSelectedItem()+"'";
+            }
+            if(ckassign1.isSelected()==true){
+                condition=condition+" and assign_dept=0";
+            }
+            if(ckstoring1.isSelected()==true){
+                condition=condition+" and _storing=1";
+            }
+            if(cksubmit1.isSelected()==true){
+                condition=condition+" and _submitted=0";
+            }
+            if(ckFCR1.isSelected()==true){
+                condition=condition+" and confirm=1";
+            }
+            if(!txtcus1.getText().equals("")){
+                condition=condition+" and cust_name like '%"+txtcus1.getText()+"%'";
+            }
+            if(!txtdriv1.getText().equals("")){
+                condition=condition+" and drivers.driver_name like '%"+txtdriv1.getText()+"%'";
+            }
+            if(!cbcate1.getSelectedItem().equals("--")){
+                condition=condition+" and category = '"+cbcate1.getSelectedItem()+"'";
+            }
+            if(!txtdrivcode1.getText().equals("")){
+                condition=condition+" and drivers.driver_code like '%"+txtdrivcode1.getText()+"%'";
             }
 
             sql=sql+condition+" order by ticket_id";
@@ -4893,109 +5104,116 @@ String tic0;
             System.out.println(sql);
 
             while(rs.next()){
-                reptic[x]=rs.getString(1);x++;
-                reptic[x]=rs.getString(2);x++;
-                reptic[x]=rs.getString("_type");x++;
-                reptic[x]=rs.getString("ticstat").toString();x++;
-                reptic[x]=rs.getString(4);x++;
-                reptic[x]=rs.getString(5);x++;
-                reptic[x]=rs.getString(6);x++;
-                reptic[x]=rs.getString("asdept").toString();x++;
-                reptic[x]=rs.getString(8);x++;
-                reptic[x]=rs.getString(10);x++;
-                reptic[x]=rs.getString("prior").toString();x++;
-                reptic[x]=rs.getString(15);x++;
-                reptic[x]=rs.getString(16);x++;
-                reptic[x]=rs.getString(17);x++;
-                reptic[x]=rs.getString(18);x++;
-                reptic[x]=rs.getString(20);x++;
-                reptic[x]=rs.getString(21);x++;
-                reptic[x]=rs.getString(22);x++;
-                reptic[x]=rs.getString(23);x++;
-                reptic[x]=rs.getString(24);x++;
-                reptic[x]=rs.getString(25);x++;
-                reptic[x]=rs.getString(26);x++;
-                reptic[x]=rs.getString(27);x++;
-                reptic[x]=rs.getString(28);x++;
-                reptic[x]=rs.getString(29);x++;
-                reptic[x]=rs.getString(30);x++;
-                reptic[x]=rs.getString(31);x++;
-                reptic[x]=rs.getString(32);x++;
-                reptic[x]=rs.getString(33);x++;
-                reptic[x]=rs.getString(34);x++;
-                reptic[x]=rs.getString(35);x++;
-                reptic[x]=rs.getString(36);x++;
-                reptic[x]=rs.getString(37);x++;
-                reptic[x]=rs.getString(38);x++;
-                reptic[x]=rs.getString(39);x++;
-                reptic[x]=rs.getString(40);x++;
-                reptic[x]=rs.getString(41);x++;
-                reptic[x]=rs.getString(42);x++;
-                reptic[x]=rs.getString(43);x++;
-                reptic[x]=rs.getString(44);x++;
-                reptic[x]=rs.getString(45);x++;
-                reptic[x]=rs.getString(46);x++;
-                reptic[x]=rs.getString("_gs");x++;
-                reptic[x]=rs.getString("gs_status");x++;
-                reptic[x]=rs.getString("_gt");x++;
-                reptic[x]=rs.getString("gt_status");x++;
-                reptic[x]=rs.getString("_storing");x++;
-                reptic[x]=rs.getString("storing_status");x++;
-                reptic[x]=rs.getString("_other");x++;
-                reptic[x]=rs.getString("other_status");x++;
-                reptic[x]=rs.getString("r_driverdept");x++;
-                reptic[x]=rs.getString("r_oprdept");x++;
-                reptic[x]=rs.getString("r_cso");x++;
-                reptic[x]=rs.getString("r_custname");x++;
-                reptic[x]=rs.getString("r_contact");x++;
-                reptic[x]=rs.getString("r_phoneno");x++;
-                reptic[x]=rs.getString("r_address");x++;
-                reptic[x]=rs.getString("r_orgcar_status");x++;
-                reptic[x]=rs.getString("r_orgcar_plate");x++;
-                reptic[x]=rs.getString("r_replacecar_status");x++;
-                reptic[x]=rs.getString("r_replacecar_plate");x++;
-                reptic[x]=rs.getString("r_deliverydate");x++;
-                reptic[x]=rs.getString("r_deliverytime");x++;
-                reptic[x]=rs.getString("r_driverphone");x++;
-                reptic[x]=rs.getString("r_startdate");x++;
-                reptic[x]=rs.getString("r_untildate");x++;
-                reptic[x]=rs.getString("r_memo");x++;
-                reptic[x]=rs.getString("solution");x++;
-//                reptic[65]=rs.getString(50);
+                reptic[x]=rs.getString("ticket_no");x++;
+                reptic[x]=rs.getString("prior");x++;
+                reptic[x]=rs.getString("_servicearea");x++;
+                reptic[x]=rs.getString("dept");x++;
+                reptic[x]=rs.getString("asdept");x++;
+                
+                reptic[x]=rs.getString("ticstat");x++;
+                reptic[x]=rs.getString("open_username");x++;
                 reptic[x]=rs.getString("open_date");x++;
                 reptic[x]=rs.getString("open_time");x++;
-                reptic[x]=rs.getString("open_duration");x++;
-                reptic[x]=rs.getString("open_username");x++;
-                reptic[x]=rs.getString("opdept");x++;
-                reptic[x]=rs.getString("process_date");x++;
-                reptic[x]=rs.getString("process_time");x++;
-                reptic[x]=rs.getString("process_duration");x++;
-                reptic[x]=rs.getString("process_username");x++;
                 reptic[x]=rs.getString("close_date");x++;
                 reptic[x]=rs.getString("close_time");x++;
-                reptic[x]=rs.getString("close_duration");x++;
-                reptic[x]=rs.getString("close_days");x++;
-                reptic[x]=rs.getString("close_username");x++;
-                reptic[x]=rs.getString("_submitted");x++;
-                reptic[x]=rs.getString("confirm");x++;
-//                if(Integer.parseInt(rs.getString("confirm_by"))==0){
-//                    reptic[56]="CONTACT CENTER";
-//                }else{
-//                    reptic[56]="CSO";
-//                }
-                reptic[x]=rs.getString("cnfrm");x++;
-                reptic[x]=rs.getString("confirm_username");x++;
-                reptic[x]=rs.getString("confirmd");x++;
-                reptic[x]=rs.getString("logphone_id");x++;
+                reptic[x]=rs.getString("sla");x++;
+                
+                reptic[x]=rs.getString("solution");x++;
+                reptic[x]=rs.getString("rearea");x++;
+                reptic[x]=rs.getString("_type");x++;
+                reptic[x]=rs.getString("category");x++;
+                reptic[x]=rs.getString("category_detail");x++;
+                
+                reptic[x]=rs.getString("details");x++;
+                reptic[x]=rs.getString("cust_name");x++;
+                reptic[x]=rs.getString("cust_address");x++;
+                reptic[x]=rs.getString("cust_code");x++;
+                reptic[x]=rs.getString("agreements.awal_kontrak");x++;
+                
+                reptic[x]=rs.getString("agreements.akhir_kontrak");x++;
+                reptic[x]=rs.getString("cro.employee_name");x++;
+                reptic[x]=rs.getString("units.no_plat");x++;
+                reptic[x]=rs.getString("units.tipe");x++;
+                reptic[x]=rs.getString("units.tahun");x++;
+                
+                reptic[x]=rs.getString("drivers.driver_name");x++;
+                reptic[x]=rs.getString("fcr");x++;
+//                reptic[x]=rs.getString(32);x++;
+//                reptic[x]=rs.getString(33);x++;
+//                reptic[x]=rs.getString(34);x++;
+//                reptic[x]=rs.getString(35);x++;
+//                reptic[x]=rs.getString(36);x++;
+//                reptic[x]=rs.getString(37);x++;
+//                reptic[x]=rs.getString(38);x++;
+//                reptic[x]=rs.getString(39);x++;
+//                reptic[x]=rs.getString(40);x++;
+//                reptic[x]=rs.getString(41);x++;
+//                reptic[x]=rs.getString(42);x++;
+//                reptic[x]=rs.getString(43);x++;
+//                reptic[x]=rs.getString(44);x++;
+//                reptic[x]=rs.getString(45);x++;
+//                reptic[x]=rs.getString(46);x++;
+//                reptic[x]=rs.getString("_gs");x++;
+//                reptic[x]=rs.getString("gs_status");x++;
+//                reptic[x]=rs.getString("_gt");x++;
+//                reptic[x]=rs.getString("gt_status");x++;
+//                reptic[x]=rs.getString("_storing");x++;
+//                reptic[x]=rs.getString("storing_status");x++;
+//                reptic[x]=rs.getString("_other");x++;
+//                reptic[x]=rs.getString("other_status");x++;
+//                reptic[x]=rs.getString("r_driverdept");x++;
+//                reptic[x]=rs.getString("r_oprdept");x++;
+//                reptic[x]=rs.getString("r_cso");x++;
+//                reptic[x]=rs.getString("r_custname");x++;
+//                reptic[x]=rs.getString("r_contact");x++;
+//                reptic[x]=rs.getString("r_phoneno");x++;
+//                reptic[x]=rs.getString("r_address");x++;
+//                reptic[x]=rs.getString("r_orgcar_status");x++;
+//                reptic[x]=rs.getString("r_orgcar_plate");x++;
+//                reptic[x]=rs.getString("r_replacecar_status");x++;
+//                reptic[x]=rs.getString("r_replacecar_plate");x++;
+//                reptic[x]=rs.getString("r_deliverydate");x++;
+//                reptic[x]=rs.getString("r_deliverytime");x++;
+//                reptic[x]=rs.getString("r_driverphone");x++;
+//                reptic[x]=rs.getString("r_startdate");x++;
+//                reptic[x]=rs.getString("r_untildate");x++;
+//                reptic[x]=rs.getString("r_memo");x++;
+//                reptic[x]=rs.getString("solution");x++;
+////                reptic[65]=rs.getString(50);
+//                reptic[x]=rs.getString("open_date");x++;
+//                reptic[x]=rs.getString("open_time");x++;
+//                reptic[x]=rs.getString("open_duration");x++;
+//                reptic[x]=rs.getString("open_username");x++;
+//                reptic[x]=rs.getString("opdept");x++;
+//                reptic[x]=rs.getString("process_date");x++;
+//                reptic[x]=rs.getString("process_time");x++;
+//                reptic[x]=rs.getString("process_duration");x++;
+//                reptic[x]=rs.getString("process_username");x++;
+//                reptic[x]=rs.getString("close_date");x++;
+//                reptic[x]=rs.getString("close_time");x++;
+//                reptic[x]=rs.getString("close_duration");x++;
+//                reptic[x]=rs.getString("close_days");x++;
+//                reptic[x]=rs.getString("close_username");x++;
+//                reptic[x]=rs.getString("_submitted");x++;
+//                reptic[x]=rs.getString("confirm");x++;
+////                if(Integer.parseInt(rs.getString("confirm_by"))==0){
+////                    reptic[56]="CONTACT CENTER";
+////                }else{
+////                    reptic[56]="CSO";
+////                }
+////                reptic[x]=rs.getString("cnfrm");x++;
+////                reptic[x]=rs.getString("confirm_username");x++;
+////                reptic[x]=rs.getString("confirmd");x++;
+//                reptic[x]=rs.getString("logphone_id");x++;
 //                reptic[60]=rs.getString(62);
                 tabreptic.addRow(reptic);
                 x=0;
                 row+=1;
             }if(row==0){
-                JOptionPane.showMessageDialog(null,"Ticket with number ticket "+txtuser.getText()+", categoty "+txtcategory.getText()+", with customer "+txtcustomer.getText()+", with driver "+txtdriver.getText()+" doesn't exsist");
+//                JOptionPane.showMessageDialog(null,"Ticket with number ticket "+txtuser.getText()+", categoty "+txtcategory.getText()+", with customer "+txtcustomer.getText()+", with driver "+txtdriver.getText()+" doesn't exsist");
             }
             lblrepticcount.setText(String.valueOf(tabreptic.getRowCount()));            
-        }catch(Exception exc){
+        }catch(SQLException exc){
             System.err.println(exc.getMessage());
         }
 }//GEN-LAST:event_btnrepticActionPerformed
@@ -5450,24 +5668,24 @@ public static String cuscom,cuscom1,cuscom2,smsid,mailid,faxid;
 
     private void cbdeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbdeptActionPerformed
         // TODO add your handling code here:
-        if(!cbdept.getSelectedItem().equals("--")){            
-            cbcate.removeAllItems();
-            cbcate.addItem("--");
-            try {
-                sql="select category_name from _ticketcategory where dept_id='"+cbdept.getSelectedIndex()+"'";
-                rs1=jconn.SQLExecuteRS(sql,conn);
-                while(rs1.next()){
-                    cbcate.addItem(rs1.getString(1));
-                }
-                cbcate.setEnabled(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(ContactCenterTunas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            cbcate.removeAllItems();
-            cbcate.addItem("--");
-            cbcate.setEnabled(false);
-        }
+//        if(!cbdept.getSelectedItem().equals("--")){            
+//            cbcate.removeAllItems();
+//            cbcate.addItem("--");
+//            try {
+//                sql="select category_name from _ticketcategory where dept_id='"+cbdept.getSelectedIndex()+"'";
+//                rs1=jconn.SQLExecuteRS(sql,conn);
+//                while(rs1.next()){
+//                    cbcate.addItem(rs1.getString(1));
+//                }
+//                cbcate.setEnabled(true);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(ContactCenterTunas.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else{
+//            cbcate.removeAllItems();
+//            cbcate.addItem("--");
+//            cbcate.setEnabled(false);
+//        }
 }//GEN-LAST:event_cbdeptActionPerformed
 
     private void btnexportmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexportmail1ActionPerformed
@@ -7115,6 +7333,46 @@ Object sel1,sel2;
         // TODO add your handling code here:
     }//GEN-LAST:event_cbFollowUpActionPerformed
 
+    private void txtdrivcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdrivcodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdrivcodeActionPerformed
+
+    private void ckFCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckFCRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckFCRActionPerformed
+
+    private void ckstoring1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckstoring1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckstoring1ActionPerformed
+
+    private void cbticstatus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbticstatus1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbticstatus1ActionPerformed
+
+    private void cbdept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbdept1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbdept1ActionPerformed
+
+    private void cksubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cksubmit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cksubmit1ActionPerformed
+
+    private void cbcate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbcate1ActionPerformed
+
+    private void txtdrivcode1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdrivcode1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdrivcode1ActionPerformed
+
+    private void cbFollowUp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFollowUp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFollowUp1ActionPerformed
+
+    private void ckFCR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckFCR1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckFCR1ActionPerformed
+
     private void createexcel(){
         int koltab=0;
         int counter=1;
@@ -7197,18 +7455,7 @@ Object sel1,sel2;
                 }
         };
     }
-        public static javax.swing.table.DefaultTableModel getDefaultTabelreptic(){
-        return new javax.swing.table.DefaultTableModel(
-                new Object [][]{},
-                new String [] {"Ticket Id","Ticket No","Ticket Type","Status","Dept Id","Category Id","Category","Assign Dept","Assign Unit","Assign Username","Priority","CP Name","CP Phone","Contract No","Cust Code","Cust Name","Cust Address","Cust Phone","Cust Fax","Cust Pic","Contract Startdate","Contract Enddate","Startdate","User","User Phone","User Address","Cso Code","Cso Name","Cso Phone","Cso Mail","Vehicle Platno","Vehicle Jenis","Vehicle Type","Vehicle Tahun","Vehicle Warna","Driver Code","Driver Name","Driver Phone","Driver Title","Driver Knowledge","Driver Blacklist","Details","GS","Status","GT","Status","STORING","Status","OTHERS","Status","R.DriverDept.","R.OprDept","R.CSO","R.Cust.Name","R.Contact","R.Phone No.","R.Address","R.Ori.Car Status","R.Ori.Car Plate","Replace Car Status","Replace Car Plate","R.Delivery Date","R.Delivery Time","R.Driver Phone","R.Start Date","R.Until Date","R.Memo","Solution","Open Date","Open time","Open duration","Open username","Open unit","Process date","Process time","process_duration","process_username","close_date","close_time","close_duration","close_days","close_username","_submitted","confirm","confirm_by","confirm_username","confirmed","logphone_id"}){
-                boolean[] canEdit=new boolean[]{
-                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
-                };
-                public boolean isCellEditable(int rowIndex, int columnIndex){
-                        return canEdit[columnIndex];
-                }
-        };
-    }
+        
         public static javax.swing.table.DefaultTableModel getDefaultTabelrepcal(){
         return new javax.swing.table.DefaultTableModel(
                 new Object [][]{},
@@ -7499,6 +7746,7 @@ Object sel1,sel2;
     private javax.swing.JButton btnsmsoutsrch;
     private javax.swing.JButton btnticsrch;
     private javax.swing.JComboBox cbFollowUp;
+    private javax.swing.JComboBox cbFollowUp1;
     public static javax.swing.JComboBox cbagenin;
     private javax.swing.JComboBox cbagenirepcal;
     private javax.swing.JComboBox cbagenirepcal1;
@@ -7511,19 +7759,27 @@ Object sel1,sel2;
     public static javax.swing.JComboBox cbcalstatin;
     private javax.swing.JComboBox cbcaltyperepcal;
     private javax.swing.JComboBox cbcate;
+    private javax.swing.JComboBox cbcate1;
     public static javax.swing.JComboBox cbcust;
     public static javax.swing.JComboBox cbcust1;
     public static javax.swing.JComboBox cbcust2;
     private javax.swing.JComboBox cbdept;
+    private javax.swing.JComboBox cbdept1;
     public static javax.swing.JComboBox cbdirection;
     private javax.swing.JComboBox cbdirfax;
     private javax.swing.JComboBox cbdirmail;
     private javax.swing.JComboBox cbdirrepsms;
     private javax.swing.JComboBox cbstatusrepfax;
     private javax.swing.JComboBox cbticstatus;
+    private javax.swing.JComboBox cbticstatus1;
+    private javax.swing.JCheckBox ckFCR;
+    private javax.swing.JCheckBox ckFCR1;
     private javax.swing.JCheckBox ckassign;
+    private javax.swing.JCheckBox ckassign1;
     private javax.swing.JCheckBox ckstoring;
+    private javax.swing.JCheckBox ckstoring1;
     private javax.swing.JCheckBox cksubmit;
+    private javax.swing.JCheckBox cksubmit1;
     private javax.swing.JCheckBox cktgl;
     private com.toedter.calendar.JDateChooser dccal1;
     private com.toedter.calendar.JDateChooser dccal2;
@@ -7577,7 +7833,16 @@ Object sel1,sel2;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -7585,9 +7850,7 @@ Object sel1,sel2;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -7630,7 +7893,6 @@ Object sel1,sel2;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -7641,7 +7903,6 @@ Object sel1,sel2;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
@@ -7663,7 +7924,6 @@ Object sel1,sel2;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
@@ -7685,15 +7945,13 @@ Object sel1,sel2;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -7743,6 +8001,7 @@ Object sel1,sel2;
     private javax.swing.JScrollPane jScrollPane45;
     private javax.swing.JScrollPane jScrollPane46;
     private javax.swing.JScrollPane jScrollPane47;
+    private javax.swing.JScrollPane jScrollPane48;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -7803,6 +8062,10 @@ Object sel1,sel2;
     private javax.swing.JTabbedPane panelsms;
     private javax.swing.JPanel pninbox;
     private javax.swing.JPanel pninbox1;
+    private javax.swing.JPanel pnlDayOu;
+    private javax.swing.JPanel pnlHoOu;
+    private javax.swing.JPanel pnlPerfOu;
+    private javax.swing.JTabbedPane pnlRepHidden;
     private javax.swing.JPanel pnlact;
     private javax.swing.JPanel pnlinbon;
     private javax.swing.JTabbedPane pnlinf;
@@ -7811,7 +8074,7 @@ Object sel1,sel2;
     private javax.swing.JPanel pnlrep1;
     private javax.swing.JPanel pnlrep2;
     private javax.swing.JPanel pnlrep3;
-    private javax.swing.JPanel pnlrep4;
+    private javax.swing.JPanel pnlrepFax;
     private javax.swing.JPanel pnlscroll;
     private javax.swing.JPanel pnltic;
     private javax.swing.JPanel pnoutbox;
@@ -7844,13 +8107,13 @@ Object sel1,sel2;
     public static javax.swing.JTable tbltic;
     private javax.swing.JTable tblticconf;
     public static javax.swing.JTextField txtcalnoti;
-    private javax.swing.JTextField txtcategory;
     private javax.swing.JTextField txtcus;
-    private javax.swing.JTextField txtcustomer;
+    private javax.swing.JTextField txtcus1;
     private javax.swing.JTextArea txtdetail;
     private javax.swing.JTextField txtdriv;
+    private javax.swing.JTextField txtdriv1;
     private javax.swing.JTextField txtdrivcode;
-    private javax.swing.JTextField txtdriver;
+    private javax.swing.JTextField txtdrivcode1;
     private javax.swing.JTextField txtfaxfinm;
     public static javax.swing.JTextField txtfaxnoti;
     private javax.swing.JTextField txtfrom;
@@ -7874,13 +8137,13 @@ Object sel1,sel2;
     private javax.swing.JTextField txtosu;
     private javax.swing.JTextField txtoto;
     private javax.swing.JTextField txtplatno;
+    private javax.swing.JTextField txtplatno1;
     public static javax.swing.JTextField txtsmsnoti;
     private javax.swing.JTextField txtsmsstat;
     private javax.swing.JTextField txtsmsticid;
     private javax.swing.JTextArea txtsolution;
-    private javax.swing.JTextField txtticno;
     private javax.swing.JTextField txtticno1;
-    private javax.swing.JTextField txtuser;
+    private javax.swing.JTextField txtticno2;
     // End of variables declaration//GEN-END:variables
 
     public static String sql;
@@ -8623,35 +8886,35 @@ Object sel1,sel2;
     private void showStatus(){
         try{
             cbticstatus.removeAllItems();
-//            cbticstatus1.removeAllItems();
+            cbticstatus1.removeAllItems();
 
             sql="select data from _ticketstatus where code !=-1 order by code";
             rs=Log.jconn.SQLExecuteRS(sql,Log.conn);
             while(rs.next()){
                 cbticstatus.addItem(rs.getString(1));
-//                cbticstatus1.addItem(rs.getString(1));
+                cbticstatus1.addItem(rs.getString(1));
             }
             cbticstatus.addItem("--");
-//            cbticstatus1.addItem("--");
+            cbticstatus1.addItem("--");
             cbticstatus.setSelectedItem("--");
-//            cbticstatus1.setSelectedItem("--");
+            cbticstatus1.setSelectedItem("--");
         }catch(Exception e){
             System.out.println(e);
         }
     }
     private void showDept(){
         try{
-            cbdept.removeAllItems();//cbdept1.removeAllItems();
+            cbdept.removeAllItems();cbdept1.removeAllItems();
 
             sql="select dept_name from _department where _deleted=0 order by dept_id";
             rs=Log.jconn.SQLExecuteRS(sql,Log.conn);
             while(rs.next()){
                 cbdept.addItem(rs.getString(1));
-//                cbdept1.addItem(rs.getString(1));
+                cbdept1.addItem(rs.getString(1));
             }
             cbdept.addItem("--");
-//            cbdept1.addItem("--");
-            cbdept.setSelectedItem("--");//cbdept1.setSelectedItem("--");
+            cbdept1.addItem("--");
+            cbdept.setSelectedItem("--");cbdept1.setSelectedItem("--");
         }catch(Exception e){
             System.out.println(e);
         }
@@ -8699,7 +8962,6 @@ Object sel1,sel2;
 
         }
     }
-
     public static void connecttele()  {
          try {
              // If guest, try to connect to the server

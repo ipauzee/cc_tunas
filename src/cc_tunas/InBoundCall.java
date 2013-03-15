@@ -136,7 +136,7 @@ public class InBoundCall extends javax.swing.JFrame {
         cbcaltype = new javax.swing.JComboBox();
         btnmute = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        cbcust = new javax.swing.JComboBox();
+        cbServiceArea = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         cbInbType = new javax.swing.JComboBox();
         txtlogid = new javax.swing.JTextField();
@@ -241,7 +241,7 @@ public class InBoundCall extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         txtareacom.setColumns(20);
-        txtareacom.setFont(new java.awt.Font("Tahoma", 0, 11));
+        txtareacom.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtareacom.setLineWrap(true);
         txtareacom.setRows(5);
         jScrollPane2.setViewportView(txtareacom);
@@ -342,15 +342,15 @@ public class InBoundCall extends javax.swing.JFrame {
         btnmute.setBounds(220, 430, 90, 20);
 
         jLabel16.setFont(jLabel16.getFont().deriveFont((float)11));
-        jLabel16.setText("Cust. Company");
+        jLabel16.setText("Area");
         jPanel2.add(jLabel16);
         jLabel16.setBounds(20, 110, 90, 20);
 
-        cbcust.setFont(cbcust.getFont().deriveFont((float)11));
-        cbcust.setMaximumRowCount(9);
-        cbcust.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Non-customer", "Customer-Driver", "Customer-User", "Customer-PIC", "Customer-Other", "Internal-ANJ", "Internal-CC", "Internal-CSO", "Internal-Driver", "Internal-Other" }));
-        jPanel2.add(cbcust);
-        cbcust.setBounds(110, 110, 200, 24);
+        cbServiceArea.setFont(cbServiceArea.getFont().deriveFont((float)11));
+        cbServiceArea.setMaximumRowCount(9);
+        cbServiceArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Non-customer", "Customer-Driver", "Customer-User", "Customer-PIC", "Customer-Other", "Internal-ANJ", "Internal-CC", "Internal-CSO", "Internal-Driver", "Internal-Other" }));
+        jPanel2.add(cbServiceArea);
+        cbServiceArea.setBounds(110, 110, 200, 24);
 
         jLabel5.setFont(jLabel5.getFont().deriveFont((float)11));
         jLabel5.setText("Caller Type");
@@ -366,7 +366,7 @@ public class InBoundCall extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 330, 460);
 
-        txtlogid.setFont(new java.awt.Font("Calibri", 0, 11));
+        txtlogid.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         txtlogid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtlogidActionPerformed(evt);
@@ -375,15 +375,15 @@ public class InBoundCall extends javax.swing.JFrame {
         getContentPane().add(txtlogid);
         txtlogid.setBounds(10, 770, 199, 20);
 
-        txtlogid1.setFont(new java.awt.Font("Calibri", 0, 11));
+        txtlogid1.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         getContentPane().add(txtlogid1);
         txtlogid1.setBounds(80, 770, 199, 20);
 
-        txtlogid2.setFont(new java.awt.Font("Calibri", 0, 11));
+        txtlogid2.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         getContentPane().add(txtlogid2);
         txtlogid2.setBounds(80, 770, 199, 20);
 
-        txtlogid3.setFont(new java.awt.Font("Calibri", 0, 11));
+        txtlogid3.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         getContentPane().add(txtlogid3);
         txtlogid3.setBounds(80, 770, 199, 20);
 
@@ -392,7 +392,7 @@ public class InBoundCall extends javax.swing.JFrame {
         jPanel1.setFont(jPanel1.getFont().deriveFont((float)11));
         jPanel1.setLayout(null);
 
-        btnsrch.setFont(new java.awt.Font("Calibri", 0, 12));
+        btnsrch.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         btnsrch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1245117595_001_37.png"))); // NOI18N
         btnsrch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -441,13 +441,13 @@ public class InBoundCall extends javax.swing.JFrame {
         jScrollPane1.setBounds(20, 40, 650, 180);
 
         jLabel23.setBackground(new java.awt.Color(102, 102, 255));
-        jLabel23.setFont(new java.awt.Font("Calibri", 0, 12));
+        jLabel23.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jLabel23.setText("Contract No :"); // NOI18N
         jPanel1.add(jLabel23);
         jLabel23.setBounds(400, 20, 100, 20);
 
         txtIdCust.setEditable(false);
-        txtIdCust.setFont(new java.awt.Font("Calibri", 0, 12));
+        txtIdCust.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         txtIdCust.setEnabled(false);
         jPanel1.add(txtIdCust);
         txtIdCust.setBounds(500, 20, 140, 24);
@@ -648,7 +648,7 @@ boolean mute=false;
                 if (txtnotic.getText().equals("")){
                     notic=null;
                 }
-                sql="update log_phone set duration='"+lbldurasi.getText()+"', _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', caller_name='"+txtcalnm.getText()+"', comment='"+txtareacom.getText()+"', ticket_no='"+notic+"', filename='"+nmfl+"', cust_name='"+cbcust.getSelectedItem()+"' where log_id='"+loid+"'";
+                sql="update log_phone set duration='"+lbldurasi.getText()+"', _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', caller_name='"+txtcalnm.getText()+"', comment='"+txtareacom.getText()+"', ticket_no='"+notic+"', filename='"+nmfl+"', cust_name='"+cbServiceArea.getSelectedItem()+"' where log_id='"+loid+"'";
                 CCanj.jconn.SQLExecute(sql, CCanj.conn);
                 sql1="update user_account set _activity=5, time_activity=CURRENT_TIMESTAMP where username= '" +CCanj.lbluser.getText()+ "' limit 1";
                 CCanj.jconn.SQLExecute(sql1, CCanj.conn);
@@ -680,7 +680,7 @@ boolean mute=false;
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-        if(cbcust.getSelectedIndex()!=-1){
+        if(cbServiceArea.getSelectedIndex()!=-1){
             String notic=txtnotic.getText();
             condition="";
             if(notic!=null){
@@ -736,7 +736,7 @@ boolean mute=false;
     //                     sql="update log_phone set duration='"+lbldurasi.getText()+"', busy='"+busy+"', _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', caller_name='"+txtcalnm.getText()+"', comment='"+txtareacom.getText()+"', ticket_id='"+notic+"', _callback='"+callback+"', callback_time='"+cldt+" "+txtcalbac.getText()+"', _wrongnumber='"+wrongnum+"' where log_id='"+loid+"'";
                          sql="update log_phone set _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', comment='"+txtareacom.getText()+"'"
                                  + ", ticket_no="+notic+", ticket_id=(select ticket_id from tickets where ticket_no="+notic+")"
-                                 + ", _wrongnumber='"+wrongnum+"', cust_name='"+cbcust.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
+                                 + ", _wrongnumber='"+wrongnum+"', cust_name='"+cbServiceArea.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
                                  + " where log_id='"+loid+"'";
                          CCanj.jconn.SQLExecute(sql, CCanj.conn);
     //                     System.out.print("update click 2x \n"+sql);
@@ -749,7 +749,7 @@ boolean mute=false;
     //                         sql="update log_phone set duration='"+lbldurasi.getText()+"', busy='"+busy+"', _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', caller_name='"+txtcalnm.getText()+"', comment='"+txtareacom.getText()+"', ticket_id='"+notic+"', _callback='"+callback+"', callback_time='"+cldt+" "+txtcalbac.getText()+"', _wrongnumber='"+wrongnum+"' where log_id='"+loid+"'";
                              sql="update log_phone set duration='"+lbldurasi.getText()+"', _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', caller_name='"+txtcalnm.getText()+"', comment='"+txtareacom.getText()+"'"
                                      + ", ticket_no="+notic+", ticket_id=(select ticket_id from tickets where ticket_no="+notic+")"
-                                     + ", _wrongnumber='"+wrongnum+"', cust_name='"+cbcust.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
+                                     + ", _wrongnumber='"+wrongnum+"', cust_name='"+cbServiceArea.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
                                      + " where log_id='"+CCanj.loid+"'";
                              CCanj.jconn.SQLExecute(sql, CCanj.conn);
                             JOptionPane.showMessageDialog(null,"Data successfully updated");
@@ -765,7 +765,7 @@ boolean mute=false;
     //                sql="update log_phone set _blankcall=1, duration='"+lbldurasi.getText()+"', busy='"+busy+"', _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', caller_name='"+txtcalnm.getText()+"', comment='"+txtareacom.getText()+"', ticket_id='"+notic+"', _callback='"+callback+"', callback_time='"+cldt+" "+txtcalbac.getText()+"' where log_id='"+CCanj.loid+"'";
                     sql="update log_phone set _blankcall=1, _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', comment='"+txtareacom.getText()+"'"
                             + ", ticket_no="+notic+", ticket_id=(select ticket_id from tickets where ticket_no="+notic+")"
-                            + ", cust_name='"+cbcust.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
+                            + ", cust_name='"+cbServiceArea.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
                             + " where log_id='"+loid+"'";
                     CCanj.jconn.SQLExecute(sql, CCanj.conn);
 //                    System.out.print(sql);
@@ -776,7 +776,7 @@ boolean mute=false;
                 }else{
                     sql="update log_phone set _blankcall=1, duration='"+lbldurasi.getText()+"', _inquiry='"+inquiry+"', _complaint='"+complaint+"', caller_number='"+txtcalnum.getText()+"', caller_type='"+cbcaltype.getSelectedItem()+"', caller_name='"+txtcalnm.getText()+"', comment='"+txtareacom.getText()+"'"
                             + ", ticket_no="+notic+", ticket_id=(select ticket_id from tickets where ticket_no="+notic+")"
-                            + ", cust_name='"+cbcust.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
+                            + ", cust_name='"+cbServiceArea.getSelectedItem()+"', inbound_type='"+cbInbType.getSelectedItem()+"', contract_no="+IdCust+""
                             + " where log_id='"+CCanj.loid+"'";
                     CCanj.jconn.SQLExecute(sql, CCanj.conn);
 //                    System.out.print(sql);
@@ -796,7 +796,7 @@ boolean mute=false;
         srcus.setVisible(true);
 
         srcus.Form=2;
-        srcus.txtcusnm.setText(cbcust.getSelectedItem().toString());
+        srcus.txtcusnm.setText(cbServiceArea.getSelectedItem().toString());
         srcus.txtuser.setText(txtcalnm.getText());
         srcus.tabelcus();
 //        srcus.tabeltic();
@@ -1019,8 +1019,8 @@ boolean mute=false;
     private javax.swing.JButton btnsave;
     private javax.swing.JButton btnsrch;
     public static javax.swing.JComboBox cbInbType;
+    public static javax.swing.JComboBox cbServiceArea;
     public static javax.swing.JComboBox cbcaltype;
-    public static javax.swing.JComboBox cbcust;
     public static javax.swing.JCheckBox ckblank;
     public static javax.swing.JCheckBox ckcompl;
     public static javax.swing.JCheckBox ckinqui;
@@ -1214,7 +1214,7 @@ boolean mute=false;
         try{
             cbcaltype.removeAllItems();
 
-            sql="select data from _callertype";
+            sql="select data from _callertype order by code";
             rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
             while(rs.next()){
                 cbcaltype.addItem(rs.getString(1));
@@ -1226,15 +1226,14 @@ boolean mute=false;
     }
     private void showCust(){
         try{
-            cbcust.removeAllItems();
-            cbcust.addItem("Others");
+            cbServiceArea.removeAllItems();
 
-            sql="select distinct(cust_name) from customer_order order by cust_name";
+            sql="select data from _servicearea order by code";
             rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
             while(rs.next()){
-                cbcust.addItem(rs.getString(1));
+                cbServiceArea.addItem(rs.getString(1));
             }
-            cbcust.setSelectedIndex(-1);
+            cbServiceArea.setSelectedIndex(-1);
         }catch(Exception e){
             System.out.println(e);
 
