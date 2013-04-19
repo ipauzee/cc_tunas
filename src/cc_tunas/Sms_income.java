@@ -359,7 +359,7 @@ public class Sms_income extends javax.swing.JFrame {
             cbcust.removeAllItems();
             cbcust.addItem("Others");
 
-            sql="select distinct(cust_name) from customer_order order by cust_name";
+            sql="select distinct(fullname) from customers";
             rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
             while(rs.next()){
                 cbcust.addItem(rs.getString(1));

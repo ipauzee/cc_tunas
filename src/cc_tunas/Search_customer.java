@@ -23,7 +23,7 @@ import java.sql.SQLException;
 public class Search_customer extends javax.swing.JFrame {
     private static String cus[]=new String[21];
     private static String condition;
-    public static int Form=0,AgreeId;
+    public static int Form=0;
     /** Creates new form Search_ticket */
     public Search_customer() {
         initComponents();

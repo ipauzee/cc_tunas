@@ -157,6 +157,8 @@ public class Add_note extends javax.swing.JFrame {
             }
             sql3="update tickets set note='note by : "+CCanj.lbluser.getText()+"@"+Hic.opdt.substring(8, 10) + "/" + Hic.opdt.substring(5, 7) + "/" + Hic.opdt.substring(0, 4)+"\n"+Hic.optm.replaceAll(":",".")+"\n\n"+txtinfo.getText()+"\n\n"+solution+" where ticket_id='"+Hic.no+"'";
             CCanj.jconn.SQLExecute(sql3,CCanj.conn);
+            sql1="update notify set _read=0 where ticket_id="+Hic.ticid+" ";
+            CCanj.jconn.SQLExecute(sql1,CCanj.conn);
 //            System.out.print("\ndebug dalam add note abis execute \n");
 //            System.out.print(sql);
             Hic.klik2();

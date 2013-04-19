@@ -94,7 +94,7 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
    // Connection atate info
    public static String IPtele = "localhost";
    public static int porttele = 6020;
-   public static String IPbroad = "192.168.0.71";
+   public static String IPbroad = "192.168.0.83";
    public static int portbroad = 23;
   // public static int connectionStatus = DISCONNECTED;
    public static boolean isHost = true;
@@ -275,13 +275,10 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
 
         if(Log.version!=Log.Loc){
             if(!Log.data[0].equals("herfan")){
-                //            connect();
+                connect();
                 connecttele();
                 connectuploder();
             }
-        }else{
-//            setTitle("CONTACT CENTER KONICA MINOLTA");
-//            lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/km_logo.jpg")));
         }
 
         v=btncall.getDebugGraphicsOptions();
@@ -527,9 +524,15 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
             tic3 = sdf.format(dt3);
             tic4 = sdf.format(dt4);
 //              sql="select a.ticket_no, a._status, a.category, a.assign_dept, a.assign_username, a.cust_name, a.cust_phone, a.user, a.vehicle_platno, a.vehicle_type, a.driver_name, a.driver_phone, a.ticket_id from tickets a where a.open_date ='"+ld+"' ";
-              sql="select a.ticket_no, e.data, a._type, b.data, a.vehicle_platno, a.open_username, d.dept_name, c.dept_name, a.assign_username, a.category, a.follow_up, a.cso_name, a.cust_name, a.cust_phone, a.cust_pic, a.vehicle_jenis, a.vehicle_type, a.vehicle_tahun, a.driver_name, a.driver_phone, a.details, a._gt, a._gs, a._storing, a._other, a.solution, a.ticket_id " +
-                      "from tickets a, _ticketstatus b, _department c, _department d, _ticketpriority e " +
-                      "where a._status=b.code and a.assign_dept=c.dept_id and a.dept_id=d.dept_id and a._priority=e.code ";
+              sql="select a.ticket_no, e.data, a._type, b.data, g.no_plat, a.open_username, d.dept_name, c.dept_name, a.assign_username, a.category, a.follow_up, a.cso_name, a.cust_name, a.cust_phone, a.cust_pic, a.vehicle_jenis, a.vehicle_type, a.vehicle_tahun, a.driver_name, a.driver_phone, a.details, a._gt, a._gs, a._storing, a._other, a.solution, a.ticket_id " +
+                      "from tickets a"
+                      + " left join _ticketstatus b on a._status=b.code" +
+                        " left join _department c on a.assign_dept=c.dept_id" +
+                        " left join _department d on a.dept_id=d.dept_id" +
+                        " left join _ticketpriority e on a._priority=e.code" +
+                        " left join agreements f on a.agreement_id=f.agreement_id" +
+                        " left join units g on f.unit_code=g.unit_code" +
+                      " where ticket_id is not null";
               condition="";
             if(cktgl.isSelected()==true){
                 if(!dctic4.getDate().equals("")){
@@ -543,9 +546,9 @@ public class ContactCenterTunas extends javax.swing.JInternalFrame {
                 condition=condition+" and a.ticket_no like '%"+txtticno1.getText()+"%'";
             }
             if(!txtplatno.getText().equals("")){
-                condition=condition+" and a.vehicle_platno like '%"+txtplatno.getText()+"%'";
+                condition=condition+" and g.no_plat like '%"+txtplatno.getText()+"%'";
             }
-            if(cbdept.getSelectedIndex()!=6){
+            if(!cbdept.getSelectedItem().equals("--")){
                 condition=condition+" and a.dept_id = '"+cbdept.getSelectedIndex()+"'";
             }
             if(!cbticstatus.getSelectedItem().equals("--")){
@@ -8949,7 +8952,7 @@ Object sel1,sel2;
             cbcust.removeAllItems();cbcust1.removeAllItems();cbcust2.removeAllItems();
             cbcust.addItem("Others");cbcust1.addItem("Others");cbcust2.addItem("Others");
 
-            sql="select distinct(cust_name) from customer_order order by cust_name";
+            sql="select distinct(fullname) from customers";
             rs=jconn.SQLExecuteRS(sql,conn);
             while(rs.next()){
                 cbcust.addItem(rs.getString(1));

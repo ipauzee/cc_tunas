@@ -73,8 +73,8 @@ public class ticket extends javax.swing.JFrame {
     String s;
     String opdt;
     String optm;
-    public static String deptid,ReArea,TicType,AgreeId;
-    private static String catid,catdetid;
+    public static String deptid,ReArea,TicType,AgreeId=null;
+    private static String catid,catdetid,mailcc;
     String usrlvl;
 
     public static int sla;
@@ -106,7 +106,7 @@ public class ticket extends javax.swing.JFrame {
         scpCcList.setSize(360,260);
         id=-1;
         catdetailupadate=false;
-        catfinalupadate=false;
+        catfinalupadate=false;AgreeId=null;
 //        submit=0;
 //        klik2();
     }
@@ -2256,7 +2256,7 @@ public class ticket extends javax.swing.JFrame {
                 System.out.print("\nnewtic=true "+newtic);
                 if (inputValid()==true || txtcsomail.getText().equals("")){
                     getTicType();getdept();getcateg();getcatdet();getReArea();
-                    usrlvl();
+                    usrlvl();mailcc="";
                     try{
                     sql="insert into tickets set _status=0, dept_id='"+deptid+"', dept_cc='"+txtCcDept.getText()+"'"
                             + ", _servicearea='"+txtCaseArea.getText()+"', representative_area_id='"+ReArea+"'"
@@ -2330,6 +2330,12 @@ public class ticket extends javax.swing.JFrame {
                                     }
                                     sql1="insert into ticket_viewer set ticket_id='"+id+"', dept_id='"+dpti+"', _opener='"+opener+"', _owner='"+owner+"'";
                                     Log.jconn.SQLExecute(sql1, Log.conn);
+                                    
+                                    sql="select pic_email from _representativearea where representative_area='"+cbArea.getSelectedItem()+"' and dept_id='"+dpti+"'";
+                                    rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
+                                    while(rs.next()){
+                                        mailcc=mailcc+","+rs.getString(1);
+                                    }
                                 }
                                 index = tu.indexOf(',');
                                 p = tu.length();
@@ -2393,6 +2399,8 @@ public class ticket extends javax.swing.JFrame {
                         String mailto="";
                         JOptionPane.showMessageDialog(null, "TICKET "+no1+" SUBMITED", "TICKETING",JOptionPane.WARNING_MESSAGE);
                         CCanj.s = "TICKET|ASSIGN|"+deptid+"|"+no1+"\r\n";CCanj.kirimBroad();
+                        sql1="insert into notify (ticket_id,username,_read) (select "+id+",username,0 from user_account where dept_id in ("+deptid+"))";
+                        CCanj.jconn.SQLExecute(sql1,CCanj.conn);
                         sqlno1="select ifnull(pic_email,'') from _representativearea where representative_area_id='"+ReArea+"'";
                         rs0=CCanj.jconn.SQLExecuteRS(sqlno1,CCanj.conn);
                         while (rs0.next()) {
@@ -2400,12 +2408,13 @@ public class ticket extends javax.swing.JFrame {
                         }
                         sql1="insert into log_mail "
                                 + " (mail_date,mail_time"
-                                + ", mail_from, mail_to"
+                                + ", mail_from, mail_to, mail_cc"
                                 + ", mail_subject, mail_text"
                                 + ", ticket_id, direction, username, direction_type)"
                                 + " values"
                                 + " (current_date,current_time"
-                                + ", 'tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id='"+catdetid+"'),\',\','"+mailto+"'))"
+                                + ", 'careline.tunas@jsm.co.id', '"+mailto+"', '"+mailcc+"'"
+//                                + ", 'careline.tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id='"+catdetid+"'),\',\','"+mailto+"'))"
                                 + ", '"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
                                 + ", '"+id+"',1, '"+CCanj.lbluser.getText()+"', 'Internal')";
                         CCanj.jconn.SQLExecute(sql1,CCanj.conn);
@@ -2441,7 +2450,7 @@ public class ticket extends javax.swing.JFrame {
                                 + ",sla='"+sla+"' "
                                 + ", cust_code='"+txtcuscod.getText()+"', cust_name='"+txtcusnam.getText()+"', cust_address='"+txtcustadd.getText()+"', cust_phone='"+txtcuspho.getText()+"', cust_email='"+txtcusemail.getText()+"'"
                                 + ", cust_pic='"+txtcuspic.getText()+"', cust_pic_address='"+txtPicadd.getText()+"', cust_pic_phone='"+txtpicPho.getText()+"'"
-                                + ", cust_note='"+txtcustNote.getText()+"', agreement_id='"+AgreeId
+                                + ", cust_note='"+txtcustNote.getText()+"', agreement_id='"+AgreeId+"'"
 //                                + ",cust_name='"+txtcusnam.getText()+"' "
 //                                + ",cust_address='"+txtcustadd.getText()+"' ,cust_phone='"+txtcusfax.getText()+"' "
 //                                + ",cust_pic='"+txtcuspic.getText()+"' ,user='"+txtusr.getText()+"' "
@@ -2501,6 +2510,11 @@ public class ticket extends javax.swing.JFrame {
                                         }
                                         sql1="insert into ticket_viewer set ticket_id='"+id+"', dept_id='"+dpti+"', _opener='"+opener+"', _owner='"+owner+"'";
                                         Log.jconn.SQLExecute(sql1, Log.conn);
+                                        sql="select pic_email from _representativearea where representative_area='"+cbArea.getSelectedItem()+"' and dept_id='"+dpti+"'";
+                                        rs=CCanj.jconn.SQLExecuteRS(sql,CCanj.conn);
+                                        while(rs.next()){
+                                            mailcc=mailcc+","+rs.getString(1);
+                                        }
                                     }
                                     index = tu.indexOf(',');
                                     p = tu.length();
@@ -2550,6 +2564,8 @@ public class ticket extends javax.swing.JFrame {
                         if(submit==1){
                             String mailto="";
                             JOptionPane.showMessageDialog(null, "TICKET "+txtnotic.getText()+" SUBMITED", "TICKETING",JOptionPane.WARNING_MESSAGE);
+                            sql1="insert into notify (ticket_id,username,_read) (select "+id+",username,0 from user_account where dept_id in ("+deptid+"))";
+                            CCanj.jconn.SQLExecute(sql1,CCanj.conn);
                             sqlno1="select ifnull(pic_email,'') from _representativearea where representative_area_id='"+ReArea+"'";
                             rs0=CCanj.jconn.SQLExecuteRS(sqlno1,CCanj.conn);
                             while (rs0.next()) {
@@ -2557,12 +2573,13 @@ public class ticket extends javax.swing.JFrame {
                             }
                             sql1="insert into log_mail "
                                     + " (mail_date, mail_time"
-                                    + ", mail_from, mail_to"
+                                    + ", mail_from, mail_to, mail_cc"
                                     + ", mail_subject, mail_text"
                                     + ", ticket_id, direction, username, direction_type)"
                                     + " values"
                                     + " (current_date,current_time"
-                                    + ", 'tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id=1),\',\','"+mailto+"'))"
+//                                    + ", 'careline.tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id=1),\',\','"+mailto+"'))"
+                                    + ", 'careline.tunas@jsm.co.id', '"+mailto+"', '"+mailcc+"'"
                                     + ", '"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
                                     + ", '"+id+"',1, '"+CCanj.lbluser.getText()+"', 'Internal')";
                             CCanj.jconn.SQLExecute(sql1,CCanj.conn);
@@ -2697,9 +2714,10 @@ public class ticket extends javax.swing.JFrame {
     public boolean catdetailupadate=false;
     public boolean catfinalupadate=false;
     
-    Search_customer sercus = new Search_customer();
+    
     private void btnsrchcusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsrchcusActionPerformed
         // TODO add your handling code here:        
+        Search_customer sercus = new Search_customer();
         sercus.setVisible(true);
         sercus.Form=1;
     }//GEN-LAST:event_btnsrchcusActionPerformed
@@ -3332,14 +3350,14 @@ Object sel,sel1;int baris;int conter;
                 txtAgr10.setText(rs.getString(11));
                 txtAgr11.setText(rs.getString(12));
                 
-                txtUnit1.setText(rs.getString(20));
-                txtUnit2.setText(rs.getString(21));
-                txtUnit3.setText(rs.getString(22));
-                txtUnit4.setText(rs.getString(23));
-                txtUnit5.setText(rs.getString(24));
-                txtUnit6.setText(rs.getString(25));
-                txtUnit7.setText(rs.getString(26));
-                txtUnit8.setText(rs.getString(27));
+                txtUnit1.setText(rs.getString(21));
+                txtUnit2.setText(rs.getString(22));
+                txtUnit3.setText(rs.getString(23));
+                txtUnit4.setText(rs.getString(24));
+                txtUnit5.setText(rs.getString(25));
+                txtUnit6.setText(rs.getString(26));
+                txtUnit7.setText(rs.getString(27));
+                txtUnit8.setText(rs.getString(28));
                 
                 txtDriCode.setText(rs.getString("driver_code"));
                 txtdrinm.setText(rs.getString("driver_name"));             
