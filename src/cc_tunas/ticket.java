@@ -2415,7 +2415,7 @@ public class ticket extends javax.swing.JFrame {
                                 + " (current_date,current_time"
                                 + ", 'careline.tunas@jsm.co.id', '"+mailto+"', '"+mailcc+"'"
 //                                + ", 'careline.tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id='"+catdetid+"'),\',\','"+mailto+"'))"
-                                + ", '"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
+                                + ", '"+txtcusnam.getText()+"#"+txtUnit5.getText()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
                                 + ", '"+id+"',1, '"+CCanj.lbluser.getText()+"', 'Internal')";
                         CCanj.jconn.SQLExecute(sql1,CCanj.conn);
                         JOptionPane.showMessageDialog(null, "EMAIL SENT", "MAILING",JOptionPane.WARNING_MESSAGE);
@@ -2580,7 +2580,7 @@ public class ticket extends javax.swing.JFrame {
                                     + " (current_date,current_time"
 //                                    + ", 'careline.tunas@jsm.co.id', (select concat((select email_to from _ticketdetailcategory where detail_category_id=1),\',\','"+mailto+"'))"
                                     + ", 'careline.tunas@jsm.co.id', '"+mailto+"', '"+mailcc+"'"
-                                    + ", '"+txtcusnam.getText()+"#"+cbnoplat.getSelectedItem()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
+                                    + ", '"+txtcusnam.getText()+"#"+txtUnit5.getText()+"#"+cbcategory.getSelectedItem()+"#"+cbprior.getSelectedItem()+"#"+no1+"','Details :\n"+txtdetails.getText()+"\n\nSoluiton :\n"+txtlastnote.getText()+" \n\n Action Status : "+rnarasi+"\n\n SUBMITED'"
                                     + ", '"+id+"',1, '"+CCanj.lbluser.getText()+"', 'Internal')";
                             CCanj.jconn.SQLExecute(sql1,CCanj.conn);
                             JOptionPane.showMessageDialog(null, "EMAIL SENT", "MAILING",JOptionPane.WARNING_MESSAGE);
