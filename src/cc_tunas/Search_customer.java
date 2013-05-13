@@ -371,7 +371,7 @@ public class Search_customer extends javax.swing.JFrame {
                     case 2:
                         Inc.IdCust=((String)tblcus.getValueAt(tblcus.getSelectedRow(),0));
                         Inc.txtIdCust.setText((String)tblcus.getValueAt(tblcus.getSelectedRow(),0));
-                        Inc.tabeltic();
+//                        Inc.tabeltic();
                         break;
                     case 3:
                         break;
