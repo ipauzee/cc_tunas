@@ -3214,6 +3214,9 @@ Object sel,sel1;int baris;int conter;
               btncreate.setEnabled(true);
               btncreate.setText("Save");
           }
+          if(statuss==3){
+              btnclosed.setEnabled(true);
+          }
      }else{
           cksubmit.setSelected(false);
           btncreate.setText("Save");

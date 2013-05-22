@@ -8662,7 +8662,7 @@ Object sel1,sel2;
                     int p;
                     int index;
                     ring = intele.readLine();
-                    if((ring.substring(0,7).equals("ABANDON") )) {
+                    if((ring.substring(0,12).equals("DISCONNECTED") )) {
                         stop();
                         delay();
                         if(elapsed<=5){
