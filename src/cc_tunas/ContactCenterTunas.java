@@ -8666,10 +8666,10 @@ Object sel1,sel2;
                         stop();
                         delay();
                         if(elapsed<=5){
-                            sql="update log_phone set abandon='"+elapsed+"', _callstatus=-1 where log_id='"+loid+"'";
+                            sql="update log_phone set abandon='"+elapsed+"', _callstatus=-1 where log_id='"+loid+"' and _callstatus=0";
                             jconn.SQLExecute(sql, conn);
                         }else{
-                            sql="update log_phone set abandon='"+elapsed+"', _callstatus=0 where log_id='"+loid+"'";
+                            sql="update log_phone set abandon='"+elapsed+"', _callstatus=0 where log_id='"+loid+"' and _callstatus=0";
                             jconn.SQLExecute(sql, conn);
                         }
                         btncall.setEnabled(false);
