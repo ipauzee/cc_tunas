@@ -147,10 +147,12 @@ public class Closed_tic extends javax.swing.JFrame {
         }else{
             conf=0;
         }
-        sql="update tickets set _status=4, close_date=CURRENT_DATE, close_time=CURRENT_TIME, close_username='"+CCanj.lbluser.getText()+"', confirm="+conf+", confirm_by='"+cbby.getSelectedIndex()+"', solution='"+txtsolution.getText()+"' where ticket_id='"+Tic.id+"'";
+        sql="update tickets set _status=4, close_date=CURRENT_DATE, close_time=CURRENT_TIME, close_duration=(TIMESTAMPDIFF(Second,(select concat(close_date,' ',close_time) from tickets where ticket_no='1307090009'),CURRENT_TIMESTAMP)), close_username='"+CCanj.lbluser.getText()+"', confirm="+conf+", confirm_by='"+cbby.getSelectedIndex()+"', solution='"+txtsolution.getText()+"' where ticket_id='"+Tic.id+"'";
         CCanj.jconn.SQLExecute(sql,CCanj.conn);
-        sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username) values ('contact@anjrent.com','"+Tic.txtcsomail.getText()+"','<notify>#"+Tic.txtcusnam.getText()+"#"+Tic.cbnoplat.getSelectedItem()+"#"+Tic.txtusr.getText()+"#"+Tic.cbcategory.getSelectedItem()+"#"+Tic.txtnotic.getText()+"','CLOSED by : "+CCanj.lbluser.getText()+"\n"+opdt+"\n"+optm+"\n\nDetails :\n"+Tic.txtdetails.getText()+"\n\nSoluiton :\n"+Tic.txtlastnote.getText()+"','"+Tic.id+"',1,'"+CCanj.lbluser.getText()+")";
+        sql1="insert into log_tickets (log_date,log_time,username,user_level,ticket_id,_status,info) values ('"+opdt+"','"+optm+"','"+CCanj.lbluser.getText()+"','"+Tic.usrlvl+"','"+Tic.id+"',4,'Ticket closed by : "+CCanj.lbluser.getText()+"\n"+opdt+"\n"+optm+"\n\nSolution : "+txtsolution.getText()+"')";
         CCanj.jconn.SQLExecute(sql1,CCanj.conn);
+//        sql1="insert into log_mail (mail_from,mail_to,mail_subject,mail_text,ticket_id,direction,username) values ('contact@anjrent.com','"+Tic.txtcsomail.getText()+"','<notify>#"+Tic.txtcusnam.getText()+"#"+Tic.cbnoplat.getSelectedItem()+"#"+Tic.txtusr.getText()+"#"+Tic.cbcategory.getSelectedItem()+"#"+Tic.txtnotic.getText()+"','CLOSED by : "+CCanj.lbluser.getText()+"\n"+opdt+"\n"+optm+"\n\nDetails :\n"+Tic.txtdetails.getText()+"\n\nSoluiton :\n"+Tic.txtlastnote.getText()+"','"+Tic.id+"',1,'"+CCanj.lbluser.getText()+")";
+//        CCanj.jconn.SQLExecute(sql1,CCanj.conn);
         JOptionPane.showMessageDialog(null, "TICKET HAS BEEN CLOSED", "TICKETING",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton1MouseClicked
 
